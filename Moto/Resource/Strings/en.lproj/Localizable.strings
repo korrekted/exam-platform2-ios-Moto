@@ -1,0 +1,158 @@
+/*
+  Localizable.strings
+  CDL
+
+  Created by Andrey Chernyshev on 27.03.2021.
+  
+*/
+
+// MARK: General
+"Cancel" = "Cancel";
+"Continue" = "Continue";
+
+// MARK: ImagePicker
+"ImagePicker.TakePhoto" = "Take photo";
+"ImagePicker.CameraRoll" = "Camera roll";
+"ImagePicker.PhotoLibrary" = "Photo library";
+
+// MARK: Course
+"Course.Tab.Stats" = "Stats";
+"Course.Tab.Study" = "Study";
+
+// MARK: Splash
+"Splash.Title.Part1" = "Prepared by\n";
+"Splash.Title.Part2" = "CERTIFIED\n";
+"Splash.Title.Part3" = "experts";
+
+// MARK: Onboarding
+"Onboarding.Skip" = "Skip";
+"Onboarding.Next" = "Next";
+"Onboarding.Yes" = "Yes";
+"Onboarding.No" = "No";
+"Onboarding.Skip" = "skip";
+"Onboarding.SlideStarted.Text1" = "Personal study\nplan to pass on the\nfirst take";
+"Onboarding.SlideStarted.Text2" = "Your study plan is prepared by the algorithms which rely on thousands of similar cases";
+"Onboarding.SlideStarted.Button" = "Get started";
+"Onboarding.SlideCountry.Title" = "Choose\nyour country";
+"Onboarding.SlideState.Title" = "Select your\nstаte, province\nor district";
+"Onboarding.SlideLanguage.Title" = "Select your language";
+"Onboarding.SlideLocale.Error" = "Failed to save";
+"Onboarding.Goals.Title" = "What’s your goal?";
+"Onboarding.Goals.Cell1" = "Pass the exam";
+"Onboarding.Goals.Cell2" = "Become a better driver";
+"Onboarding.Goals.Cell3" = "Try something new";
+"Onboarding.Goals.Cell4" = "Refresh the basics";
+"Onboarding.Goals.Cell5" = "Extend my knowledge";
+"Onboarding.SlideWhenTaking.Title" = "When are you\ntaking your exam?";
+"Onboarding.SlideTime.Title" = "How much time can\nyou spend on\na single test?";
+"Onboarding.SlideTime.Min" = "min";
+"Onboarding.SlideCount.Title" = "How many tests\nwould you like to\ntake daily?";
+"Onboarding.Question.Title" = "Do you agree with the statement?";
+"Onboarding.Question1" = "A driver should always remember about the blind spots of long and commercial vehicles.";
+"Onboarding.Question2" = "Take care of your car in garage, and the car will take care of you in the road.";
+"Onboarding.Question3" = "Driving safely is the trick. Getting home is the treat. Buckle up. Celebrate without alcohol.";
+"Onboarding.Question4" = "A driver on the highway is safe not when they read the signs, but when they obey them.";
+"Onboarding.Preloader.Title" = "Preparing your\nindividual study plan";
+"Onboarding.Preloader.Cell1" = "Analyzing your skill level";
+"Onboarding.Preloader.Cell2" = "Analyzing your goals";
+"Onboarding.Preloader.Cell3" = "Processing required exams";
+"Onboarding.SlidePlan.Title" = "Your personal 98% pass rate\nstudy plan is ready!";
+"Onboarding.SlidePlan.Cell1" = "4000+ individual questions";
+"Onboarding.SlidePlan.Cell2" = "20+ different topics";
+"Onboarding.SlidePlan.Cell3" = "reminders and notifications";
+"Onboarding.SlidePlan.Button" = "Get my plan";
+
+// MARK: Study
+"Study.Title" = "Study";
+"Study.Day.One" = "day";
+"Study.Day.Two" = "days";
+"Study.Day.Many" = "days";
+"Study.Streak" = "streak";
+"Study.TakeTest" = "Take a test";
+"Study.TakeFreeTest" = "Take a free test";
+"Study.UnlockQuestions" = "Unlock all";
+"Study.Mode.TodaysQuestion" = "Today’s\nquestion";
+"Study.Mode.TenQuestions" = "10 questions\nquick exam";
+"Study.Mode.MissedQuestions" = "Missed\nquestions set";
+"Study.Mode.RandomSet" = "Random exam\nset";
+"Study.Mode.TimedQuizz" = "Timed\nQuizz";
+"Study.Mode.TryMe" = "TRY ME";
+"Study.Course.CourseCount" = "%d topics";
+"Study.Course.Title" = " exam modes";
+
+// MARK: Settings
+"Settings.Title" = "Settings";
+"Settings.Unlock" = "Unlock";
+"Settings.Premium" = "Premium";
+"Settings.ChangeLocale" = "Change locale";
+"Settings.RateUs" = "Rate us";
+"Settings.ContactUs" = "Contact us";
+"Settings.TermsOfUse" = "Terms of use";
+"Settings.PrivacyPolicy" = "Privacy Policy";
+"Settings.YourLocale" = "Your locale";
+"Settings.YourLanguage" = "Your language";
+
+// MARK: Stats
+"Stats.PassRate.Title" = "Current pass rate";
+"Stats.MainRate.TestsTake" = "Tests taken";
+"Stats.MainRate.CorrectAnswers" = "Correct answers";
+"Stats.MainRate.QuestionsTaken" = "Questions taken";
+"Stats.MainRate.LongestStreak" = "Longest streak";
+"Stats.MainRate.AnsweredQuestions" = "Answered questions";
+"Stats.Title" = "Stats";
+"Stats.Day.One" = "day";
+"Stats.Day.Two" = "days";
+"Stats.Day.Many" = "days";
+
+// MARK: Paygate
+"Paygate.Main.Title" = "KNOW THE QUESTIONS\nBEFOREHAND";
+"Paygate.Main.Cell1" = "Don’t spend hours learning";
+"Paygate.Main.Cell2" = "Train yourself with 4000+ questions";
+"Paygate.Main.Cell3" = "98% pass rate on the first attempt!";
+"Paygate.Main.Info" = "Secured with iTunes. Cancel anytime.";
+"Paygate.Main.TermsOfUse" = "Terms of use";
+"Paygate.Main.And" = " and ";
+"Paygate.Main.PrivacyPolicy" = "Privacy Policy";
+"Paygate.Main.RestorePurchases" = "Restore purchases";
+"Paygate.Purchase.Failed" = "Failed to make purchase";
+"Paygate.Continue" = "Continue →";
+
+// MARK: Question
+"Question.Explanation" = "Explanation";
+"Question.Continue" = "Continue";
+"Question.Submit" = "Submit test";
+"Question.Finish" = "Finish";
+"Question.BackToStudying" = "Back to studying";
+"Question.Counter.Score" = "Score";
+"Question.Counter.Question" = "Question";
+"Question.Counter.RemainingTime" = "Remaining time";
+
+// MARK: Test Stats
+"TestStats.TestTime" = "your time";
+"TestStats.ComunityAverage" = "comunity average";
+"TestStats.ComunityScore" = "comunity score";
+"TestStats.Attempted" = "Attempted";
+"TestStats.Correct" = "Correct";
+"TestStats.Incorrect" = "Incorrect";
+"TestStats.Filter.Incorrect" = "Incorrect";
+"TestStats.Filter.Correct" = "Correct";
+"TestStats.Filter.All" = "All";
+"TestStats.NextTest" = "Next test";
+"TestStats.TryAgain" = "Try аgаin";
+"TestStats.PassingScore" = "Passing score";
+
+// MARK: Trophy
+"Trophy.LearnMore" = "Learn more";
+"Trophy.Title" = "Pass your exam with 100% assurance";
+
+// MARK: Course Details
+"CourseDetails.Questions" = "questions";
+"CourseDetails.Saved" = "Saved";
+"CourseDetails.Incorrect" = "Incorrect";
+"CourseDetails.PassRate" = "Pass rate";
+
+// MARK: Timed Exam
+"TimedExam.Title" = "Timed exаm";
+"TimedExam.Subtitle" = "How mаny minutes?";
+"TimedExam.Button" = "Start";
+

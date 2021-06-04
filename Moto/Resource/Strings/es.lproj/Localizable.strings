@@ -1,0 +1,149 @@
+"Cancel" = "Cancelar";
+"Continue" = "Continuar";
+
+// MARK: ImagePicker
+"ImagePicker.TakePhoto" = "Tomar foto";
+"ImagePicker.CameraRoll" = "Rollo de la cámara";
+"ImagePicker.PhotoLibrary" = "Librería fotográfica";
+
+// MARK: Course
+"Course.Tab.Stats" = "Estudio";
+"Course.Tab.Study" = "Estadisticas";
+
+// MARK: Splash
+"Splash.Title.Part1" = "Más de\n";
+"Splash.Title.Part2" = "60,000\n";
+"Splash.Title.Part3" = "preguntas de\nexamen reales";
+
+// MARK: Onboarding
+"Onboarding.Skip" = "Saltar";
+"Onboarding.Next" = "Continuar";
+"Onboarding.Yes" = "Sí";
+"Onboarding.No" = "No";
+"Onboarding.Skip" = "Saltar";
+"Onboarding.SlideStarted.Text1" = "NO PASES HORAS\nAPRENDIENDO";
+"Onboarding.SlideStarted.Text2" = "Exámenes de práctica creados por expertos certificados para ayudarte a aprobar en el primer intento";
+"Onboarding.SlideStarted.Button" = "A por ello";
+"Onboarding.SlideCountry.Title" = "Elige\ntu país";
+"Onboarding.SlideState.Title" = "Seleccione su\nestado, provincia\no distrito";
+"Onboarding.SlideLanguage.Title" = "Elige tu idioma";
+"Onboarding.SlideLocale.Error" = "Error al guardar";
+"Onboarding.Goals.Title" = "¿Cuáles son tus objetivos?";
+"Onboarding.Goals.Cell1" = "Tomar el examen";
+"Onboarding.Goals.Cell2" = "Ser un mejor conductor";
+"Onboarding.Goals.Cell3" = "Ampliar mi conocimiento";
+"Onboarding.Goals.Cell4" = "Refrescar los fundamentos";
+"Onboarding.Goals.Cell5" = "Probar algo nuevo";
+"Onboarding.SlideWhenTaking.Title" = "¿Cuándo tomarás\nel examen?";
+"Onboarding.SlideTime.Title" = "¿Cuánto tiempio\npuedes pasar\nen un examen?";
+"Onboarding.SlideTime.Min" = "min";
+"Onboarding.SlideCount.Title" = "¿Cuántos exámenes\nquieres tomar\na diario?";
+"Onboarding.Question.Title" = "¿Estás de acuerdo con la afirmación??";
+"Onboarding.Question1" = "La gente mayor tiene que tomar otro examen de conducir más adelante.";
+"Onboarding.Question2" = "La edad mínima para conducir en España debería ser sustancialmente mayor.";
+"Onboarding.Question3" = "Los conductores humanos deberían desaparecer en favor de los vehículos autónomos.";
+"Onboarding.Question4" = "Los conductores humanos deberían desaparecer en favor de los vehículos autónomos.";
+"Onboarding.Preloader.Title" = "Preparando tu plan\nde estudio individual";
+"Onboarding.Preloader.Cell1" = "Analizando tus objetivos...";
+"Onboarding.Preloader.Cell2" = "Analizando su nivel de competencias...";
+"Onboarding.Preloader.Cell3" = "Analizando tus preferencias de estudio...";
+"Onboarding.SlidePlan.Title" = "Tu plan de estudio con un 98% de aprobados!";
+"Onboarding.SlidePlan.Cell1" = "60000+ preguntas";
+"Onboarding.SlidePlan.Cell2" = "diferentes modalidades";
+"Onboarding.SlidePlan.Cell3" = "recordatorios y notificaciones";
+"Onboarding.SlidePlan.Button" = "¡Vamos!";
+
+// MARK: Study
+"Study.Title" = "Estudio";
+"Study.Day.One" = "dia";
+"Study.Day.Two" = "dias";
+"Study.Day.Many" = "dias";
+"Study.Streak" = "(Racha)";
+"Study.TakeTest" = "Tomar una prueba";
+"Study.TakeFreeTest" = "Haz una prueba gratis";
+"Study.UnlockQuestions" = "Desbloquea todas las preguntas";
+"Study.Mode.TodaysQuestion" = "Pregunta\nde hoy";
+"Study.Mode.TenQuestions" = "Prueba rápida\nde 10 preguntas";
+"Study.Mode.MissedQuestions" = "Preguntas\nincorrectas";
+"Study.Mode.RandomSet" = "Prueba de con-\njunto aleatorio";
+"Study.Mode.TimedQuizz" = "Prueba\ncronometrada";
+"Study.Mode.TryMe" = "INTENTALO";
+"Study.Course.CourseCount" = "%d temas";
+"Study.Course.Title" = " modos de prueba";
+
+// MARK: Settings
+"Settings.Title" = "Ajustes";
+"Settings.Unlock" = "Desbloquear";
+"Settings.Premium" = "PREMIUM";
+"Settings.ChangeLocale" = "Cambiar locale";
+"Settings.RateUs" = "Nos califica";
+"Settings.ContactUs" = "Contacta con nosotros";
+"Settings.TermsOfUse" = "Condiciones de uso";
+"Settings.PrivacyPolicy" = "Política de privacidad";
+"Settings.YourLocale" = "Tu localidad";
+"Settings.YourLanguage" = "Tu lenguaje";
+
+// MARK: Stats
+"Stats.PassRate.Title" = "Tasa de aprobación";
+"Stats.MainRate.TestsTake" = "Pruebas realizadas";
+"Stats.MainRate.CorrectAnswers" = "Respuestas correctas";
+"Stats.MainRate.QuestionsTaken" = "Preguntas respondidas";
+"Stats.MainRate.LongestStreak" = "Racha más larga";
+"Stats.MainRate.AnsweredQuestions" = "Preguntas respondidas";
+"Stats.Title" = "Estadisticas";
+"Stats.Day.One" = "dia";
+"Stats.Day.Two" = "dias";
+"Stats.Day.Many" = "dias";
+
+// MARK: Paygate
+"Paygate.Main.Title" = "CONOCE LAS PREGUNTAS\nDE ANTEMANO";
+"Paygate.Main.Cell1" = "No pases horas aprendiendo";
+"Paygate.Main.Cell2" = "Practica con más de 15.000 preguntas";
+"Paygate.Main.Cell3" = "¡Tasa de 98% de aprobados!";
+"Paygate.Main.Info" = "Asegurado por iTunes. Cancela cuando quieras.";
+"Paygate.Main.TermsOfUse" = "Condiciones de uso";
+"Paygate.Main.And" = " y ";
+"Paygate.Main.PrivacyPolicy" = "Política de privacidad";
+"Paygate.Main.RestorePurchases" = "Restaurar las compras";
+"Paygate.Purchase.Failed" = "No se pudo realizar la compra";
+"Paygate.Continue" = "Continuar →";
+
+// MARK: Question
+"Question.Explanation" = "Explicación";
+"Question.Continue" = "Continuar";
+"Question.Submit" = "Enviar prueba";
+"Question.Finish" = "Terminar";
+"Question.BackToStudying" = "Vuelve a estudiar";
+"Question.Counter.Score" = "Puntaje";
+"Question.Counter.Question" = "Pregunta";
+"Question.Counter.RemainingTime" = "Tiempo restante";
+
+// MARK: Test Stats
+"TestStats.TestTime" = "Su tiempo";
+"TestStats.ComunityAverage" = "Promedio de la comunidad";
+"TestStats.ComunityScore" = "Puntuación media";
+"TestStats.Attempted" = "Atentado";
+"TestStats.Correct" = "Correcta";
+"TestStats.Incorrect" = "Incorrect";
+"TestStats.Filter.Incorrect" = "Incorrecta";
+"TestStats.Filter.Correct" = "Incorrect";
+"TestStats.Filter.All" = "Todo";
+"TestStats.NextTest" = "Próxima prueba";
+"TestStats.TryAgain" = "Prueba de nuevo";
+"TestStats.PassingScore" = "Puntaje de aprobación";
+
+// MARK: Trophy
+"Trophy.LearnMore" = "Aprende más";
+"Trophy.Title" = "Apruebe su examen con 100% de seguridad";
+
+// MARK: Course Details
+"CourseDetails.Questions" = "preguntas";
+"CourseDetails.Saved" = "Salvado";
+"CourseDetails.Incorrect" = "Incorrecta";
+"CourseDetails.PassRate" = "Tasa de aprobación";
+
+// MARK: Timed Exam
+"TimedExam.Title" = "Prueba cronometrada";
+"TimedExam.Subtitle" = "¿Cuántos minutos?";
+"TimedExam.Button" = "Comienzo";
+
