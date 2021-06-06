@@ -43,7 +43,7 @@ extension SITestProgressCollectionCell {
 // MARK: Private
 private extension SITestProgressCollectionCell {
     func initialize() {
-        layer.cornerRadius = 18.scale
+        layer.cornerRadius = 7.scale
         layer.masksToBounds = true
     }
 }

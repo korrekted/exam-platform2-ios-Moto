@@ -139,7 +139,7 @@ private extension TestStatsView {
     func makeBottomButton() -> UIButton {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 12.scale
+        view.layer.cornerRadius = 20.scale
         view.heightAnchor.constraint(equalToConstant: 53.scale).isActive = true
         return view
     }

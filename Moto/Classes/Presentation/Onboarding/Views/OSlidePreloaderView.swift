@@ -18,7 +18,7 @@ final class OSlidePreloaderView: OSlideView {
     
     override init(step: OnboardingView.Step) {
         super.init(step: step)
-        
+        initialize()
         makeConstraints()
     }
     
@@ -68,6 +68,10 @@ private extension OSlidePreloaderView {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) { [weak self] in
             self?.onNext()
         }
+    }
+    
+    func initialize() {
+        backgroundColor = Onboarding.Preloader.background
     }
 }
 

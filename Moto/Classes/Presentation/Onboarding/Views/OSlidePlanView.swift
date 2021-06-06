@@ -119,7 +119,7 @@ private extension OSlidePlanView {
         
         let view = UIButton()
         view.backgroundColor = Onboarding.primaryButton
-        view.layer.cornerRadius = 30.scale
+        view.layer.cornerRadius = 20.scale
         view.setAttributedTitle("Onboarding.SlidePlan.Button".localized.attributed(with: attrs), for: .normal)
         view.addTarget(self, action: #selector(onNext), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
