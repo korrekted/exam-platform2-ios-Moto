@@ -130,7 +130,7 @@ private extension SITestView {
     func makeBottomButton() -> UIButton {
         let view = UIButton()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 30.scale
+        view.layer.cornerRadius = 20.scale
         view.backgroundColor = TestPalette.primaryButton
         addSubview(view)
         return view
@@ -141,7 +141,7 @@ private extension SITestView {
         view.setImage(UIImage(named: "Question.Next"), for: .normal)
         view.tintColor = TestPalette.secondaryTint
         view.backgroundColor = TestPalette.secondaryButton
-        view.layer.cornerRadius = 22.scale
+        view.layer.cornerRadius = 16.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

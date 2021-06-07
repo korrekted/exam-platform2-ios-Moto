@@ -9,6 +9,7 @@ import UIKit
 
 final class OQuestionFormView: UIView {
     lazy var container = makeContainer()
+    lazy var backgroundView = makeBackground()
     lazy var label = makeLabel()
     
     override init(frame: CGRect) {
@@ -33,6 +34,14 @@ private extension OQuestionFormView {
 // MARK: Make constraints
 private extension OQuestionFormView {
     func makeConstraints() {
+        
+        NSLayoutConstraint.activate([
+            backgroundView.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10.scale),
+            backgroundView.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: 7.scale),
+            backgroundView.topAnchor.constraint(equalTo: container.topAnchor, constant: 23.scale),
+            backgroundView.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: 4.scale)
+        ])
+        
         NSLayoutConstraint.activate([
             container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.scale),
             container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.scale),
@@ -41,7 +50,7 @@ private extension OQuestionFormView {
         ])
         
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 24.scale),
+            label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 30.scale),
             label.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -24.scale),
             label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -30.scale),
             label.topAnchor.constraint(equalTo: container.topAnchor, constant: 50.scale)
@@ -54,7 +63,17 @@ private extension OQuestionFormView {
     func makeContainer() -> UIImageView {
         let view = UIImageView()
         view.backgroundColor = UIColor.clear
-        view.image = UIImage(named: "Onboarding.Question.Frame")
+        view.image = UIImage(named: "Onboarding.Question.Frame1")
+        view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeBackground() -> UIImageView {
+        let view = UIImageView()
+        view.backgroundColor = UIColor.clear
+        view.image = UIImage(named: "Onboarding.Question.Frame2")
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)

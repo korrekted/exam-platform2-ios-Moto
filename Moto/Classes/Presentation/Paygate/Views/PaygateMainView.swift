@@ -104,16 +104,17 @@ private extension PaygateMainView {
         ])
         
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalToConstant: 375.scale),
-            imageView.heightAnchor.constraint(equalToConstant: 235.scale),
-            imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 267.scale),
+            imageView.heightAnchor.constraint(equalToConstant: 164.scale),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70.scale),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -38.scale),
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 92.scale : 35.scale)
         ])
         
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11.scale),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 257.scale : 200.scale)
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate([
@@ -242,7 +243,7 @@ private extension PaygateMainView {
         let view = PaygateOptionView()
         view.alpha = 0
         view.isHidden = true
-        view.layer.cornerRadius = 8.scale
+        view.layer.cornerRadius = 20.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
@@ -283,7 +284,7 @@ private extension PaygateMainView {
         view.setAttributedTitle("Paygate.Continue".localized.attributed(with: attrs), for: .normal)
         view.isHidden = true
         view.backgroundColor = PaygatePalette.continueButton
-        view.layer.cornerRadius = 30.scale
+        view.layer.cornerRadius = 20.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

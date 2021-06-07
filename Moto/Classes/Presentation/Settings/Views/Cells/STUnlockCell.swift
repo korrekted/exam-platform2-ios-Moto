@@ -80,7 +80,7 @@ private extension STUnlockCell {
     func makeContainer() -> UIView {
         let view = UIView()
         view.backgroundColor = SettingsPalette.unlockBackground
-        view.layer.cornerRadius = 12.scale
+        view.layer.cornerRadius = 20.scale
         view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)

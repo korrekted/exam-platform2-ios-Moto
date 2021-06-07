@@ -96,7 +96,7 @@ private extension OSlideQuestionView {
             .textColor(Onboarding.primaryButtonTint)
         
         let view = UIButton()
-        view.layer.cornerRadius = 30.scale
+        view.layer.cornerRadius = 20.scale
         view.setAttributedTitle("Onboarding.Yes".localized.attributed(with: attrs), for: .normal)
         view.backgroundColor = Onboarding.primaryButton
         view.addTarget(self, action: #selector(onNext), for: .touchUpInside)
@@ -111,7 +111,7 @@ private extension OSlideQuestionView {
             .textColor(Onboarding.secondaryButtonTint)
         
         let view = UIButton()
-        view.layer.cornerRadius = 30.scale
+        view.layer.cornerRadius = 20.scale
         view.layer.borderWidth = 1.scale
         view.layer.borderColor = Onboarding.secondaryButtonBorder.cgColor
         view.setAttributedTitle("Onboarding.No".localized.attributed(with: attrs), for: .normal)
