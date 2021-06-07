@@ -1,3 +1,12 @@
+/*
+  Localizable.strings
+  CDL
+
+  Created by Andrey Chernyshev on 27.03.2021.
+  
+*/
+
+// MARK: General
 "Cancel" = "Cancelar";
 "Continue" = "Continuar";
 
@@ -7,12 +16,12 @@
 "ImagePicker.PhotoLibrary" = "Librería fotográfica";
 
 // MARK: Course
-"Course.Tab.Stats" = "Estudio";
-"Course.Tab.Study" = "Estadisticas";
+"Course.Tab.Stats" = "Estadisticas";
+"Course.Tab.Study" = "Estudio";
 
 // MARK: Splash
 "Splash.Title.Part1" = "Más de\n";
-"Splash.Title.Part2" = "60,000\n";
+"Splash.Title.Part2" = "20,000\n";
 "Splash.Title.Part3" = "preguntas de\nexamen reales";
 
 // MARK: Onboarding
@@ -38,17 +47,12 @@
 "Onboarding.SlideTime.Title" = "¿Cuánto tiempio\npuedes pasar\nen un examen?";
 "Onboarding.SlideTime.Min" = "min";
 "Onboarding.SlideCount.Title" = "¿Cuántos exámenes\nquieres tomar\na diario?";
-"Onboarding.Question.Title" = "¿Estás de acuerdo con la afirmación??";
-"Onboarding.Question1" = "La gente mayor tiene que tomar otro examen de conducir más adelante.";
-"Onboarding.Question2" = "La edad mínima para conducir en España debería ser sustancialmente mayor.";
-"Onboarding.Question3" = "Los conductores humanos deberían desaparecer en favor de los vehículos autónomos.";
-"Onboarding.Question4" = "Los conductores humanos deberían desaparecer en favor de los vehículos autónomos.";
 "Onboarding.Preloader.Title" = "Preparando tu plan\nde estudio individual";
 "Onboarding.Preloader.Cell1" = "Analizando tus objetivos...";
 "Onboarding.Preloader.Cell2" = "Analizando su nivel de competencias...";
 "Onboarding.Preloader.Cell3" = "Analizando tus preferencias de estudio...";
 "Onboarding.SlidePlan.Title" = "Tu plan de estudio con un 98% de aprobados!";
-"Onboarding.SlidePlan.Cell1" = "60000+ preguntas";
+"Onboarding.SlidePlan.Cell1" = "20,000+ preguntas";
 "Onboarding.SlidePlan.Cell2" = "diferentes modalidades";
 "Onboarding.SlidePlan.Cell3" = "recordatorios y notificaciones";
 "Onboarding.SlidePlan.Button" = "¡Vamos!";
@@ -146,4 +150,3 @@
 "TimedExam.Title" = "Prueba cronometrada";
 "TimedExam.Subtitle" = "¿Cuántos minutos?";
 "TimedExam.Button" = "Comienzo";
-

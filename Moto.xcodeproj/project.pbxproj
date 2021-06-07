@@ -247,7 +247,6 @@
 		967D9E74266A4FF9002251D7 /* LocaleLanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9D72266A4FF8002251D7 /* LocaleLanguageView.swift */; };
 		967D9E75266A4FF9002251D7 /* LocaleStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9D73266A4FF8002251D7 /* LocaleStateView.swift */; };
 		967D9E76266A4FF9002251D7 /* LocaleCountryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9D74266A4FF8002251D7 /* LocaleCountryView.swift */; };
-		967D9E77266A4FF9002251D7 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 967D9D76266A4FF8002251D7 /* Onboarding.Chart.json */; };
 		967D9E78266A4FF9002251D7 /* ODatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9D77266A4FF8002251D7 /* ODatePicker.swift */; };
 		967D9E79266A4FF9002251D7 /* OPreloaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9D78266A4FF8002251D7 /* OPreloaderCell.swift */; };
 		967D9E7A266A4FF9002251D7 /* OSlidePlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9D79266A4FF8002251D7 /* OSlidePlanCell.swift */; };
@@ -272,6 +271,7 @@
 		967D9E9A266A5008002251D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 967D9E97266A5008002251D7 /* Localizable.strings */; };
 		967D9E9D266A500F002251D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967D9E9C266A500F002251D7 /* LaunchScreen.storyboard */; };
 		967D9EA9266A5132002251D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 967D9EA8266A5132002251D7 /* GoogleService-Info.plist */; };
+		967D9EB1266DE83B002251D7 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 967D9EB0266DE83B002251D7 /* Onboarding.Chart.json */; };
 		CA01D719378EF2EC082D57CB /* Pods_Moto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3110117CD792B481C47706 /* Pods_Moto.framework */; };
 /* End PBXBuildFile section */
 
@@ -519,7 +519,6 @@
 		967D9D72266A4FF8002251D7 /* LocaleLanguageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleLanguageView.swift; sourceTree = "<group>"; };
 		967D9D73266A4FF8002251D7 /* LocaleStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleStateView.swift; sourceTree = "<group>"; };
 		967D9D74266A4FF8002251D7 /* LocaleCountryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocaleCountryView.swift; sourceTree = "<group>"; };
-		967D9D76266A4FF8002251D7 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		967D9D77266A4FF8002251D7 /* ODatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODatePicker.swift; sourceTree = "<group>"; };
 		967D9D78266A4FF8002251D7 /* OPreloaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OPreloaderCell.swift; sourceTree = "<group>"; };
 		967D9D79266A4FF8002251D7 /* OSlidePlanCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSlidePlanCell.swift; sourceTree = "<group>"; };
@@ -546,6 +545,7 @@
 		967D9E9C266A500F002251D7 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		967D9E9E266A5014002251D7 /* Moto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moto-Bridging-Header.h"; sourceTree = "<group>"; };
 		967D9EA8266A5132002251D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		967D9EB0266DE83B002251D7 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		C297CB18E8A53E0C4F5101CA /* Pods-Moto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moto.release.xcconfig"; path = "Target Support Files/Pods-Moto/Pods-Moto.release.xcconfig"; sourceTree = "<group>"; };
 		ED3110117CD792B481C47706 /* Pods_Moto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -1598,7 +1598,7 @@
 		967D9D75266A4FF8002251D7 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				967D9D76266A4FF8002251D7 /* Onboarding.Chart.json */,
+				967D9EB0266DE83B002251D7 /* Onboarding.Chart.json */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -1709,12 +1709,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				967D9E9D266A500F002251D7 /* LaunchScreen.storyboard in Resources */,
-				967D9E77266A4FF9002251D7 /* Onboarding.Chart.json in Resources */,
 				967D9E90266A5002002251D7 /* lato-regular.otf in Resources */,
 				967D9E91266A5002002251D7 /* lato-bold.otf in Resources */,
 				967D9C00266A4F2E002251D7 /* Assets.xcassets in Resources */,
 				967D9E92266A5002002251D7 /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				967D9E9A266A5008002251D7 /* Localizable.strings in Resources */,
+				967D9EB1266DE83B002251D7 /* Onboarding.Chart.json in Resources */,
 				967D9EA9266A5132002251D7 /* GoogleService-Info.plist in Resources */,
 				967D9E94266A5002002251D7 /* SF-Pro-Rounded-Bold.otf in Resources */,
 				967D9E93266A5002002251D7 /* SF-Pro-Rounded-Regular.otf in Resources */,
