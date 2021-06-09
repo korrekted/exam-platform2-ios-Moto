@@ -20,14 +20,11 @@ final class PaygateMapper {
             return nil
         }
         
-        let main = map(main: data, productsPrices: productsPrices)
+        guard let paygate = map(main: data, productsPrices: productsPrices) else {
+            return nil
+        }
         
-        let specialOfferJSON = data["special_offer"] as? [String: Any]
-        let specialOffer = map(specialOffer: specialOfferJSON, productsPrices: productsPrices)
-        
-        let paygate = Paygate(main: main, specialOffer: specialOffer)
-        
-        let productIds = getProductIds(mainJSON: data, specialOfferJSON: specialOfferJSON)
+        let productIds = getProductIds(mainJSON: data)
         
         return PaygateResponse(json, paygate, productIds)
     }
@@ -35,7 +32,7 @@ final class PaygateMapper {
 
 // MARK: Private
 private extension PaygateMapper {
-    static func map(main: [String: Any]?, productsPrices: [ProductPrice]?) -> PaygateMainOffer? {
+    static func map(main: [String: Any]?, productsPrices: [ProductPrice]?) -> Paygate? {
         guard let main = main else {
             return nil
         }
@@ -43,7 +40,7 @@ private extension PaygateMapper {
         let optionsJSONArray = (main["options"] as? [[String: Any]]) ?? []
         let options = optionsJSONArray.enumerated().compactMap { map(option: $1, productsPrices: productsPrices, index: $0) }
         
-        return PaygateMainOffer(options: options)
+        return Paygate(options: options)
     }
     
     static func map(option: [String: Any], productsPrices: [ProductPrice]?, index: Int) -> PaygateOption? {
@@ -55,30 +52,24 @@ private extension PaygateMapper {
         
         let title = (option["title"] as? String)?
             .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.bold(size: 20.scale))
-                .lineHeight(25.scale)
-                .letterSpacing(0.06)
-                .textColor(UIColor(integralRed: 17, green: 17, blue: 17)))
+                .font(Fonts.SFProRounded.bold(size: 18.scale))
+                .lineHeight(21.scale))
         
         let subCaption = (option["subcaption"] as? String)?
             .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.semiBold(size: 10.scale))
-                .letterSpacing(0.06)
-                .lineHeight(13.scale)
-                .textColor(UIColor(integralRed: 17, green: 17, blue: 17)))
+                .font(Fonts.SFProRounded.regular(size: 14.scale))
+                .lineHeight(16.8.scale))
         
         let save = (option["save"] as? String)?
             .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.semiBold(size: 13.scale))
+                .font(Fonts.SFProRounded.bold(size: 13.scale))
                 .letterSpacing(-0.08.scale)
-                .textColor(UIColor.white)
                 .lineHeight(18.scale))
         
         guard let productPrice = productsPrices?.first(where: { $0.id == productId }) else {
             return PaygateOption(productId: productId,
                                  title: title,
                                  caption: nil,
-                                 subCaption: subCaption,
                                  save: save,
                                  bottomLine: nil)
         }
@@ -107,15 +98,20 @@ private extension PaygateMapper {
             .replacingOccurrences(of: "@price", with: priceLocalized)
         let captionAttrs = NSMutableAttributedString(string: caption ?? "",
                                                      attributes: TextAttributes()
-                                                        .font(Fonts.SFProRounded.semiBold(size: 14.scale))
-                                                        .lineHeight(25.scale)
-                                                        .letterSpacing(0.06)
+                                                        .font(Fonts.SFProRounded.regular(size: 14.scale))
+                                                        .lineHeight(16.8.scale)
                                                         .dictionary)
         let captionPriceLocalizedRange = NSString(string: caption ?? "").range(of: priceLocalized)
-        captionAttrs.addAttributes(TextAttributes().font(Fonts.SFProRounded.bold(size: index == 0 ? 16.scale : 20.scale)).letterSpacing(0.06).dictionary,
+        captionAttrs.addAttributes(TextAttributes()
+                                    .font(index == 0 ? Fonts.SFProRounded.regular(size: 14.scale) : Fonts.SFProRounded.bold(size: 24.scale))
+                                    .lineHeight(index == 0 ? 16.8.scale : 28.8.scale)
+                                    .dictionary,
                                    range: captionPriceLocalizedRange)
         let captionPriceDivLocalizedRange = NSString(string: caption ?? "").range(of: priceDivLocalized)
-        captionAttrs.addAttributes(TextAttributes().font(Fonts.SFProRounded.bold(size: index == 0 ? 16.scale : 20.scale)).letterSpacing(0.06).dictionary,
+        captionAttrs.addAttributes(TextAttributes()
+                                    .font(index == 0 ? Fonts.SFProRounded.regular(size: 14.scale) : Fonts.SFProRounded.bold(size: 24.scale))
+                                    .lineHeight(index == 0 ? 16.8.scale : 28.8.scale)
+                                    .dictionary,
                                    range: captionPriceDivLocalizedRange)
         
         let bottomLine = (option["bottom_line"] as? String)?
@@ -123,130 +119,44 @@ private extension PaygateMapper {
             .replacingOccurrences(of: "@price", with: priceLocalized)
         let bottomLineAttrs = NSMutableAttributedString(string: bottomLine ?? "",
                                                         attributes: TextAttributes()
-                                                            .font(Fonts.SFProRounded.semiBold(size: 15.scale))
-                                                            .lineHeight(25.scale)
+                                                            .font(index == 0 ? Fonts.SFProRounded.bold(size: 24.scale) : Fonts.SFProRounded.regular(size: 14.scale))
+                                                            .lineHeight(index == 0 ? 28.8.scale : 16.8.scale)
                                                             .dictionary)
         let bottomLinePriceLocalizedRange = NSString(string: bottomLine ?? "").range(of: priceLocalized)
-        bottomLineAttrs.addAttributes(TextAttributes().font(Fonts.SFProRounded.bold(size: 20.scale)).letterSpacing(-0.08).dictionary,
+        bottomLineAttrs.addAttributes(TextAttributes()
+                                        .font(index == 0 ? Fonts.SFProRounded.bold(size: 24.scale) : Fonts.SFProRounded.regular(size: 14.scale))
+                                        .dictionary,
                                    range: bottomLinePriceLocalizedRange)
         let bottomLinePriceDivLocalizedRange = NSString(string: bottomLine ?? "").range(of: priceDivLocalized)
-        bottomLineAttrs.addAttributes(TextAttributes().font(Fonts.SFProRounded.bold(size: 20.scale)).letterSpacing(-0.08).dictionary,
+        bottomLineAttrs.addAttributes(TextAttributes()
+                                        .font(index == 0 ? Fonts.SFProRounded.bold(size: 24.scale) : Fonts.SFProRounded.regular(size: 14.scale))
+                                        .dictionary,
                                    range: bottomLinePriceDivLocalizedRange)
+        
+        let bottomLineResult = NSMutableAttributedString()
+        if index == 0 {
+            bottomLineResult.append(captionAttrs)
+            bottomLineResult.append(NSAttributedString(string: " "))
+            bottomLineResult.append(subCaption ?? NSAttributedString())
+        } else {
+            bottomLineResult.append(bottomLineAttrs)
+        }
+        
+        let captionResult = NSMutableAttributedString()
+        if index == 0 {
+            captionResult.append(bottomLineAttrs)
+        } else {
+            captionResult.append(captionAttrs)
+        }
         
         return PaygateOption(productId: productId,
                              title: title,
-                             caption: captionAttrs,
-                             subCaption: subCaption,
+                             caption: captionResult,
                              save: save,
-                             bottomLine: bottomLineAttrs)
+                             bottomLine: bottomLineResult)
     }
     
-    static func map(specialOffer: [String: Any]?, productsPrices: [ProductPrice]?) -> PaygateSpecialOffer? {
-        guard
-            let specialOffer = specialOffer,
-            let productId = specialOffer["product_id"] as? String,
-            let productPrice = productsPrices?.first(where: { $0.id == productId })
-        else {
-            return nil
-        }
-        
-        let title = (specialOffer["subtitle"] as? String)?
-            .uppercased()
-            .replacingOccurrences(of: "@price", with: productPrice.priceLocalized)
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.bold(size: 52.scale))
-                .textColor(UIColor.white)
-                .lineHeight(54.scale)
-                .textAlignment(.center))
-        
-        let subTitle = (specialOffer["title"] as? String)?
-            .replacingOccurrences(of: "@price", with: productPrice.priceLocalized)
-            .uppercased()
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.semiBold(size: 15.scale))
-                .textColor(UIColor.white)
-                .lineHeight(17.scale)
-                .textAlignment(.center))
-        
-        let text1 = (specialOffer["text_1"] as? String ?? "")
-            .replacingOccurrences(of: "@price", with: productPrice.priceLocalized)
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.bold(size: 22.scale))
-                .textColor(UIColor.white)
-                .lineHeight(26.scale)
-                .textAlignment(.center))
-        
-        let text2 = (specialOffer["text_2"] as? String ?? "")
-            .replacingOccurrences(of: "@price", with: productPrice.priceLocalized)
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.bold(size: 22.scale))
-                .textColor(UIColor.white)
-                .lineHeight(26.scale)
-                .textAlignment(.center))
-        
-        let text = NSMutableAttributedString()
-        text.append(text1)
-        text.append(text2)
-        
-        let button = (specialOffer["button"] as? String)?
-            .replacingOccurrences(of: "@price", with: productPrice.priceLocalized)
-            .uppercased()
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.semiBold(size: 17.scale))
-                .letterSpacing(0.2.scale)
-                .textColor(UIColor.black))
-        
-        let subButton = (specialOffer["subbutton"] as? String)?
-            .replacingOccurrences(of: "@price", with: productPrice.priceLocalized)
-            .attributed(with: TextAttributes()
-                    .font(Fonts.SFProRounded.semiBold(size: 13.scale))
-                    .textColor(UIColor.white.withAlphaComponent(0.5))
-                    .letterSpacing(-0.06.scale)
-                    .lineHeight(15.scale))
-        
-        let restore = (specialOffer["restore"] as? String ?? "")
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.semiBold(size: 17.scale))
-                .lineHeight(27.scale)
-                .textColor(UIColor.white.withAlphaComponent(0.9)))
-        
-        let multiplicator = specialOffer["special_offer_multiplicator"] as? Int ?? 1
-        let oldPrice = productPrice.priceValue * Double(multiplicator)
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = productPrice.priceLocale
-        formatter.string(from: NSNumber(value: oldPrice))
-        
-        let oldPriceLocalized = formatter
-            .string(from: NSNumber(value: oldPrice)) ?? String(format: "%.1f", oldPrice)
-        let oldPriceLocalizedAttrs = oldPriceLocalized
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.regular(size: 17.scale))
-                .lineHeight(19.scale)
-                .textColor(.black)
-                .strikethroughStyle(.single))
-        
-        let currentPrice = (specialOffer["price_tag"] as? String)?
-            .replacingOccurrences(of: "@price", with: productPrice.priceLocalized)
-        let currentPriceLocalized = currentPrice?
-            .attributed(with: TextAttributes()
-                .font(Fonts.SFProRounded.bold(size: 17.scale))
-                .lineHeight(19.scale)
-                .textColor(.black))
-        
-        return PaygateSpecialOffer(productId: productId,
-                                   title: title,
-                                   subTitle: subTitle,
-                                   text: text,
-                                   time: specialOffer["time_left"] as? String ?? "",
-                                   oldPrice: oldPriceLocalizedAttrs,
-                                   price: currentPriceLocalized,
-                                   button: button,
-                                   subButton: subButton,
-                                   restore: restore)
-    }
-    
-    static func getProductIds(mainJSON: [String: Any]?, specialOfferJSON: [String: Any]?) -> [String] {
+    static func getProductIds(mainJSON: [String: Any]?) -> [String] {
         var ids = [String]()
         
         let optionsJSON = mainJSON?["options"] as? [[String: Any]] ?? []
@@ -254,10 +164,6 @@ private extension PaygateMapper {
             if let id = optionJSON["product_id"] as? String {
                 ids.append(id)
             }
-        }
-        
-        if let specialOfferProductId = specialOfferJSON?["product_id"] as? String {
-            ids.append(specialOfferProductId)
         }
         
         return ids

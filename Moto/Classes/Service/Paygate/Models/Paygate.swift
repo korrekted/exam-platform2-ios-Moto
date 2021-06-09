@@ -7,6 +7,5 @@
 //
 
 struct Paygate {
-    let main: PaygateMainOffer?
-    let specialOffer: PaygateSpecialOffer?
+    let options: [PaygateOption]?
 }

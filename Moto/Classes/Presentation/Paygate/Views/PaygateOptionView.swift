@@ -9,11 +9,10 @@
 import UIKit
 
 final class PaygateOptionView: UIView {
+    lazy var saveLabel = makeSaveLabel()
     lazy var checkedImageView = makeCheckedImageView()
     lazy var titleLabel = makeLabel()
     lazy var captionLabel = makeLabel()
-    lazy var subCaptionLabel = makeLabel()
-    lazy var saveLabel = makeSaveLabel()
     lazy var bottomLabel = makeLabel()
     
     var isSelected = false {
@@ -48,7 +47,6 @@ private extension PaygateOptionView {
     func updateContent(at option: PaygateOption) {
         titleLabel.attributedText = option.title
         captionLabel.attributedText = option.caption
-        subCaptionLabel.attributedText = option.subCaption
         
         saveLabel.attributedText = option.save
         saveLabel.isHidden = option.save == nil
@@ -57,16 +55,12 @@ private extension PaygateOptionView {
     }
 
     func updateColors() {
-        backgroundColor = isSelected ? PaygatePalette.Option.selectedBackground : .clear
+        backgroundColor = isSelected ? UIColor(integralRed: 255, green: 101, blue: 1) : UIColor(integralRed: 220, green: 220, blue: 220)
         
         checkedImageView.isHidden = !isSelected
-    
-        layer.borderWidth = isSelected ? 0 : 2.scale
-        layer.borderColor = isSelected ? UIColor.clear.cgColor : PaygatePalette.Option.deselectedBorder.cgColor
         
         titleLabel.textColor = isSelected ? PaygatePalette.Option.selectedText : PaygatePalette.Option.deselectText
         captionLabel.textColor = isSelected ? PaygatePalette.Option.selectedText : PaygatePalette.Option.deselectText
-        subCaptionLabel.textColor = isSelected ? PaygatePalette.Option.selectedText : PaygatePalette.Option.deselectText
         bottomLabel.textColor = isSelected ? PaygatePalette.Option.selectedText : PaygatePalette.Option.deselectText
         
         saveLabel.textColor = isSelected ? PaygatePalette.Option.saveSelectedText : PaygatePalette.Option.saveDeselectedText
@@ -78,35 +72,30 @@ private extension PaygateOptionView {
 private extension PaygateOptionView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            checkedImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10.scale),
-            checkedImageView.widthAnchor.constraint(equalToConstant: 30.scale),
-            checkedImageView.heightAnchor.constraint(equalToConstant: 30.scale),
-            checkedImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10.scale)
+            saveLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            saveLabel.centerYAnchor.constraint(equalTo: topAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 35.scale)
+            checkedImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            checkedImageView.widthAnchor.constraint(equalToConstant: 24.scale),
+            checkedImageView.heightAnchor.constraint(equalToConstant: 24.scale),
+            checkedImageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            captionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.scale),
-            captionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 62.scale)
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12.scale)
         ])
         
         NSLayoutConstraint.activate([
-            subCaptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.scale),
-            subCaptionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 92.scale)
+            captionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            captionLabel.topAnchor.constraint(equalTo: topAnchor, constant: 38.scale)
         ])
         
         NSLayoutConstraint.activate([
-            saveLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.scale),
-            saveLabel.topAnchor.constraint(equalTo: topAnchor, constant: 113.scale)
-        ])
-        
-        NSLayoutConstraint.activate([
-            bottomLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12.scale),
-            bottomLabel.topAnchor.constraint(equalTo: topAnchor, constant: 148.scale)
+            bottomLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            bottomLabel.topAnchor.constraint(equalTo: topAnchor, constant: 75.scale)
         ])
     }
 }
@@ -117,7 +106,7 @@ private extension PaygateOptionView {
         let view = UIImageView()
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFit
-        view.image = UIImage(named: "Paygate.MainOffer.Checked")
+        view.image = UIImage(named: "Paygate.Paid.Checked")
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
@@ -134,8 +123,8 @@ private extension PaygateOptionView {
         let view = PaddingLabel()
         view.bottomInset = 1.scale
         view.topInset = 1.scale
-        view.leftInset = 6.scale
-        view.rightInset = 6.scale
+        view.leftInset = 7.scale
+        view.rightInset = 7.scale
         view.textAlignment = .center
         view.layer.cornerRadius = 4.scale
         view.layer.masksToBounds = true

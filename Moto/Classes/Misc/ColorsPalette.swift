@@ -146,12 +146,12 @@ enum PaygatePalette {
     enum Option {
         static let selectedBackground = UIColor(integralRed: 255, green: 101, blue: 1)
         static let deselectedBorder = UIColor(integralRed: 255, green: 101, blue: 1)
-        static let selectedText = UIColor(integralRed: 31, green: 31, blue: 31)
-        static let deselectText = UIColor(integralRed: 31, green: 31, blue: 31)
+        static let selectedText = UIColor.white
+        static let deselectText = UIColor(integralRed: 19, green: 24, blue: 42)
         static let saveSelectedBackground = UIColor.white
         static let saveDeselectedBackground = UIColor.white
-        static let saveSelectedText = UIColor(integralRed: 31, green: 31, blue: 31)
-        static let saveDeselectedText = UIColor.white
+        static let saveSelectedText = UIColor(integralRed: 19, green: 24, blue: 42)
+        static let saveDeselectedText = UIColor(integralRed: 19, green: 24, blue: 42)
     }
 }
 

@@ -47,11 +47,6 @@
 "Onboarding.SlideTime.Title" = "How much time can\nyou spend on\na single test?";
 "Onboarding.SlideTime.Min" = "min";
 "Onboarding.SlideCount.Title" = "How many tests\nwould you like to\ntake daily?";
-"Onboarding.Question.Title" = "Do you agree with the statement?";
-"Onboarding.Question1" = "Sometimes it takes a whole tankful of fuel before you can think straight.";
-"Onboarding.Question2" = "Young riders pick a destination and go… Old riders pick a direction and go.";
-"Onboarding.Question3" = "If you can still hear your fears, drop a gear";
-"Onboarding.Question4" = "Life is not about waiting for the storms to pass: it’s about learning how to ride in the rain!";
 "Onboarding.Preloader.Title" = "Preparing your\nindividual study plan";
 "Onboarding.Preloader.Cell1" = "Analyzing your skill level";
 "Onboarding.Preloader.Cell2" = "Analyzing your goals";
@@ -105,17 +100,22 @@
 "Stats.Day.Many" = "days";
 
 // MARK: Paygate
-"Paygate.Main.Title" = "KNOW THE QUESTIONS\nBEFOREHAND";
-"Paygate.Main.Cell1" = "Don’t spend hours learning";
-"Paygate.Main.Cell2" = "Train yourself with 2000+ questions";
-"Paygate.Main.Cell3" = "98% pass rate on the first attempt!";
-"Paygate.Main.Info" = "Secured with iTunes. Cancel anytime.";
-"Paygate.Main.TermsOfUse" = "Terms of use";
-"Paygate.Main.And" = " and ";
-"Paygate.Main.PrivacyPolicy" = "Privacy Policy";
-"Paygate.Main.RestorePurchases" = "Restore purchases";
+"Paygate.Paid.Title" = "KNOW QUESTIONS\nBEFOREHAND\nWITH PREMIUM";
+"Paygate.Paid.Cell1" = "5 exam modes";
+"Paygate.Paid.Cell2" = "4000+ exam-like questions";
+"Paygate.Paid.Cell3" = "98% pass rate on the first attempt!";
+"Paygate.Paid.Continue" = "Continue →";
+"Paygate.Free.Title" = "BASIC PREP";
+"Paygate.Free.Cell1" = "Limited free tests";
+"Paygate.Free.Cell2" = "1 new practice question daily";
+"Paygate.Free.Cell3" = "Only 20% of the questions you’ll encounter on the exam";
+"Paygate.Free.Continue" = "Continue with BASIC";
+"Paygate.Info" = "Secured with iTunes. Cancel anytime.";
+"Paygate.TermsOfUse" = "Terms of use";
+"Paygate.And" = " and ";
+"Paygate.PrivacyPolicy" = "Privacy Policy";
+"Paygate.RestorePurchases" = "Restore purchases";
 "Paygate.Purchase.Failed" = "Failed to make purchase";
-"Paygate.Continue" = "Continue";
 
 // MARK: Question
 "Question.Explanation" = "Explanation";

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PaygateMainInfoCell: UIView {
+final class PaygateInfoCell: UIView {
     lazy var imageView = makeImageView()
     lazy var label = makeLabel()
     
@@ -15,7 +15,7 @@ final class PaygateMainInfoCell: UIView {
         didSet {
             label.attributedText = title
                 .attributed(with: TextAttributes()
-                                .textColor(PaygatePalette.secondaryText)
+                                .textColor(UIColor(integralRed: 68, green: 68, blue: 68))
                                 .font(Fonts.SFProRounded.regular(size: 16.scale))
                                 .lineHeight(22.scale))
         }
@@ -33,18 +33,18 @@ final class PaygateMainInfoCell: UIView {
 }
 
 // MARK: Make constraints
-private extension PaygateMainInfoCell {
+private extension PaygateInfoCell {
     func makeConstraints() {
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 41.scale),
-            imageView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20.scale),
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8.scale),
             imageView.widthAnchor.constraint(equalToConstant: 13.scale),
             imageView.heightAnchor.constraint(equalToConstant: 10.scale)
         ])
         
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 64.scale),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8.scale),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 41.scale),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20.scale),
             label.topAnchor.constraint(equalTo: topAnchor),
             label.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
@@ -52,10 +52,10 @@ private extension PaygateMainInfoCell {
 }
 
 // MARK: Lazy initialization
-private extension PaygateMainInfoCell {
+private extension PaygateInfoCell {
     func makeImageView() -> UIImageView {
         let view = UIImageView()
-        view.image = UIImage(named: "Paygate.Main.CellChecked")
+        view.image = UIImage(named: "Paygate.CellChecked")
         view.contentMode = .scaleAspectFit
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
@@ -64,6 +64,7 @@ private extension PaygateMainInfoCell {
     
     func makeLabel() -> UILabel {
         let view = UILabel()
+        view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

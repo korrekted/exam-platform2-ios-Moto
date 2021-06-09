@@ -22,14 +22,6 @@ final class OnboardingAnalytics {
             name = "Test Time Screen"
         case .count:
             name = "Tests Number Screen"
-        case .question1:
-            name = "Question 1 Screen"
-        case .question2:
-            name = "Question 2 Screen"
-        case .question3:
-            name = "Question 3 Screen"
-        case .question4:
-            name = "Question 4 Screen"
         case .preloader:
             name = "Plan Preparing Screen"
         case .plan:
