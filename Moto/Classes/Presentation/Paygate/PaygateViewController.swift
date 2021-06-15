@@ -11,13 +11,23 @@ import RxSwift
 import RxCocoa
 
 final class PaygateViewController: UIViewController {
-    lazy var paygateView = PaygateView()
+    private enum Scene {
+        case not, main, specialOffer
+    }
+    
+    var paygateView = PaygateView()
     
     weak var delegate: PaygateViewControllerDelegate?
     
-    private lazy var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
-    private lazy var viewModel = PaygateViewModel()
+    private var currentScene = Scene.not
+    
+    private let viewModel = PaygateViewModel()
+    
+    deinit {
+        paygateView.specialOfferView.stopTimer()
+    }
     
     override func loadView() {
         super.loadView()
@@ -27,63 +37,148 @@ final class PaygateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         SDKStorage.shared
             .amplitudeManager
             .logEvent(name: "Paygate Screen", parameters: [:])
-
+        
         addMainOptionsSelection()
-
-        viewModel.paygate
-            .drive(onNext: { [weak self] paygate in
-                if let paygate = paygate {
-                    self?.paygateView.scrollView.setup(paygate: paygate)
+        
+        viewModel.monetizationConfig()
+            .drive(onNext: { [weak self] config in
+                self?.retrieve(config: config)
+            })
+            .disposed(by: disposeBag)
+        
+        let retrieved = viewModel.retrieve()
+        
+        retrieved
+            .drive(onNext: { [weak self] paygate, completed in
+                guard let `self` = self, let paygate = paygate else {
+                    return
+                }
+                
+                if paygate.main != nil {
+                    self.animateShowMainContent()
+                } else {
+                    if paygate.specialOffer != nil {
+                        self.animateMoveToSpecialOfferView()
+                    }
+                }
+                
+                if let main = paygate.main {
+                    self.paygateView.mainView.setup(paygate: main)
+                }
+                
+                if let specialOffer = paygate.specialOffer {
+                    self.paygateView.specialOfferView.setup(paygate: specialOffer)
+                }
+                
+                if completed {
+                    if paygate.main != nil {
+                        self.currentScene = .main
+                    } else if paygate.main == nil && paygate.specialOffer != nil {
+                        self.currentScene = .specialOffer
+                    }
                 }
             })
             .disposed(by: disposeBag)
         
-        viewModel.config
-            .drive(onNext: { [weak self] config in
-                self?.paygateView.scrollView.setup(config: config)
-                self?.hideIndicatorsIfNeeded(config: config)
+        let paygate = retrieved
+            .map { $0.0 }
+            .startWith(nil)
+        
+        paygateView
+            .mainView
+            .closeButton.rx.tap
+            .withLatestFrom(paygate)
+            .subscribe(onNext: { [unowned self] paygate in
+                switch self.currentScene {
+                case .not:
+                    self.dismiss(with: .cancelled)
+                case .main:
+                    if paygate?.specialOffer != nil {
+                        self.animateMoveToSpecialOfferView()
+                        self.currentScene = .specialOffer
+                    } else {
+                        self.dismiss(with: .cancelled)
+                    }
+                case .specialOffer:
+                    self.paygateView.specialOfferView.stopTimer()
+                    self.dismiss(with: .cancelled)
+                }
             })
             .disposed(by: disposeBag)
         
-        paygateView.scrollView
-            .freeView.continueButton.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.dismiss(with: .cancelled)
-            })
-            .disposed(by: disposeBag)
-
         paygateView
-            .scrollView.paidView
+            .mainView
             .continueButton.rx.tap
             .subscribe(onNext: { [unowned self] productId in
-                guard let productId = [self.paygateView.scrollView.paidView.option1View,
-                                       self.paygateView.scrollView.paidView.option2View]
+                guard let productId = [self.paygateView.mainView.leftOptionView, self.paygateView.mainView.rightOptionView]
                     .first(where: { $0.isSelected })?
                     .productId
                 else {
                     return
                 }
-
+                
                 self.viewModel.buy.accept(productId)
             })
             .disposed(by: disposeBag)
-
-        paygateView.restoreButton.rx.tap
-            .bind(to: viewModel.restore)
-            .disposed(by: disposeBag)
-
-        viewModel.processing
-            .drive(onNext: { [weak self] isLoading in
-                self?.paygateView.scrollView.paidView.continueButton.isHidden = isLoading
-                self?.paygateView.restoreButton.isHidden = isLoading
-                self?.paygateView.scrollView.paidView.inProgress(isLoading)
+        
+        paygateView
+            .mainView
+            .restoreButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                guard let productId = [self.paygateView.mainView.leftOptionView, self.paygateView.mainView.rightOptionView]
+                    .first(where: { $0.isSelected })?
+                    .productId
+                else {
+                    return
+                }
+                
+                self.viewModel.restore.accept(productId)
             })
             .disposed(by: disposeBag)
+        
+        paygateView
+            .specialOfferView
+            .continueButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let productId = self?.paygateView.specialOfferView.specialOffer?.productId else {
+                    return
+                }
+                
+                self?.viewModel.buy.accept(productId)
+            })
+            .disposed(by: disposeBag)
+        
+        paygateView
+            .specialOfferView
+            .restoreButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let productId = self?.paygateView.specialOfferView.specialOffer?.productId else {
+                    return
+                }
+                
+                self?.viewModel.restore.accept(productId)
+            })
+            .disposed(by: disposeBag)
+        
+        Driver
+            .merge(viewModel.buyProcessing.asDriver(),
+                   viewModel.restoreProcessing.asDriver(),
+                   viewModel.retrieveCompleted.asDriver(onErrorJustReturn: true).map { !$0 })
+            .drive(onNext: { [weak self] isLoading in
+                self?.paygateView.mainView.continueButton.isHidden = isLoading
+                self?.paygateView.mainView.restoreButton.isHidden = isLoading
+                self?.paygateView.specialOfferView.continueButton.isHidden = isLoading
+                self?.paygateView.specialOfferView.restoreButton.isHidden = isLoading
 
+                isLoading ? self?.paygateView.mainView.purchasePreloaderView.startAnimating() : self?.paygateView.mainView.purchasePreloaderView.stopAnimating()
+                isLoading ? self?.paygateView.specialOfferView.purchasePreloaderView.startAnimating() : self?.paygateView.specialOfferView.purchasePreloaderView.stopAnimating()
+            })
+            .disposed(by: disposeBag)
+        
         viewModel
             .buyed
             .emit(onNext: { [weak self] result in
@@ -91,11 +186,11 @@ final class PaygateViewController: UIViewController {
                     Toast.notify(with: "Paygate.Purchase.Failed".localized, style: .danger)
                     return
                 }
-
+                
                 self?.dismiss(with: .bied)
             })
             .disposed(by: disposeBag)
-
+        
         viewModel
             .restored
             .emit(onNext: { [weak self] result in
@@ -103,7 +198,7 @@ final class PaygateViewController: UIViewController {
                     Toast.notify(with: "Paygate.Purchase.Failed".localized, style: .danger)
                     return
                 }
-
+                
                 self?.dismiss(with: .restored)
             })
             .disposed(by: disposeBag)
@@ -122,53 +217,72 @@ extension PaygateViewController {
 
 // MARK: Private
 private extension PaygateViewController {
-    func hideIndicatorsIfNeeded(config: PaygateViewModel.Config) {
+    func retrieve(config: PaygateViewModel.Config) {
         switch config {
         case .block:
-            paygateView.indicatorsView.isHidden = true
+            paygateView.mainView.closeButton.isHidden = true
         case .suggest:
-            paygateView.indicatorsView.isHidden = false
+            paygateView.mainView.closeButton.isHidden = false
         }
     }
     
     func addMainOptionsSelection() {
-        let paidView = paygateView.scrollView.paidView
+        let leftOptionTapGesture = UITapGestureRecognizer()
+        paygateView.mainView.leftOptionView.addGestureRecognizer(leftOptionTapGesture)
         
-        let option1TapGesture = UITapGestureRecognizer()
-        paidView.option1View.addGestureRecognizer(option1TapGesture)
-
-        option1TapGesture.rx.event
+        leftOptionTapGesture.rx.event
             .subscribe(onNext: { [unowned self] _ in
-                if let productId = paidView.option1View.productId {
+                if let productId = self.paygateView.mainView.leftOptionView.productId {
                     self.viewModel.buy.accept(productId)
                 }
-
-                guard !paidView.option1View.isSelected else {
+                
+                guard !self.paygateView.mainView.leftOptionView.isSelected else {
                     return
                 }
-
-                paidView.option1View.isSelected = true
-                paidView.option2View.isSelected = false
+                
+                self.paygateView.mainView.leftOptionView.isSelected = true
+                self.paygateView.mainView.rightOptionView.isSelected = false
             })
             .disposed(by: disposeBag)
-
-        let option2TapGesture = UITapGestureRecognizer()
-        paidView.option2View.addGestureRecognizer(option2TapGesture)
-
-        option2TapGesture.rx.event
+        
+        let rightOptionTapGesture = UITapGestureRecognizer()
+        paygateView.mainView.rightOptionView.addGestureRecognizer(rightOptionTapGesture)
+        
+        rightOptionTapGesture.rx.event
             .subscribe(onNext: { [unowned self] _ in
-                if let productId = paidView.option2View.productId {
+                if let productId = self.paygateView.mainView.rightOptionView.productId {
                     self.viewModel.buy.accept(productId)
                 }
-
-                guard !paidView.option2View.isSelected else {
+                
+                guard !self.paygateView.mainView.rightOptionView.isSelected else {
                     return
                 }
-
-                paidView.option1View.isSelected = false
-                paidView.option2View.isSelected = true
+                
+                self.paygateView.mainView.leftOptionView.isSelected = false
+                self.paygateView.mainView.rightOptionView.isSelected = true
             })
             .disposed(by: disposeBag)
+    }
+    
+    func animateShowMainContent() {
+        paygateView.mainView.isHidden = false
+        
+        UIView.animate(withDuration: 1, animations: { [weak self] in
+            self?.paygateView.mainView.leftOptionView.alpha = 1
+            self?.paygateView.mainView.rightOptionView.alpha = 1
+        })
+    }
+    
+    func animateMoveToSpecialOfferView() {
+        paygateView.specialOfferView.isHidden = false
+        paygateView.specialOfferView.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, animations: { [weak self] in
+            self?.paygateView.mainView.alpha = 0
+            self?.paygateView.specialOfferView.alpha = 1
+        }, completion: { [weak self] _ in
+            self?.paygateView.specialOfferView.startTimer()
+        })
     }
     
     func dismiss(with result: PaygateViewControllerResult) {

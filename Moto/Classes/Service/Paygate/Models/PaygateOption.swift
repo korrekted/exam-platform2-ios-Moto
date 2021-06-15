@@ -12,6 +12,7 @@ struct PaygateOption {
     let productId: String
     let title: NSAttributedString?
     let caption: NSAttributedString?
+    let subCaption: NSAttributedString?
     let save: NSAttributedString?
     let bottomLine: NSAttributedString?
 }

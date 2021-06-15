@@ -7,7 +7,7 @@
 
 import RxSwift
 
-protocol MonetizationManager: AnyObject {
+protocol MonetizationManager: class {
     // MARK: API
     func getMonetizationConfig() -> MonetizationConfig?
     

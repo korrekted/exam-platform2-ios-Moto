@@ -1,11 +1,3 @@
-/*
-  Localizable.strings
-  CDL
-
-  Created by Andrey Chernyshev on 27.03.2021.
-  
-*/
-
 // MARK: General
 "Cancel" = "Cancel";
 "Continue" = "Continue";
@@ -39,7 +31,7 @@
 "Onboarding.SlideLocale.Error" = "Failed to save";
 "Onboarding.Goals.Title" = "What’s your goal?";
 "Onboarding.Goals.Cell1" = "Pass the exam";
-"Onboarding.Goals.Cell2" = "Become a better driver";
+"Onboarding.Goals.Cell2" = "Drive better";
 "Onboarding.Goals.Cell3" = "Try something new";
 "Onboarding.Goals.Cell4" = "Refresh the basics";
 "Onboarding.Goals.Cell5" = "Extend my knowledge";
@@ -104,22 +96,17 @@
 "Stats.Day.Many" = "days";
 
 // MARK: Paygate
-"Paygate.Paid.Title" = "KNOW QUESTIONS\nBEFOREHAND\nWITH PREMIUM";
-"Paygate.Paid.Cell1" = "5 exam modes";
-"Paygate.Paid.Cell2" = "4000+ exam-like questions";
-"Paygate.Paid.Cell3" = "98% pass rate on the first attempt!";
-"Paygate.Paid.Continue" = "Continue →";
-"Paygate.Free.Title" = "BASIC PREP";
-"Paygate.Free.Cell1" = "Limited free tests";
-"Paygate.Free.Cell2" = "1 new practice question daily";
-"Paygate.Free.Cell3" = "Only 20% of the questions you’ll encounter on the exam";
-"Paygate.Free.Continue" = "Continue with BASIC";
-"Paygate.Info" = "Secured with iTunes. Cancel anytime.";
-"Paygate.TermsOfUse" = "Terms of use";
-"Paygate.And" = " and ";
-"Paygate.PrivacyPolicy" = "Privacy Policy";
-"Paygate.RestorePurchases" = "Restore purchases";
-"Paygate.Purchase.Failed" = "Failed to make purchase";
+"Paygate.Main.Title" = "KNOW THE QUESTIONS\nBEFOREHAND";
+"Paygate.Main.Cell1" = "Don’t spend hours learning";
+"Paygate.Main.Cell2" = "Train yourself with 2000+ questions";
+"Paygate.Main.Cell3" = "98% pass rate on the first attempt!";
+"Paygate.Main.Info" = "Secured with iTunes. Cancel anytime.";
+"Paygate.Main.TermsOfUse" = "Terms of use";
+"Paygate.Main.And" = " and ";
+"Paygate.Main.PrivacyPolicy" = "Privacy Policy";
+"Paygate.Main.RestorePurchases" = "Restore purchases";
+"Paygate.Purchase.Failed" = "Failed to make a purchase";
+"Paygate.Continue" = "Continue →";
 
 // MARK: Question
 "Question.Explanation" = "Explanation";

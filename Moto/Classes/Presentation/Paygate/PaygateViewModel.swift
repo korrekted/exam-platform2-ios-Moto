@@ -15,24 +15,23 @@ final class PaygateViewModel {
     }
     
     let buy = PublishRelay<String>()
-    let restore = PublishRelay<Void>()
+    let restore = PublishRelay<String>()
 
     lazy var buyed = createBuyed()
     lazy var restored = createRestored()
     
-    lazy var processing = RxActivityIndicator()
-    
-    lazy var paygate = makePaygate()
-    lazy var config = makeMonetizationConfig()
+    let buyProcessing = RxActivityIndicator()
+    let restoreProcessing = RxActivityIndicator()
+    let retrieveCompleted = BehaviorRelay<Bool>(value: false)
     
     private lazy var paygateManager = PaygateManagerCore()
     private lazy var purchaseInteractor = SDKStorage.shared.purchaseInteractor
     private lazy var monetizatiionManager = MonetizationManagerCore()
 }
 
-// MARK: Private (Monetization)
-private extension PaygateViewModel {
-    func makeMonetizationConfig() -> Driver<Config> {
+// MARK: Monetization
+extension PaygateViewModel {
+    func monetizationConfig() -> Driver<Config> {
         guard let conf = monetizatiionManager.getMonetizationConfig() else {
             return .deferred { .just(.suggest) }
         }
@@ -46,35 +45,38 @@ private extension PaygateViewModel {
     }
 }
 
-// MARK: Private (Get paygate content)
-private extension PaygateViewModel {
-    func makePaygate() -> Driver<Paygate?> {
+// MARK: Get paygate content
+extension PaygateViewModel {
+    func retrieve() -> Driver<(Paygate?, Bool)> {
         let paygate = paygateManager
             .retrievePaygate()
             .asDriver(onErrorJustReturn: nil)
         
         let prices = paygate
-            .flatMapLatest { [paygateManager, processing] response -> Driver<PaygateMapper.PaygateResponse?> in
+            .flatMapLatest { [paygateManager] response -> Driver<PaygateMapper.PaygateResponse?> in
                 guard let response = response else {
                     return .deferred { .just(nil) }
                 }
                 
                 return paygateManager
                     .prepareProductsPrices(for: response)
-                    .trackActivity(processing)
                     .asDriver(onErrorJustReturn: nil)
             }
         
-        return prices
-            .map { $0?.paygate }
+        return Driver
+            .merge([paygate.map { ($0?.paygate, false) },
+                    prices.map { ($0?.paygate, true) }])
+            .do(onNext: { [weak self] stub in
+                self?.retrieveCompleted.accept(stub.1)
+            })
     }
 }
 
-// MARK: Private (Make purchase)
+// MARK: Make purchase
 private extension PaygateViewModel {
     func createBuyed() -> Signal<Bool> {
         let purchase = buy
-            .flatMapLatest { [purchaseInteractor, processing] productId -> Observable<Bool> in
+            .flatMapLatest { [purchaseInteractor, buyProcessing] productId -> Observable<Bool> in
                 purchaseInteractor
                     .makeActiveSubscriptionByBuy(productId: productId)
                     .map { result -> Bool in
@@ -85,7 +87,7 @@ private extension PaygateViewModel {
                             return false
                         }
                     }
-                    .trackActivity(processing)
+                    .trackActivity(buyProcessing)
                     .catchAndReturn(false)
             }
         
@@ -95,7 +97,7 @@ private extension PaygateViewModel {
     
     func createRestored() -> Signal<Bool> {
         let purchase = restore
-            .flatMapLatest { [purchaseInteractor, processing] _ -> Observable<Bool> in
+            .flatMapLatest { [purchaseInteractor, restoreProcessing] productId -> Observable<Bool> in
                 purchaseInteractor
                     .makeActiveSubscriptionByRestore()
                     .map { result -> Bool in
@@ -106,7 +108,7 @@ private extension PaygateViewModel {
                             return false
                         }
                     }
-                    .trackActivity(processing)
+                    .trackActivity(restoreProcessing)
                     .catchAndReturn(false)
             }
         
