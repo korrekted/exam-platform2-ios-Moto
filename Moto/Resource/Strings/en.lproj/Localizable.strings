@@ -74,6 +74,9 @@
 "Study.Mode.TryMe" = "TRY ME";
 "Study.Course.CourseCount" = "%d topics";
 "Study.Course.Title" = " exam modes";
+"Study.Flashcards.Title" = "Flashcards";
+"Study.Flashcards.TopicsToLearn" = "topics\nto learn";
+"Study.Flashcards.TopicsLearned" = "topics\nlearned";
 
 // MARK: Settings
 "Settings.Title" = "Settings";
@@ -94,6 +97,7 @@
 "Stats.MainRate.QuestionsTaken" = "Questions taken";
 "Stats.MainRate.LongestStreak" = "Longest streak";
 "Stats.MainRate.AnsweredQuestions" = "Answered questions";
+"Stats.MainRate.LearnedFlashcards" = "Learned flashcard’s topics";
 "Stats.Title" = "Stats";
 "Stats.Day.One" = "day";
 "Stats.Day.Two" = "days";
@@ -156,3 +160,9 @@
 "TimedExam.Subtitle" = "How mаny minutes?";
 "TimedExam.Button" = "Start";
 
+// MARK: Flashcards
+"Flashcards.Title" = "Flashcards";
+"Flashcards.Count" = "%i flashcards";
+"Flashcards.ShowAnswer" = "Show answer";
+"Flashcards.Knew" = "I knew";
+"Flashcards.DintKnow" = "I didn’t know";

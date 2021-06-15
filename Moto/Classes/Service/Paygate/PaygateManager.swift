@@ -8,7 +8,7 @@
 
 import RxSwift
 
-protocol PaygateManager: class {
+protocol PaygateManager: AnyObject {
     func retrievePaygate() -> Single<PaygateMapper.PaygateResponse?>
     func prepareProductsPrices(for paygate: PaygateMapper.PaygateResponse) -> Single<PaygateMapper.PaygateResponse?>
 }

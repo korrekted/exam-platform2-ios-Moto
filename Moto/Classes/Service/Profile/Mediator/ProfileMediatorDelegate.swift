@@ -5,6 +5,6 @@
 //  Created by Andrey Chernyshev on 14.05.2021.
 //
 
-protocol ProfileMediatorDelegate: class {
+protocol ProfileMediatorDelegate: AnyObject {
     func didUpdated(profileLocale: ProfileLocale)
 }

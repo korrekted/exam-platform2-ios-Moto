@@ -7,7 +7,7 @@
 
 import RxSwift
 
-protocol CoursesManager: class {
+protocol CoursesManager: AnyObject {
     // MARK: API
     func select(course: Course)
     func getSelectedCourse() -> Course?

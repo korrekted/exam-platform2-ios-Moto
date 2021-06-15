@@ -14,6 +14,7 @@ struct MainStatsElement {
     let longestStreak: Int
     let answeredQuestions: Int
     let correctAnswersNum: Int
+    let flashcardsCompleted: Int
 }
 
 // MARK: Initialize
@@ -27,5 +28,6 @@ extension MainStatsElement {
         longestStreak = stats.longestStreak
         answeredQuestions = stats.answeredQuestions
         correctAnswersNum = stats.correctAnswersNum
+        flashcardsCompleted = stats.flashcardsCompleted
     }
 }

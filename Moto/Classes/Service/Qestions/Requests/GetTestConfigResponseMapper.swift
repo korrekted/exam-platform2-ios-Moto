@@ -6,16 +6,16 @@
 //
 
 final class GetTestConfigResponseMapper {
-    static func from(response: Any) -> [TestConfig] {
+    static func from(response: Any) -> CourseConfig? {
         guard
             let json = response as? [String: Any],
             let data = json["_data"] as? [String: Any],
-            let tests = data["tests"] as? [[String: Any]]
+            let testsArray = data["tests"] as? [[String: Any]]
         else {
-            return []
+            return nil
         }
         
-        return tests
+        let tests = testsArray
             .compactMap { testJSON -> TestConfig? in
                 guard
                     let id = testJSON["id"] as? Int,
@@ -38,5 +38,13 @@ final class GetTestConfigResponseMapper {
                     incorrectProgress: incorrectProgress
                 )
             }
+        
+        let flashcardsJSON = data["flashcards"] as? [String: Any] ?? [:]
+        let flashcardsCount = flashcardsJSON["count"] as? Int ?? 0
+        let flashcardsCompleted = flashcardsJSON["completed"] as? Int ?? 0
+        
+        return CourseConfig(testsConfigs: tests,
+                            flashcardsCount: flashcardsCount,
+                            flashcardsCompleted: flashcardsCompleted)
     }
 }

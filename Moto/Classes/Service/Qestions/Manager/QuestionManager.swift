@@ -7,7 +7,7 @@
 
 import RxSwift
 
-protocol QuestionManager: class {
+protocol QuestionManager: AnyObject {
     // MARK: API(Rx)
     func retrieve(courseId: Int, testId: Int?, time: Int?, activeSubscription: Bool) -> Single<Test?>
     func retrieveTenSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
@@ -15,7 +15,7 @@ protocol QuestionManager: class {
     func retrieveQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func retrieveRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
-    func retrieveConfig(courseId: Int) -> Single<[TestConfig]>
+    func retrieveConfig(courseId: Int) -> Single<CourseConfig?>
     func finishTest(userTestId: Int) -> Completable
     func againTest(courseId: Int, testId: Int, activeSubscription: Bool) -> Single<Test?>
     func saveQuestion(questionId: Int) -> Completable

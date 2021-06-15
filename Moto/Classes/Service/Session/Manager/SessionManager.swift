@@ -7,7 +7,7 @@
 
 import RxCocoa
 
-protocol SessionManager: class {
+protocol SessionManager: AnyObject {
     // MARK: API
     func store(session: Session)
     func set(userToken: String)

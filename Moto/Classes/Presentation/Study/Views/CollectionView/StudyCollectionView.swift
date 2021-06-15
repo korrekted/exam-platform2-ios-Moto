@@ -13,6 +13,7 @@ final class StudyCollectionView: UICollectionView {
     lazy var didTapSelectedCourse = PublishRelay<Course>()
     lazy var didTapTrophy = PublishRelay<Void>()
     lazy var selectedMode = PublishRelay<SCEMode.Mode>()
+    lazy var didTapFlashcards = PublishRelay<Void>()
     
     private lazy var sections = [StudyCollectionSection]()
     
@@ -70,6 +71,10 @@ extension StudyCollectionView: UICollectionViewDataSource {
         case .trophy:
             let cell = dequeueReusableCell(withReuseIdentifier: String(describing: SCTrophyCollectionCell.self), for: indexPath) as! SCTrophyCollectionCell
             return cell
+        case .flashcards(let flashcards):
+            let cell = dequeueReusableCell(withReuseIdentifier: String(describing: SCFlashcardsCell.self), for: indexPath) as! SCFlashcardsCell
+            cell.setup(flashcards: flashcards)
+            return cell
         }
     }
 }
@@ -87,12 +92,20 @@ extension StudyCollectionView: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.bounds.width, height: 232.scale)
         case .trophy:
             return CGSize(width: collectionView.bounds.width, height: 168.scale)
+        case .flashcards:
+            return CGSize(width: collectionView.bounds.width, height: 140.scale)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard case .trophy = sections[indexPath.section].elements[indexPath.row] else { return }
-        didTapTrophy.accept(())
+        switch sections[indexPath.section].elements[indexPath.row] {
+        case .trophy:
+            didTapTrophy.accept(Void())
+        case .flashcards:
+            didTapFlashcards.accept(Void())
+        default:
+            break
+        }
     }
 }
 
@@ -103,6 +116,7 @@ private extension StudyCollectionView {
         register(SCModesCell.self, forCellWithReuseIdentifier: String(describing: SCModesCell.self))
         register(SCTrophyCollectionCell.self, forCellWithReuseIdentifier: String(describing: SCTrophyCollectionCell.self))
         register(SCCoursesCell.self, forCellWithReuseIdentifier: String(describing: SCCoursesCell.self))
+        register(SCFlashcardsCell.self, forCellWithReuseIdentifier: String(describing: SCFlashcardsCell.self))
         
         dataSource = self
         delegate = self

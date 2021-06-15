@@ -14,6 +14,7 @@ enum StudyCollectionElement {
     case trophy
     case title(String)
     case mode
+    case flashcards(SCEFlashcards)
 }
 
 struct SCEBrief {
@@ -35,4 +36,9 @@ struct SCEMode {
         case random
         case time
     }
+}
+
+struct SCEFlashcards {
+    let topicsToLearn: Int
+    let topicsLearned: Int
 }

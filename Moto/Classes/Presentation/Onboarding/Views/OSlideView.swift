@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol OSlideViewDelegate: class {
+protocol OSlideViewDelegate: AnyObject {
     func slideViewDidNext(from step: OnboardingView.Step)
 }
 

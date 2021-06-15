@@ -46,6 +46,7 @@ extension CourseDetailsViewModel {
             .flatMapLatest { [manager = questionManager] courseId -> Observable<[TestConfig]> in
                 manager.retrieveConfig(courseId: courseId)
                     .asObservable()
+                    .map { $0?.testsConfigs ?? [] }
                     .catchAndReturn([])
             }
         

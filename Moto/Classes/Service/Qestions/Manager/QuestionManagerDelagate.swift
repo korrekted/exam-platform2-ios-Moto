@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol QuestionManagerDelegate: class {
+protocol QuestionManagerDelegate: AnyObject {
     func didTestPassed()
     func didTestClosed()
 }

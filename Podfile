@@ -7,6 +7,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 target 'Moto' do
   pod 'NotificationBannerSwift'
   pod 'lottie-ios'
+  pod 'Kingfisher'
   
   pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git"
 end

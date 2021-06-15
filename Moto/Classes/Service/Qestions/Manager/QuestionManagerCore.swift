@@ -113,7 +113,7 @@ extension QuestionManagerCore {
 
     }
     
-    func retrieveConfig(courseId: Int) -> Single<[TestConfig]> {
+    func retrieveConfig(courseId: Int) -> Single<CourseConfig?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }

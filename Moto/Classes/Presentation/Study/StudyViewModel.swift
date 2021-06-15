@@ -55,9 +55,10 @@ private extension StudyViewModel {
         let modes = makeModes()
         let trophy = makeTrophy()
         let courses = makeCoursesElements()
+        let flashcards = makeFlashcards()
         
         return Driver
-            .combineLatest(courses, modesTitle, modes, trophy) { courses, modesTitle, modes, trophy -> [StudyCollectionSection] in
+            .combineLatest(courses, modesTitle, modes, trophy, flashcards) { courses, modesTitle, modes, trophy, flashcards -> [StudyCollectionSection] in
                 var result = [StudyCollectionSection]()
                 
                 result.append(courses)
@@ -66,6 +67,8 @@ private extension StudyViewModel {
                 if let trophy = trophy {
                     result.append(trophy)
                 }
+                
+                result.append(flashcards)
                 result.append(modes)
                 
                 return result
@@ -157,6 +160,17 @@ private extension StudyViewModel {
             .compactMap { $0 ? nil : StudyCollectionSection(elements: [.trophy]) }
     }
     
+    func makeFlashcards() -> Driver<StudyCollectionSection> {
+        config
+            .map { config -> StudyCollectionSection in
+                let flashcards = SCEFlashcards(topicsToLearn: config.flashcardsCount,
+                                               topicsLearned: config.flashcardsCompleted)
+                
+                return StudyCollectionSection(elements: [.flashcards(flashcards)])
+            }
+            .asDriver(onErrorDriveWith: .empty())
+    }
+    
     func makeActiveSubscription() -> Driver<Bool> {
         let updated = SDKStorage.shared
             .purchaseMediator
@@ -179,12 +193,13 @@ private extension StudyViewModel {
             .merge(initial, updated)
     }
     
-    func makeConfig() -> Observable<[TestConfig]> {
+    func makeConfig() -> Observable<CourseConfig> {
         currentCourse
-            .flatMapLatest { [manager = questionManager] course -> Observable<[TestConfig]> in
+            .flatMapLatest { [manager = questionManager] course -> Observable<CourseConfig> in
                 manager.retrieveConfig(courseId: course.id)
                     .asObservable()
-                    .catchAndReturn([])
+                    .catchAndReturn(nil)
+                    .compactMap { $0 }
             }
     }
 }

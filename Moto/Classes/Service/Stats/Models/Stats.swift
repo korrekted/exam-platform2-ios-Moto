@@ -16,6 +16,7 @@ struct Stats {
     let longestStreak: Int
     let answeredQuestions: Int
     let correctAnswersNum: Int
+    let flashcardsCompleted: Int
     let courseStats: [CourseStats]
     
     struct CourseStats: Codable {

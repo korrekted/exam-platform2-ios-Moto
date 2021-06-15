@@ -13,6 +13,7 @@ class MainStatsDescriptionView: UIView {
     private lazy var longestStreakLineView = makeLineView()
     private lazy var answeredQuestionsLineView = makeLineView()
     private lazy var correctAnswersLineView = makeLineView()
+    private lazy var flashcardsLineView = makeLineView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,6 +41,7 @@ extension MainStatsDescriptionView {
         longestStreakLineView.setup(title: "Stats.MainRate.LongestStreak".localized, value: "\(model.longestStreak) \(longestStreakValue)")
         answeredQuestionsLineView.setup(title: "Stats.MainRate.AnsweredQuestions".localized, value: "\(model.answeredQuestions)")
         correctAnswersLineView.setup(title: "Stats.MainRate.CorrectAnswers".localized, value: "\(model.correctAnswersNum)")
+        flashcardsLineView.setup(title: "Stats.MainRate.LearnedFlashcards".localized, value: "\(model.flashcardsCompleted)")
     }
 }
 
@@ -56,7 +58,18 @@ private extension MainStatsDescriptionView {
     
     func configure() {
         layer.cornerRadius = 20.scale
-        [testTakenLineView, makeSeparatorView(), correctAnswersLineView, makeSeparatorView(), answeredQuestionsLineView, makeSeparatorView(), longestStreakLineView].forEach(stackView.addArrangedSubview)
+        
+        [
+            testTakenLineView,
+            makeSeparatorView(),
+            correctAnswersLineView,
+            makeSeparatorView(),
+            answeredQuestionsLineView,
+            makeSeparatorView(),
+            longestStreakLineView,
+            makeSeparatorView(),
+            flashcardsLineView
+        ].forEach(stackView.addArrangedSubview)
     }
 }
 

@@ -275,3 +275,18 @@ enum Onboarding {
         static let selectedText = UIColor.white
     }
 }
+
+enum FlashcardPalette {
+    static let background = UIColor(integralRed: 237, green: 237, blue: 237)
+    
+    enum Card {
+        static let background = UIColor.white
+        static let progress = UIColor(integralRed: 68, green: 68, blue: 68)
+        static let question = UIColor(integralRed: 31, green: 31, blue: 31)
+        static let answer = UIColor(integralRed: 68, green: 68, blue: 68)
+        static let buttonTintSelected = UIColor.white
+        static let buttonTintDeselected = UIColor(integralRed: 31, green: 31, blue: 31)
+        static let selectedButton = UIColor(integralRed: 31, green: 31, blue: 31)
+        static let initialButton = UIColor(integralRed: 237, green: 237, blue: 237)
+    }
+}

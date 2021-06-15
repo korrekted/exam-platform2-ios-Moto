@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9673810D2678B7CA00230FB6 /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967380FE2678B7CA00230FB6 /* Flashcard.swift */; };
+		9673810E2678B7CA00230FB6 /* FlashcardTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967380FF2678B7CA00230FB6 /* FlashcardTopic.swift */; };
+		9673810F2678B7CA00230FB6 /* FlashCardManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381012678B7CA00230FB6 /* FlashCardManagerDelegate.swift */; };
+		967381102678B7CA00230FB6 /* FlashCardManagerMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381022678B7CA00230FB6 /* FlashCardManagerMediator.swift */; };
+		967381112678B7CA00230FB6 /* FlashcardsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381032678B7CA00230FB6 /* FlashcardsManager.swift */; };
+		967381122678B7CA00230FB6 /* FlashcardsManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381042678B7CA00230FB6 /* FlashcardsManagerCore.swift */; };
+		967381132678B7CA00230FB6 /* GetFlashcardsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381072678B7CA00230FB6 /* GetFlashcardsRequest.swift */; };
+		967381142678B7CA00230FB6 /* GetFlashcardsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381082678B7CA00230FB6 /* GetFlashcardsResponseMapper.swift */; };
+		967381152678B7CA00230FB6 /* MarkFlashcardRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381092678B7CA00230FB6 /* MarkFlashcardRequest.swift */; };
+		967381162678B7CA00230FB6 /* GetFlashcardsTopicsResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673810B2678B7CA00230FB6 /* GetFlashcardsTopicsResponseMapper.swift */; };
+		967381172678B7CA00230FB6 /* GetFlashcardsTopicsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673810C2678B7CA00230FB6 /* GetFlashcardsTopicsRequest.swift */; };
+		967381222678B7D500230FB6 /* FlashcardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381192678B7D400230FB6 /* FlashcardsViewController.swift */; };
+		967381232678B7D500230FB6 /* FlashCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673811B2678B7D400230FB6 /* FlashCardModel.swift */; };
+		967381242678B7D500230FB6 /* FlashcardsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673811C2678B7D400230FB6 /* FlashcardsViewModel.swift */; };
+		967381252678B7D500230FB6 /* FlashCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673811F2678B7D400230FB6 /* FlashCardView.swift */; };
+		967381262678B7D500230FB6 /* FlashCardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381202678B7D400230FB6 /* FlashCardContainerView.swift */; };
+		967381272678B7D500230FB6 /* FlashcardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381212678B7D400230FB6 /* FlashcardsView.swift */; };
+		9673812F2678B7D900230FB6 /* FlashcardsTopicsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381292678B7D900230FB6 /* FlashcardsTopicsView.swift */; };
+		967381302678B7D900230FB6 /* FlashcardsTopicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673812A2678B7D900230FB6 /* FlashcardsTopicsViewController.swift */; };
+		967381312678B7D900230FB6 /* FlashcardsTopicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673812B2678B7D900230FB6 /* FlashcardsTopicsViewModel.swift */; };
+		967381322678B7D900230FB6 /* FlashcardsTopicsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673812D2678B7D900230FB6 /* FlashcardsTopicsTableView.swift */; };
+		967381332678B7D900230FB6 /* FlashcardsTopicsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673812E2678B7D900230FB6 /* FlashcardsTopicsTableCell.swift */; };
+		967381352678B80300230FB6 /* CourseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381342678B80300230FB6 /* CourseConfig.swift */; };
+		967381372678B93D00230FB6 /* SCFlashcardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381362678B93D00230FB6 /* SCFlashcardsCell.swift */; };
 		967D9C00266A4F2E002251D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967D9BFF266A4F2E002251D7 /* Assets.xcassets */; };
 		967D9D88266A4FF8002251D7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9C2F266A4FF7002251D7 /* UIColorExtension.swift */; };
 		967D9D89266A4FF8002251D7 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9C30266A4FF7002251D7 /* Collection+Extension.swift */; };
@@ -275,6 +299,30 @@
 
 /* Begin PBXFileReference section */
 		0CE2FEF90ACE664491E4DE74 /* Pods-Moto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moto.debug.xcconfig"; path = "Target Support Files/Pods-Moto/Pods-Moto.debug.xcconfig"; sourceTree = "<group>"; };
+		967380FE2678B7CA00230FB6 /* Flashcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
+		967380FF2678B7CA00230FB6 /* FlashcardTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardTopic.swift; sourceTree = "<group>"; };
+		967381012678B7CA00230FB6 /* FlashCardManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardManagerDelegate.swift; sourceTree = "<group>"; };
+		967381022678B7CA00230FB6 /* FlashCardManagerMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardManagerMediator.swift; sourceTree = "<group>"; };
+		967381032678B7CA00230FB6 /* FlashcardsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsManager.swift; sourceTree = "<group>"; };
+		967381042678B7CA00230FB6 /* FlashcardsManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsManagerCore.swift; sourceTree = "<group>"; };
+		967381072678B7CA00230FB6 /* GetFlashcardsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFlashcardsRequest.swift; sourceTree = "<group>"; };
+		967381082678B7CA00230FB6 /* GetFlashcardsResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFlashcardsResponseMapper.swift; sourceTree = "<group>"; };
+		967381092678B7CA00230FB6 /* MarkFlashcardRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkFlashcardRequest.swift; sourceTree = "<group>"; };
+		9673810B2678B7CA00230FB6 /* GetFlashcardsTopicsResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFlashcardsTopicsResponseMapper.swift; sourceTree = "<group>"; };
+		9673810C2678B7CA00230FB6 /* GetFlashcardsTopicsRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetFlashcardsTopicsRequest.swift; sourceTree = "<group>"; };
+		967381192678B7D400230FB6 /* FlashcardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsViewController.swift; sourceTree = "<group>"; };
+		9673811B2678B7D400230FB6 /* FlashCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardModel.swift; sourceTree = "<group>"; };
+		9673811C2678B7D400230FB6 /* FlashcardsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsViewModel.swift; sourceTree = "<group>"; };
+		9673811F2678B7D400230FB6 /* FlashCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardView.swift; sourceTree = "<group>"; };
+		967381202678B7D400230FB6 /* FlashCardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardContainerView.swift; sourceTree = "<group>"; };
+		967381212678B7D400230FB6 /* FlashcardsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsView.swift; sourceTree = "<group>"; };
+		967381292678B7D900230FB6 /* FlashcardsTopicsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsTopicsView.swift; sourceTree = "<group>"; };
+		9673812A2678B7D900230FB6 /* FlashcardsTopicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsTopicsViewController.swift; sourceTree = "<group>"; };
+		9673812B2678B7D900230FB6 /* FlashcardsTopicsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsTopicsViewModel.swift; sourceTree = "<group>"; };
+		9673812D2678B7D900230FB6 /* FlashcardsTopicsTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsTopicsTableView.swift; sourceTree = "<group>"; };
+		9673812E2678B7D900230FB6 /* FlashcardsTopicsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsTopicsTableCell.swift; sourceTree = "<group>"; };
+		967381342678B80300230FB6 /* CourseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseConfig.swift; sourceTree = "<group>"; };
+		967381362678B93D00230FB6 /* SCFlashcardsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCFlashcardsCell.swift; sourceTree = "<group>"; };
 		967D9BF3266A4F2B002251D7 /* Moto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967D9BFF266A4F2E002251D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		967D9C04266A4F2E002251D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -575,6 +623,121 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		967380FC2678B7CA00230FB6 /* Flashcards */ = {
+			isa = PBXGroup;
+			children = (
+				967380FD2678B7CA00230FB6 /* Models */,
+				967381002678B7CA00230FB6 /* Manager */,
+				967381052678B7CA00230FB6 /* Request */,
+			);
+			path = Flashcards;
+			sourceTree = "<group>";
+		};
+		967380FD2678B7CA00230FB6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				967380FE2678B7CA00230FB6 /* Flashcard.swift */,
+				967380FF2678B7CA00230FB6 /* FlashcardTopic.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		967381002678B7CA00230FB6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				967381012678B7CA00230FB6 /* FlashCardManagerDelegate.swift */,
+				967381022678B7CA00230FB6 /* FlashCardManagerMediator.swift */,
+				967381032678B7CA00230FB6 /* FlashcardsManager.swift */,
+				967381042678B7CA00230FB6 /* FlashcardsManagerCore.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		967381052678B7CA00230FB6 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				967381062678B7CA00230FB6 /* GetFlashcards */,
+				967381092678B7CA00230FB6 /* MarkFlashcardRequest.swift */,
+				9673810A2678B7CA00230FB6 /* GetFlashcardsTopics */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		967381062678B7CA00230FB6 /* GetFlashcards */ = {
+			isa = PBXGroup;
+			children = (
+				967381072678B7CA00230FB6 /* GetFlashcardsRequest.swift */,
+				967381082678B7CA00230FB6 /* GetFlashcardsResponseMapper.swift */,
+			);
+			path = GetFlashcards;
+			sourceTree = "<group>";
+		};
+		9673810A2678B7CA00230FB6 /* GetFlashcardsTopics */ = {
+			isa = PBXGroup;
+			children = (
+				9673810B2678B7CA00230FB6 /* GetFlashcardsTopicsResponseMapper.swift */,
+				9673810C2678B7CA00230FB6 /* GetFlashcardsTopicsRequest.swift */,
+			);
+			path = GetFlashcardsTopics;
+			sourceTree = "<group>";
+		};
+		967381182678B7D400230FB6 /* Flashcards */ = {
+			isa = PBXGroup;
+			children = (
+				967381192678B7D400230FB6 /* FlashcardsViewController.swift */,
+				9673811A2678B7D400230FB6 /* Models */,
+				9673811C2678B7D400230FB6 /* FlashcardsViewModel.swift */,
+				9673811D2678B7D400230FB6 /* Views */,
+				967381212678B7D400230FB6 /* FlashcardsView.swift */,
+			);
+			path = Flashcards;
+			sourceTree = "<group>";
+		};
+		9673811A2678B7D400230FB6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9673811B2678B7D400230FB6 /* FlashCardModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9673811D2678B7D400230FB6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9673811E2678B7D400230FB6 /* CardsView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9673811E2678B7D400230FB6 /* CardsView */ = {
+			isa = PBXGroup;
+			children = (
+				9673811F2678B7D400230FB6 /* FlashCardView.swift */,
+				967381202678B7D400230FB6 /* FlashCardContainerView.swift */,
+			);
+			path = CardsView;
+			sourceTree = "<group>";
+		};
+		967381282678B7D900230FB6 /* FlashcardsTopics */ = {
+			isa = PBXGroup;
+			children = (
+				967381292678B7D900230FB6 /* FlashcardsTopicsView.swift */,
+				9673812A2678B7D900230FB6 /* FlashcardsTopicsViewController.swift */,
+				9673812B2678B7D900230FB6 /* FlashcardsTopicsViewModel.swift */,
+				9673812C2678B7D900230FB6 /* Views */,
+			);
+			path = FlashcardsTopics;
+			sourceTree = "<group>";
+		};
+		9673812C2678B7D900230FB6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9673812D2678B7D900230FB6 /* FlashcardsTopicsTableView.swift */,
+				9673812E2678B7D900230FB6 /* FlashcardsTopicsTableCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		967D9BEA266A4F2B002251D7 = {
 			isa = PBXGroup;
 			children = (
@@ -723,6 +886,7 @@
 		967D9C54266A4FF7002251D7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				967380FC2678B7CA00230FB6 /* Flashcards */,
 				967DA1682670A828002251D7 /* Paygate */,
 				967D9C55266A4FF7002251D7 /* Rate */,
 				967D9C6A266A4FF7002251D7 /* TestStats */,
@@ -796,6 +960,7 @@
 				967D9C75266A4FF7002251D7 /* TestConfig.swift */,
 				967D9C76266A4FF7002251D7 /* Test.swift */,
 				967D9C77266A4FF7002251D7 /* SITest.swift */,
+				967381342678B80300230FB6 /* CourseConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1007,6 +1172,8 @@
 		967D9CBE266A4FF8002251D7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				967381282678B7D900230FB6 /* FlashcardsTopics */,
+				967381182678B7D400230FB6 /* Flashcards */,
 				967DA1852670A83B002251D7 /* Paygate */,
 				967D9CBF266A4FF8002251D7 /* Settings */,
 				967D9CD0266A4FF8002251D7 /* TimedExam */,
@@ -1098,9 +1265,9 @@
 		967D9CD9266A4FF8002251D7 /* Study */ = {
 			isa = PBXGroup;
 			children = (
+				967D9CDC266A4FF8002251D7 /* Views */,
 				967D9CDA266A4FF8002251D7 /* StudyViewModel.swift */,
 				967D9CDB266A4FF8002251D7 /* StudyViewController.swift */,
-				967D9CDC266A4FF8002251D7 /* Views */,
 				967D9CF1266A4FF8002251D7 /* StudyView.swift */,
 			);
 			path = Study;
@@ -1109,9 +1276,9 @@
 		967D9CDC266A4FF8002251D7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				967D9CEC266A4FF8002251D7 /* CourseCollectionView */,
 				967D9CDD266A4FF8002251D7 /* CollectionView */,
 				967D9CEB266A4FF8002251D7 /* CourseCellProgressView.swift */,
-				967D9CEC266A4FF8002251D7 /* CourseCollectionView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1135,6 +1302,7 @@
 				967D9CE0266A4FF8002251D7 /* SCCoursesCell.swift */,
 				967D9CE1266A4FF8002251D7 /* SCTrophyCollectionCell.swift */,
 				967D9CE2266A4FF8002251D7 /* SCModesCell.swift */,
+				967381362678B93D00230FB6 /* SCFlashcardsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1784,6 +1952,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				967D9E4D266A4FF9002251D7 /* CourseDetailsTestCell.swift in Sources */,
+				967381312678B7D900230FB6 /* FlashcardsTopicsViewModel.swift in Sources */,
 				967D9DD4266A4FF8002251D7 /* Course.swift in Sources */,
 				967D9E50266A4FF9002251D7 /* SITestView.swift in Sources */,
 				967D9E4F266A4FF9002251D7 /* GradientProgressView.swift in Sources */,
@@ -1799,6 +1968,7 @@
 				967D9DCD266A4FF8002251D7 /* GetAgainTestRequest.swift in Sources */,
 				967D9E3B266A4FF9002251D7 /* TestStatsFilterCell.swift in Sources */,
 				967D9E1F266A4FF9002251D7 /* TestBottomButtonState.swift in Sources */,
+				967381232678B7D500230FB6 /* FlashCardModel.swift in Sources */,
 				967D9E48266A4FF9002251D7 /* TestStatsView.swift in Sources */,
 				967D9DE1266A4FF8002251D7 /* GetCountriesRequest.swift in Sources */,
 				967D9D91266A4FF8002251D7 /* ScreenSize.swift in Sources */,
@@ -1811,8 +1981,11 @@
 				967D9D97266A4FF8002251D7 /* Toast.swift in Sources */,
 				967D9E3F266A4FF9002251D7 /* TestStatsCellType.swift in Sources */,
 				967D9E2B266A4FF9002251D7 /* TestProgressView.swift in Sources */,
+				967381142678B7CA00230FB6 /* GetFlashcardsResponseMapper.swift in Sources */,
 				967DA1822670A828002251D7 /* MonetizationManagerCore.swift in Sources */,
+				967381132678B7CA00230FB6 /* GetFlashcardsRequest.swift in Sources */,
 				967D9E13266A4FF9002251D7 /* StudyView.swift in Sources */,
+				967381332678B7D900230FB6 /* FlashcardsTopicsTableCell.swift in Sources */,
 				967DA19A2670A83B002251D7 /* PaygateFreeView.swift in Sources */,
 				967D9DD7266A4FF8002251D7 /* CoursesManagerCore.swift in Sources */,
 				967D9E3E266A4FF9002251D7 /* TestStatsAnswer.swift in Sources */,
@@ -1822,6 +1995,7 @@
 				967D9DFF266A4FF8002251D7 /* BottomSheetAnimation.swift in Sources */,
 				967D9DA3266A4FF8002251D7 /* AppDelegate.swift in Sources */,
 				967D9E2C266A4FF9002251D7 /* ImageScrollView.swift in Sources */,
+				967381122678B7CA00230FB6 /* FlashcardsManagerCore.swift in Sources */,
 				967D9D93266A4FF8002251D7 /* SignError.swift in Sources */,
 				967DA1942670A83B002251D7 /* PaygateViewController.swift in Sources */,
 				967D9E78266A4FF9002251D7 /* ODatePicker.swift in Sources */,
@@ -1835,7 +2009,9 @@
 				967D9DCA266A4FF8002251D7 /* FinishTestRequest.swift in Sources */,
 				967D9DBA266A4FF8002251D7 /* TestStatsManagerCore.swift in Sources */,
 				967D9E6A266A4FF9002251D7 /* MainStatsDescriptionView.swift in Sources */,
+				967381242678B7D500230FB6 /* FlashcardsViewModel.swift in Sources */,
 				967D9DCF266A4FF8002251D7 /* SaveQuestionRequest.swift in Sources */,
+				967381162678B7CA00230FB6 /* GetFlashcardsTopicsResponseMapper.swift in Sources */,
 				967D9DB8266A4FF8002251D7 /* GetTestStatsRequest.swift in Sources */,
 				967D9E76266A4FF9002251D7 /* LocaleCountryView.swift in Sources */,
 				967D9E5F266A4FF9002251D7 /* StatsCellType.swift in Sources */,
@@ -1849,6 +2025,7 @@
 				967D9E40266A4FF9002251D7 /* TestStatsDescriptionElement.swift in Sources */,
 				967D9E70266A4FF9002251D7 /* OSlider.swift in Sources */,
 				967D9DD9266A4FF8002251D7 /* Language.swift in Sources */,
+				967381262678B7D500230FB6 /* FlashCardContainerView.swift in Sources */,
 				967D9E6D266A4FF9002251D7 /* OSlideStartedView.swift in Sources */,
 				967D9E42266A4FF9002251D7 /* TestStatsViewModel.swift in Sources */,
 				967D9DEB266A4FF8002251D7 /* GetStatsRequest.swift in Sources */,
@@ -1890,6 +2067,7 @@
 				967D9DA1266A4FF8002251D7 /* GradientView.swift in Sources */,
 				967D9DEC266A4FF8002251D7 /* StatsManagerCore.swift in Sources */,
 				967D9DF9266A4FF8002251D7 /* STUnlockCell.swift in Sources */,
+				967381252678B7D500230FB6 /* FlashCardView.swift in Sources */,
 				967D9DBF266A4FF8002251D7 /* GetTestResponseMapper.swift in Sources */,
 				967D9DE0266A4FF8002251D7 /* GetLocaleRequest.swift in Sources */,
 				967D9E36266A4FF9002251D7 /* TestStatsViewController.swift in Sources */,
@@ -1897,11 +2075,14 @@
 				967D9E41266A4FF9002251D7 /* TestStatsFilter.swift in Sources */,
 				967DA1912670A83B002251D7 /* PaygateViewModel.swift in Sources */,
 				967D9D8B266A4FF8002251D7 /* UIDeviceExtension.swift in Sources */,
+				967381352678B80300230FB6 /* CourseConfig.swift in Sources */,
 				967D9D9D266A4FF8002251D7 /* PaddingLabel.swift in Sources */,
 				967D9D8D266A4FF8002251D7 /* StringExtension.swift in Sources */,
 				967D9DDA266A4FF8002251D7 /* State.swift in Sources */,
+				967381102678B7CA00230FB6 /* FlashCardManagerMediator.swift in Sources */,
 				967D9DA5266A4FF8002251D7 /* RxActivityIndicator.swift in Sources */,
 				967D9E05266A4FF8002251D7 /* StudyViewController.swift in Sources */,
+				967381112678B7CA00230FB6 /* FlashcardsManager.swift in Sources */,
 				967D9DDC266A4FF8002251D7 /* Country.swift in Sources */,
 				967D9DF4266A4FF8002251D7 /* SettingsOpener.swift in Sources */,
 				967D9D9C266A4FF8002251D7 /* NavigationBar.swift in Sources */,
@@ -1915,6 +2096,7 @@
 				967D9DD5266A4FF8002251D7 /* GetCourcesRequest.swift in Sources */,
 				967D9DC2266A4FF8002251D7 /* GetTestConfigRequest.swift in Sources */,
 				967DA1972670A83B002251D7 /* PaygateOptionView.swift in Sources */,
+				967381372678B93D00230FB6 /* SCFlashcardsCell.swift in Sources */,
 				967DA1922670A83B002251D7 /* PaygateViewControllerDelegate.swift in Sources */,
 				967D9D98266A4FF8002251D7 /* NursingNavigationController.swift in Sources */,
 				967D9E39266A4FF9002251D7 /* TestStatsAnswerCell.swift in Sources */,
@@ -1925,6 +2107,7 @@
 				967D9E52266A4FF9002251D7 /* SIAnswerCell.swift in Sources */,
 				967D9E7C266A4FF9002251D7 /* OSlideView.swift in Sources */,
 				967D9D99266A4FF8002251D7 /* NursingNavigationControllerSettings.swift in Sources */,
+				967381222678B7D500230FB6 /* FlashcardsViewController.swift in Sources */,
 				967D9E69266A4FF9002251D7 /* CourseProgressView.swift in Sources */,
 				967D9DC5266A4FF8002251D7 /* RemoveSavedQuestionRequest.swift in Sources */,
 				967D9DCE266A4FF8002251D7 /* GetSavedAndIncorrectResponseMapper.swift in Sources */,
@@ -1939,14 +2122,17 @@
 				967D9E51266A4FF9002251D7 /* SIQuestionCell.swift in Sources */,
 				967D9DFD266A4FF8002251D7 /* SettingsViewController.swift in Sources */,
 				967D9E7A266A4FF9002251D7 /* OSlidePlanCell.swift in Sources */,
+				967381172678B7CA00230FB6 /* GetFlashcardsTopicsRequest.swift in Sources */,
 				967DA1992670A83B002251D7 /* PaygateInfoCell.swift in Sources */,
 				967D9E4C266A4FF9002251D7 /* CourseDetailsViewModel.swift in Sources */,
 				967D9E6F266A4FF9002251D7 /* OProgressView.swift in Sources */,
+				967381272678B7D500230FB6 /* FlashcardsView.swift in Sources */,
 				967D9E71266A4FF9002251D7 /* LocaleTableViewCell.swift in Sources */,
 				967DA1782670A828002251D7 /* PaygateManagerCore.swift in Sources */,
 				967D9DFA266A4FF8002251D7 /* STChangeLocaleView.swift in Sources */,
 				967D9DEE266A4FF8002251D7 /* Session.swift in Sources */,
 				967D9E38266A4FF9002251D7 /* TestStatsComunityResultCell.swift in Sources */,
+				9673812F2678B7D900230FB6 /* FlashcardsTopicsView.swift in Sources */,
 				967DA1792670A828002251D7 /* MonetizationManager.swift in Sources */,
 				967DA1832670A828002251D7 /* PaygateManager.swift in Sources */,
 				967D9D88266A4FF8002251D7 /* UIColorExtension.swift in Sources */,
@@ -1961,11 +2147,13 @@
 				967D9DDD266A4FF8002251D7 /* ProfileManagerCore.swift in Sources */,
 				967D9D8C266A4FF8002251D7 /* UIEdgeInsets+Extension.swift in Sources */,
 				967D9DC7266A4FF8002251D7 /* GetSavedRequest.swift in Sources */,
+				967381152678B7CA00230FB6 /* MarkFlashcardRequest.swift in Sources */,
 				967D9DA4266A4FF8002251D7 /* ColorsPalette.swift in Sources */,
 				967D9E06266A4FF8002251D7 /* SCTitleCell.swift in Sources */,
 				967D9DEF266A4FF8002251D7 /* SessionManagerCore.swift in Sources */,
 				967D9E12266A4FF9002251D7 /* CourseFlowLayout.swift in Sources */,
 				967D9DC0266A4FF8002251D7 /* GetTestConfigResponseMapper.swift in Sources */,
+				9673810F2678B7CA00230FB6 /* FlashCardManagerDelegate.swift in Sources */,
 				967D9E44266A4FF9002251D7 /* TestStatsProgressView.swift in Sources */,
 				967D9E2A266A4FF9002251D7 /* AnswerView.swift in Sources */,
 				967D9E0C266A4FF8002251D7 /* StudyCollectionElement.swift in Sources */,
@@ -1986,6 +2174,7 @@
 				967D9DE3266A4FF8002251D7 /* SetRequest.swift in Sources */,
 				967D9DA8266A4FF8002251D7 /* RateManager.swift in Sources */,
 				967D9E66266A4FF9002251D7 /* StatsTableView.swift in Sources */,
+				967381302678B7D900230FB6 /* FlashcardsTopicsViewController.swift in Sources */,
 				967D9E53266A4FF9002251D7 /* SITestProgressCollectionCell.swift in Sources */,
 				967D9E2D266A4FF9002251D7 /* AVPlayerView.swift in Sources */,
 				967D9DC4266A4FF8002251D7 /* GetRandomSetRequest.swift in Sources */,
@@ -1993,7 +2182,9 @@
 				967D9DC9266A4FF8002251D7 /* GetTestRequest.swift in Sources */,
 				967D9DC1266A4FF8002251D7 /* SendAnswerResponseMapper.swift in Sources */,
 				967D9E62266A4FF9002251D7 /* StatsView.swift in Sources */,
+				9673810D2678B7CA00230FB6 /* Flashcard.swift in Sources */,
 				967D9E83266A4FF9002251D7 /* OSlideLocaleView.swift in Sources */,
+				9673810E2678B7CA00230FB6 /* FlashcardTopic.swift in Sources */,
 				967D9DE4266A4FF8002251D7 /* ProfileMediatorDelegate.swift in Sources */,
 				967D9DBD266A4FF8002251D7 /* Test.swift in Sources */,
 				967D9E47266A4FF9002251D7 /* TestStatsFilterView.swift in Sources */,
@@ -2017,6 +2208,7 @@
 				967D9E56266A4FF9002251D7 /* SITestCellType.swift in Sources */,
 				967D9DFB266A4FF8002251D7 /* SettingsTableView.swift in Sources */,
 				967D9DA6266A4FF8002251D7 /* UIViewRxExtension.swift in Sources */,
+				967381322678B7D900230FB6 /* FlashcardsTopicsTableView.swift in Sources */,
 				967D9E5A266A4FF9002251D7 /* SITestTableView.swift in Sources */,
 				967D9E45266A4FF9002251D7 /* TestStatsTableView.swift in Sources */,
 				967D9D8E266A4FF8002251D7 /* GlobalDefinitions.swift in Sources */,

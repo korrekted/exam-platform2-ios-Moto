@@ -7,7 +7,7 @@
 
 import RxSwift
 
-protocol StatsManager: class {
+protocol StatsManager: AnyObject {
     // MARK: API(Rx)
     func retrieveStats(courseId: Int) -> Single<Stats?>
     func retrieveBrief(courseId: Int) -> Single<Brief?>
