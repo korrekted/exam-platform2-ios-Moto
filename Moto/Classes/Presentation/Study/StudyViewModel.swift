@@ -13,6 +13,7 @@ final class StudyViewModel {
     private lazy var sessionManager = SessionManagerCore()
     private lazy var questionManager = QuestionManagerCore()
     private lazy var statsManager = StatsManagerCore()
+    private lazy var flashcardsManager = FlashcardsManagerCore()
     
     lazy var sections = makeSections()
     lazy var activeSubscription = makeActiveSubscription()
@@ -68,7 +69,10 @@ private extension StudyViewModel {
                     result.append(trophy)
                 }
                 
-                result.append(flashcards)
+                if let flashcards = flashcards {
+                    result.append(flashcards)
+                }
+                
                 result.append(modes)
                 
                 return result
@@ -160,15 +164,33 @@ private extension StudyViewModel {
             .compactMap { $0 ? nil : StudyCollectionSection(elements: [.trophy]) }
     }
     
-    func makeFlashcards() -> Driver<StudyCollectionSection> {
-        config
-            .map { config -> StudyCollectionSection in
+    func makeFlashcards() -> Driver<StudyCollectionSection?> {
+        let isEmptyFlashcardsTopics = currentCourse
+            .flatMapLatest { [weak self] course -> Single<Bool> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.flashcardsManager
+                    .obtainTopics(courseId: course.id)
+                    .map { $0.isEmpty }
+            }
+            .asDriver(onErrorJustReturn: true)
+        
+        let config = self.config
+            .asDriver(onErrorDriveWith: .never())
+        
+        return Driver
+            .combineLatest(isEmptyFlashcardsTopics, config) { isEmptyFlashcardsTopics, config -> StudyCollectionSection? in
+                guard !isEmptyFlashcardsTopics else {
+                    return nil
+                }
+                
                 let flashcards = SCEFlashcards(topicsToLearn: config.flashcardsCount,
                                                topicsLearned: config.flashcardsCompleted)
                 
                 return StudyCollectionSection(elements: [.flashcards(flashcards)])
             }
-            .asDriver(onErrorDriveWith: .empty())
     }
     
     func makeActiveSubscription() -> Driver<Bool> {

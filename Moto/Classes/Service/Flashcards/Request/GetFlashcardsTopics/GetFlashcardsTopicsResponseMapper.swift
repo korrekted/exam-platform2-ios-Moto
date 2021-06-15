@@ -26,7 +26,7 @@ final class GetFlashcardsTopicsResponseMapper {
             else {
                 return nil
             }
-            
+
             return FlashcardTopic(id: id,
                                   name: name,
                                   paid: paid,
