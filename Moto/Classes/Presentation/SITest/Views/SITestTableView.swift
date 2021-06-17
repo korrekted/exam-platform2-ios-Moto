@@ -10,7 +10,6 @@ import RxCocoa
 
 class SITestTableView: UITableView {
     private lazy var elements = [SITestCellType]()
-    let expandContent = PublishRelay<QuestionContentType>()
     let selectedAnswers = PublishRelay<[SIAnswerElement]>()
     
     private var selectedCells: Set<IndexPath> = [] {
@@ -101,10 +100,8 @@ extension SITestTableView: UITableViewDataSource {
         switch element {
         case let .content(content):
             let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionContentCell.self), for: indexPath) as! QuestionContentCell
-            cell.configure(content: content) { [weak self] in
-                self?.expandContent.accept($0)
-            }
-             return cell
+            cell.configure(content: content)
+            return cell
         case let .question(question, html):
             let cell = dequeueReusableCell(withIdentifier: String(describing: SIQuestionCell.self), for: indexPath) as! SIQuestionCell
             cell.configure(question: question, questionHtml: html)

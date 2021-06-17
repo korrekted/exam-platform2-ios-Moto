@@ -24,9 +24,8 @@ class QuestionContentCell: UITableViewCell {
 
 // MARK: Public
 extension QuestionContentCell {
-    func configure(content: [QuestionContentType], didTapExpand: @escaping (QuestionContentType) -> Void) {
+    func configure(content: [QuestionContentType]) {
         collectionView.setup(elements: content)
-        collectionView.expandContent = didTapExpand
     }
 }
 

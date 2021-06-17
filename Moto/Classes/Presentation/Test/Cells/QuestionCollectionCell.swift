@@ -14,7 +14,6 @@ class QuestionCollectionCell: UICollectionViewCell {
     
     private lazy var questionImageView = makeImageView()
     lazy var videoView = makeVideoView()
-    lazy var expandButton = makeExpandButton()
     private var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -37,7 +36,7 @@ class QuestionCollectionCell: UICollectionViewCell {
 
 // MARK: Public
 extension QuestionCollectionCell {
-    func setup(content: QuestionContentType, didTapExpand: @escaping () -> Void) {
+    func setup(content: QuestionContentType) {
         switch content {
         case let .image(url):
             videoView.isHidden = true
@@ -57,10 +56,6 @@ extension QuestionCollectionCell {
             questionImageView.isHidden = true
             player.play()
         }
-        
-        expandButton.rx.tap
-            .bind(onNext: didTapExpand)
-            .disposed(by: disposeBag)
     }
 }
 
@@ -87,13 +82,6 @@ private extension QuestionCollectionCell {
             videoView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             videoView.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
-        
-        NSLayoutConstraint.activate([
-            expandButton.heightAnchor.constraint(equalToConstant: 15.scale),
-            expandButton.widthAnchor.constraint(equalTo: expandButton.heightAnchor),
-            expandButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.scale),
-            expandButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15.scale)
-        ])
     }
 }
 
@@ -114,15 +102,6 @@ private extension QuestionCollectionCell {
         view.layer.cornerRadius = 20.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        contentView.addSubview(view)
-        return view
-    }
-    
-    func makeExpandButton() -> UIButton {
-        let view = UIButton()
-        view.setImage(UIImage(named: "Question.Expand"), for: .normal)
-        view.tintColor = .white
-        view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
     }

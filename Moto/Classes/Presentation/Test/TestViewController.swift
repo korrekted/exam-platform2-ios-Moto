@@ -152,33 +152,6 @@ final class TestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        mainView.tableView
-            .expandContent
-            .bind(to: Binder(self) { base, content in
-                switch content {
-                case let .image(url):
-                    DispatchQueue.global(qos: .utility).async { [weak base] in
-                        if let image = try? UIImage(data: Data(contentsOf: url)) {
-                            DispatchQueue.main.async {
-                                let controller = ZoomImageViewController(image: image)
-                                controller.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-                                base?.present(controller, animated: true)
-                            }
-                            
-                        }
-                    }
-                case let .video(url):
-                    let controller = AVPlayerViewController()
-                    controller.view.backgroundColor = .black
-                    let player = AVPlayer(url: url)
-                    controller.player = player
-                    base.present(controller, animated: true) { [weak player] in
-                        player?.play()
-                    }
-                }
-            })
-            .disposed(by: disposeBag)
-        
         viewModel.errorMessage
             .emit { [weak self] message in
                 Toast.notify(with: message, style: .danger)
@@ -228,14 +201,6 @@ final class TestViewController: UIViewController {
         viewModel.isSavedQuestion
             .drive(Binder(mainView) {
                 $0.saveQuestion($1)
-            })
-            .disposed(by: disposeBag)
-        
-        mainView.tableView
-            .expandContent
-            .withLatestFrom(courseName)
-            .subscribe(onNext: { [weak self] name in
-                self?.logTapAnalytics(courseName: name, what: "media")
             })
             .disposed(by: disposeBag)
         
