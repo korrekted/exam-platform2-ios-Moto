@@ -37,10 +37,10 @@ extension MainStatsDescriptionView {
             many: "Stats.Day.Many".localized
         )
         
-        testTakenLineView.setup(title: "Stats.MainRate.TestsTake".localized, value: "\(model.testsTakenNum)")
+        testTakenLineView.setup(title: "Stats.Description.TestsTake".localized, value: "\(model.testsTakenNum)")
         longestStreakLineView.setup(title: "Stats.MainRate.LongestStreak".localized, value: "\(model.longestStreak) \(longestStreakValue)")
         answeredQuestionsLineView.setup(title: "Stats.MainRate.AnsweredQuestions".localized, value: "\(model.answeredQuestions)")
-        correctAnswersLineView.setup(title: "Stats.MainRate.CorrectAnswers".localized, value: "\(model.correctAnswersNum)")
+        correctAnswersLineView.setup(title: "Stats.Description.CorrectAnswers".localized, value: "\(model.correctAnswersNum)")
         flashcardsLineView.setup(title: "Stats.MainRate.LearnedFlashcards".localized, value: "\(model.flashcardsCompleted)")
     }
 }

@@ -91,7 +91,8 @@ private extension MainRateCell {
     func makeStackView() -> UIStackView {
         let view = UIStackView()
         view.axis = .horizontal
-        view.spacing = 20.scale
+        view.distribution = .equalSpacing
+        view.spacing = 6.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view

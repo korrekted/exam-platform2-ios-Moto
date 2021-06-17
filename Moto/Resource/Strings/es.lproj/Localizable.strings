@@ -84,12 +84,14 @@
 
 // MARK: Stats
 "Stats.PassRate.Title" = "Tasa de aprobación";
-"Stats.MainRate.TestsTake" = "Pruebas realizadas";
-"Stats.MainRate.CorrectAnswers" = "Respuestas correctas";
-"Stats.MainRate.QuestionsTaken" = "Preguntas respondidas";
+"Stats.MainRate.TestsTake" = "Pruebas\nrealizadas";
+"Stats.MainRate.CorrectAnswers" = "Respuestas\ncorrectas";
+"Stats.MainRate.QuestionsTaken" = "Preguntas\nrespondidas";
 "Stats.MainRate.LongestStreak" = "Racha más larga";
 "Stats.MainRate.AnsweredQuestions" = "Preguntas respondidas";
 "Stats.MainRate.LearnedFlashcards" = "Tarjetas aprendidas";
+"Stats.Description.TestsTake" = "Pruebas realizadas";
+"Stats.Description.CorrectAnswers" = "Respuestas correctas";
 "Stats.Title" = "Estadisticas";
 "Stats.Day.One" = "dia";
 "Stats.Day.Two" = "dias";

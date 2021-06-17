@@ -81,6 +81,7 @@ private extension MainStatsView {
 private extension MainStatsView {
     func makeTitleLabel() -> UILabel {
         let view = UILabel()
+        view.numberOfLines = 2
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
