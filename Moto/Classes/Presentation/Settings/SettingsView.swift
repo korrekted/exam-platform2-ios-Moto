@@ -57,6 +57,7 @@ private extension SettingsView {
         view.backgroundColor = UIColor.clear
         view.allowsSelection = false
         view.separatorStyle = .none
+        view.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 32.scale, right: 0)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
