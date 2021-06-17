@@ -116,6 +116,12 @@ final class SITestViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        viewModel.bottomViewState
+            .drive(Binder(mainView) {
+                $0.setupBottomButton(for: $1)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.errorMessage
             .emit { [weak self] message in
                 Toast.notify(with: message, style: .danger)
