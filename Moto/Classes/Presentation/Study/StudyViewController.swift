@@ -66,27 +66,10 @@ final class StudyViewController: UIViewController {
         mainView.takeButton.rx.tap
             .withLatestFrom(viewModel.activeSubscription)
             .withLatestFrom(viewModel.course) { ($0, $1) }
-            .withLatestFrom(viewModel.config) { ($0.0, $0.1, $1) }
             .bind(to: Binder(self) { base, tuple in
-                let (activeSubscription, course, config) = tuple
+                let (activeSubscription, course) = tuple
                 
-                let types: [TestType]
-                
-                if activeSubscription {
-                    types = config.testsConfigs.reduce(into: []) { old, new in
-                        old.append(.get(testId: new.id))
-                    }
-                } else {
-                    let type = config
-                        .testsConfigs
-                        .filter { !$0.paid }
-                        .randomElement()
-                        .map { TestType.get(testId: $0.id) } ?? .get(testId: nil)
-                    
-                    types = [type]
-                }
-                
-                base.openTest(types: types, activeSubscription: activeSubscription, courseId: course.id)
+                base.openTest(type: .get(testId: nil), activeSubscription: activeSubscription, courseId: course.id)
                 
                 SDKStorage.shared
                     .amplitudeManager
@@ -164,32 +147,32 @@ private extension StudyViewController {
     func tapped(mode: SCEMode.Mode, activeSubscription: Bool, courseId: Int) {
         switch mode {
         case .ten:
-            openTest(types: [.tenSet], activeSubscription: activeSubscription, courseId: courseId)
+            openTest(type: .tenSet, activeSubscription: activeSubscription, courseId: courseId)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "10 questions"])
         case .random:
-            openTest(types: [.randomSet], activeSubscription: activeSubscription, courseId: courseId)
+            openTest(type: .randomSet, activeSubscription: activeSubscription, courseId: courseId)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "random set"])
         case .missed:
-            openTest(types: [.failedSet], activeSubscription: activeSubscription, courseId: courseId)
+            openTest(type: .failedSet, activeSubscription: activeSubscription, courseId: courseId)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "missed questions"])
         case .today:
-            openTest(types: [.qotd], activeSubscription: activeSubscription, courseId: courseId)
+            openTest(type: .qotd, activeSubscription: activeSubscription, courseId: courseId)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "question of the day"])
         case .time:
             let controller = TimedExamViewController.make() { [weak self] minutes in
-                self?.openTest(types: [.timedQuizz(minutes: minutes)], activeSubscription: activeSubscription, courseId: courseId)
+                self?.openTest(type: .timedQuizz(minutes: minutes), activeSubscription: activeSubscription, courseId: courseId)
             }
             controller.modalPresentationStyle = .custom
             controller.transitioningDelegate = self
@@ -197,8 +180,8 @@ private extension StudyViewController {
         }
     }
     
-    func openTest(types: [TestType], activeSubscription: Bool, courseId: Int) {
-        let controller = TestViewController.make(testTypes: types, activeSubscription: activeSubscription, courseId: courseId, isTopicTest: false)
+    func openTest(type: TestType, activeSubscription: Bool, courseId: Int) {
+             let controller = TestViewController.make(testType: type, activeSubscription: activeSubscription, courseId: courseId, isTopicTest: false)
         parent?.navigationController?.pushViewController(controller, animated: true)
     }
     

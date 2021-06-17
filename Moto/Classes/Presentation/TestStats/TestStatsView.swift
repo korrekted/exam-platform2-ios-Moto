@@ -49,15 +49,8 @@ extension TestStatsView {
         stackView.addArrangedSubview(tryAgainButton)
         stackView.addArrangedSubview(nextTestButton)
         
-        let bottomOffset: CGFloat
-        
-        if isTopicTest {
-            nextTestButton.isHidden = !isNextEnabled
-            bottomOffset = ScreenSize.isIphoneXFamily ? 170.scale : 140.scale
-        } else {
-            stackView.isHidden = true
-            bottomOffset = 0
-        }
+        nextTestButton.isHidden = !isNextEnabled
+        let bottomOffset = ScreenSize.isIphoneXFamily ? 170.scale : 140.scale
         
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bottomOffset, right: 0)
     }

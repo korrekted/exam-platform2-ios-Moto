@@ -46,24 +46,10 @@ class CourseDetailsViewController: UIViewController {
         
         mainView.tableView.selectedTestId
             .withLatestFrom(courseIdAndActiveSubscription) { ($0, $1) }
-            .withLatestFrom(viewModel.config) { ($0, $1) }
             .bind(to: Binder(self) { base, tuple in
-                let ((testId, (courseId, activeSubscription)), config) = tuple
-                let types: [TestType]
+                let (testId, (courseId, activeSubscription)) = tuple
                 
-                if activeSubscription, let selected = config.first(where: { $0.id == testId }) {
-                    types = config
-                        .split(separator: selected)
-                        .reversed()
-                        .flatMap { $0 }
-                        .reduce(into: [.get(testId: selected.id)]) { old, new in
-                            old.append(.get(testId: new.id))
-                        }
-                } else {
-                    types = [.get(testId: testId)]
-                }
-                
-                let controller = TestViewController.make(testTypes: types, activeSubscription: activeSubscription, courseId: courseId, isTopicTest: true)
+                let controller = TestViewController.make(testType: .get(testId: testId), activeSubscription: activeSubscription, courseId: courseId, isTopicTest: true)
                 base.parent?.navigationController?.pushViewController(controller, animated: true)
             })
             .disposed(by: disposeBag)

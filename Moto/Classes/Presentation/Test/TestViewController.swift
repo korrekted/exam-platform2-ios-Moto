@@ -222,12 +222,12 @@ final class TestViewController: UIViewController {
 
 // MARK: Make
 extension TestViewController {
-    static func make(testTypes: [TestType], activeSubscription: Bool, courseId: Int, isTopicTest: Bool) -> TestViewController {
+    static func make(testType: TestType, activeSubscription: Bool, courseId: Int, isTopicTest: Bool) -> TestViewController {
         let controller = TestViewController()
         controller.modalPresentationStyle = .fullScreen
         controller.viewModel.isTopicTest = isTopicTest
         controller.viewModel.activeSubscription = activeSubscription
-        controller.viewModel.testTypes = testTypes
+        controller.viewModel.testType.accept(testType)
         controller.viewModel.courseId.accept(courseId)
         return controller
     }
@@ -246,7 +246,7 @@ extension TestViewController {
 // MARK: Private
 private extension TestViewController {
     func logAnalytics(courseName: String) {
-        guard let type = viewModel.testType else {
+        guard let type = viewModel.currentType else {
             return
         }
         
@@ -259,7 +259,7 @@ private extension TestViewController {
     }
     
     func logTapAnalytics(courseName: String, what: String) {
-        guard let type = viewModel.testType else {
+        guard let type = viewModel.currentType else {
             return
         }
         
