@@ -1,9 +1,9 @@
 PODS:
   - Alamofire (5.4.3)
   - Amplitude-iOS (4.10.0)
-  - AppsFlyerFramework (6.3.1):
-    - AppsFlyerFramework/Main (= 6.3.1)
-  - AppsFlyerFramework/Main (6.3.1)
+  - AppsFlyerFramework (6.3.2):
+    - AppsFlyerFramework/Main (= 6.3.2)
+  - AppsFlyerFramework/Main (6.3.2)
   - Branch (1.39.3)
   - FacebookSDK (9.3.0):
     - FacebookSDK/CoreKit (= 9.3.0)
@@ -199,7 +199,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Amplitude-iOS: 7d8cdc3408ba35c2e68368fc7c692cd104606b94
-  AppsFlyerFramework: ea0232bd216ee54622da396479d95ad13d1dd2c3
+  AppsFlyerFramework: c66d79d965ccc2f44fd5db3df3d214428cc7665a
   Branch: 13df8e1a6985745a03389146df1eeda723645a97
   FacebookSDK: 0c32a92b36f566ee5e48446236e481c6e5c6c024
   FBSDKCoreKit: 0d1ae58388a458b8222f72025804cdc84eb5d0c3
