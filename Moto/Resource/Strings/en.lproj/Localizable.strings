@@ -62,7 +62,7 @@
 "Study.Mode.TenQuestions" = "10 questions\nquick exam";
 "Study.Mode.MissedQuestions" = "Missed\nquestions set";
 "Study.Mode.RandomSet" = "Random exam\nset";
-"Study.Mode.TimedQuizz" = "Timed\nQuizz";
+"Study.Mode.TimedQuizz" = "Timed\nexam set";
 "Study.Mode.TryMe" = "TRY ME";
 "Study.Course.CourseCount" = "%d topics";
 "Study.Course.Title" = " exam modes";
