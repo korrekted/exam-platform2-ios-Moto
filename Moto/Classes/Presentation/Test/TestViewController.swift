@@ -193,7 +193,7 @@ final class TestViewController: UIViewController {
                     rightCounterTitle = "Question.Counter.Question".localized
                 }
                 
-                base.navigationView.setTitle(title: testType.name)
+                base.navigationView.setTitle(title: testType.title)
                 base.counter.setup(leftTitle: leftCounterTitle, rightTitle: rightCounterTitle)
             })
             .disposed(by: disposeBag)

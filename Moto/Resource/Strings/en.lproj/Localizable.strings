@@ -119,6 +119,11 @@
 "Question.Counter.Score" = "Score";
 "Question.Counter.Question" = "Question";
 "Question.Counter.RemainingTime" = "Remaining time";
+"Question.Title.TodaysQuestion" = "Today’s question";
+"Question.Title.TenQuestions" = "10 questions quick exam";
+"Question.Title.MissedQuestions" = "Missed questions set";
+"Question.Title.RandomSet" = "Random exam set";
+"Question.Title.TimedQuizz" = "Timed exam set";
 
 // MARK: Test Stats
 "TestStats.TestTime" = "your time";
