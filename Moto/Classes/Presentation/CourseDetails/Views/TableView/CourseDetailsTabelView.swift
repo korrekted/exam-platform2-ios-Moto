@@ -75,6 +75,7 @@ private extension CourseDetailsTabelView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 32.scale, right: 0)
     }
 }
 
