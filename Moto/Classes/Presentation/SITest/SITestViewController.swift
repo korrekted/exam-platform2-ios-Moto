@@ -103,7 +103,7 @@ final class SITestViewController: UIViewController {
         let nextOffset = isHiddenNext
             .compactMap { [weak mainView] isHidden -> CGFloat? in
                 let bottomOffset = mainView.map { $0.bounds.height - $0.nextButton.frame.minY + 9.scale }
-                return isHidden ? nil : bottomOffset
+                return isHidden ? 32.scale : bottomOffset
             }
         
         Observable

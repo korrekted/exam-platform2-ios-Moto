@@ -132,7 +132,7 @@ final class TestViewController: UIViewController {
         let nextOffset = isHiddenNext
             .map { [weak mainView] isHidden -> CGFloat in
                 let bottomOffset = mainView.map { $0.bounds.height - $0.nextButton.frame.minY + 9.scale } ?? 0
-                return isHidden ? 0 : bottomOffset
+                return isHidden ? 32.scale : bottomOffset
             }
         
         Observable
