@@ -36,7 +36,18 @@ final class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mainView.navigationView.leftAction.addTarget(self, action: #selector(popAction), for: .touchUpInside)
+        mainView.navigationView.leftAction.rx.tap
+            .withLatestFrom(viewModel.userTestId)
+            .withLatestFrom(viewModel.currentTestType) { ($0, $1) }
+            .bind(to: Binder(self) { base, tuple in
+                let (id, type) = tuple
+                if case .timedQuizz = type, let id = id {
+                    QuestionManagerMediator.shared.timedTestClosed(userTestId: id)
+                }
+                QuestionManagerMediator.shared.testClosed()
+                base.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: disposeBag)
         
         let courseName = viewModel.courseName
         
@@ -270,11 +281,6 @@ private extension TestViewController {
             .logEvent(name: "Question Tap", parameters: ["course": courseName,
                                                          "mode": name,
                                                          "what": what])
-    }
-    
-    @objc func popAction() {
-        QuestionManagerMediator.shared.testClosed()
-        navigationController?.popViewController(animated: true)
     }
 }
 

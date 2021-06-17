@@ -12,6 +12,7 @@ final class QuestionManagerMediator {
     
     private let testPassedTrigger = PublishRelay<Void>()
     private let testClosedTrigger = PublishRelay<Void>()
+    private let timedTestClosedTrigger = PublishRelay<Int>()
     
     private var delegates = [Weak<QuestionManagerDelegate>]()
     
@@ -39,6 +40,16 @@ extension QuestionManagerMediator {
             self?.testClosedTrigger.accept(())
         }
     }
+    
+    func timedTestClosed(userTestId: Int) {
+        DispatchQueue.main.async { [weak self] in
+            self?.delegates.forEach {
+                $0.weak?.didTimedTestClosed(userTestId: userTestId)
+            }
+
+            self?.timedTestClosedTrigger.accept(userTestId)
+        }
+    }
 }
 
 // MARK: Triggers(Rx)
@@ -49,6 +60,10 @@ extension QuestionManagerMediator {
     
     var rxTestClosed: Signal<Void> {
         testClosedTrigger.asSignal()
+    }
+    
+    var rxTimedTestClosed: Signal<Int> {
+        timedTestClosedTrigger.asSignal()
     }
 }
 

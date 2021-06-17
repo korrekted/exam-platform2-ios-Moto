@@ -32,6 +32,7 @@ final class TestViewModel {
     lazy var rightCounterValue = makeRightCounterContent()
     lazy var testStatsElement = makeTestStatsElement()
     lazy var isSavedQuestion = makeIsSavedQuestion()
+    lazy var userTestId = currentTestElement.map { $0.element?.userTestId }
     
     private(set) lazy var currentTestType = makeCurrentTestType().share(replay: 1, scope: .forever)
     private(set) var currentType: TestType? = nil

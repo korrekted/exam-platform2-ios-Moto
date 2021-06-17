@@ -122,6 +122,10 @@ final class StudyViewController: UIViewController {
                 $0.openCourseDetails(course: $1)
             })
             .disposed(by: disposeBag)
+        
+        viewModel.finishedTimedTest
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 }
 

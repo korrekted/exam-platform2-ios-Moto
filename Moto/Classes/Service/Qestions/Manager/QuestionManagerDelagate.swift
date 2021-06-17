@@ -10,4 +10,5 @@ import Foundation
 protocol QuestionManagerDelegate: AnyObject {
     func didTestPassed()
     func didTestClosed()
+    func didTimedTestClosed(userTestId: Int)
 }

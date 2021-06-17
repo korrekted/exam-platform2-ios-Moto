@@ -19,6 +19,7 @@ final class StudyViewModel {
     lazy var activeSubscription = makeActiveSubscription()
     lazy var course = makeCourseName()
     lazy var brief = makeBrief()
+    lazy var finishedTimedTest = makeTimedFinish()
     
     let selectedCourse = BehaviorRelay<Course?>(value: nil)
     lazy var config = makeConfig().share(replay: 1, scope: .forever)
@@ -222,6 +223,15 @@ private extension StudyViewModel {
                     .asObservable()
                     .catchAndReturn(nil)
                     .compactMap { $0 }
+            }
+    }
+    
+    func makeTimedFinish() -> Observable<Void> {
+        QuestionManagerMediator.shared.rxTimedTestClosed
+            .asObservable()
+            .flatMap { [manager = questionManager] userTestId -> Observable<Void> in
+                manager.finishTest(userTestId: userTestId)
+                    .andThen(.just(()))
             }
     }
 }
