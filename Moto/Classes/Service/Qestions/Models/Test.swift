@@ -11,6 +11,7 @@ struct Test {
     let paid: Bool
     let userTestId: Int
     let timeLeft: Int?
+    let name: String
     let questions: [Question]
 }
 

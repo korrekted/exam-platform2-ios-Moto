@@ -30,11 +30,13 @@ struct GetTestResponseMapper {
         let questions: [Question] = Self.map(from: questionsJSON)
         
         let timeLeft = data["time_left"] as? Int
+        let name = (data["name"] as? String) ?? ""
         
         return Test(
             paid: paid,
             userTestId: userTestId,
             timeLeft: timeLeft,
+            name: name,
             questions: questions
         )
     }

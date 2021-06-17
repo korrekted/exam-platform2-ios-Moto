@@ -54,9 +54,13 @@ final class TestViewModel {
 // MARK: Private
 private extension TestViewModel {
     func makeCourseName() -> Driver<String> {
-        courseManager
-            .rxGetSelectedCourse()
-            .compactMap { $0?.name }
+        testElement
+            .map { $0.element?.name }
+            .withLatestFrom(courseManager.rxGetSelectedCourse()) { ($0, $1) }
+            .compactMap { name, course -> String? in
+                guard let name = name, !name.isEmpty else { return course?.name }
+                return name
+            }
             .asDriver(onErrorDriveWith: .empty())
     }
     
