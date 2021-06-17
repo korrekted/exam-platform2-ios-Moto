@@ -66,9 +66,10 @@ private extension SCModeView {
         ])
         
         NSLayoutConstraint.activate([
+            iconContainer.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 20.scale),
             iconContainer.heightAnchor.constraint(equalToConstant: 32.scale),
             iconContainer.widthAnchor.constraint(equalTo: iconContainer.heightAnchor),
-            iconContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16.scale),
+            iconContainer.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -24.scale),
             iconContainer.leftAnchor.constraint(equalTo: leftAnchor, constant: 16.scale)
         ])
         

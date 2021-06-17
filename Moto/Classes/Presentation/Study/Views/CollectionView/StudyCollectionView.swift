@@ -87,7 +87,7 @@ extension StudyCollectionView: UICollectionViewDelegateFlowLayout {
         case .title:
             return CGSize(width: collectionView.bounds.width, height: 24.scale)
         case .mode:
-            return CGSize(width: collectionView.bounds.width, height: 472.scale)
+            return CGSize(width: collectionView.bounds.width, height: 512.scale)
         case .courses:
             return CGSize(width: collectionView.bounds.width, height: 232.scale)
         case .trophy:
