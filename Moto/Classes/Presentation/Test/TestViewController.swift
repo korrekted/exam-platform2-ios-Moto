@@ -124,12 +124,12 @@ final class TestViewController: UIViewController {
                 return isHidden ? 0 : bottomOffset
             }
         
-        let bottomButtonOffset = viewModel.bottomViewState.map { $0 == .hidden ? 0 : 195.scale }
-        
-        Driver
-            .merge(nextOffset, bottomButtonOffset)
+        Observable
+            .combineLatest(nextOffset.asObservable(), viewModel.bottomViewState.asObservable()) { nextOffset, bottomState in
+                bottomState == .hidden ? nextOffset : 195.scale
+            }
             .distinctUntilChanged()
-            .drive(Binder(mainView.tableView) {
+            .bind(to: Binder(mainView.tableView) {
                 $0.contentInset.bottom = $1
             })
             .disposed(by: disposeBag)
