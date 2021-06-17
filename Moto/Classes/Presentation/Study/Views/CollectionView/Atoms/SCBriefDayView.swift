@@ -66,7 +66,7 @@ private extension SCBriefDayView {
 private extension SCBriefDayView {
     func makeWeekdayLabel() -> UILabel {
         let view = UILabel()
-        view.font = Fonts.SFProRounded.regular(size: 13.scale)
+        view.font = Fonts.SFProRounded.medium(size: 13.scale)
         view.textColor = StudyPalette.Brief.weekdayText
         view.textAlignment = .center
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -84,7 +84,7 @@ private extension SCBriefDayView {
         view.layer.cornerRadius = 10.scale
         view.layer.masksToBounds = true
         view.textColor = StudyPalette.Brief.text
-        view.font = Fonts.SFProRounded.regular(size: 17.scale)
+        view.font = Fonts.SFProRounded.semiBold(size: 17.scale)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

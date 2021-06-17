@@ -18,6 +18,10 @@ struct Fonts {
             UIFont(name: "SFProRounded-Regular", size: size)!
         }
         
+        static func medium(size: CGFloat) -> UIFont {
+            UIFont(name: "SFProRounded-Medium", size: size)!
+        }
+        
         static func semiBold(size: CGFloat) -> UIFont {
             UIFont(name: "SFProRounded-Semibold", size: size)!
         }

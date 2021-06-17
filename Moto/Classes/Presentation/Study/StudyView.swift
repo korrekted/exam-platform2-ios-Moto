@@ -165,7 +165,7 @@ private extension StudyView {
 
 private extension TextAttributes {
     static let takeAttrs = TextAttributes()
-        .font(Fonts.SFProRounded.regular(size: 18.scale))
+        .font(Fonts.SFProRounded.medium(size: 18.scale))
     
     static let unlockAttrs = TextAttributes()
         .font(Fonts.SFProRounded.regular(size: 18.scale))

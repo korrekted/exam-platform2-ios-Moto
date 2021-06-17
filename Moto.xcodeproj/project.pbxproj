@@ -53,6 +53,7 @@
 		9673822F26793F9600230FB6 /* PaygateMainInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673822726793F9600230FB6 /* PaygateMainInfoCell.swift */; };
 		9673823026793F9600230FB6 /* PaygateOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673822826793F9600230FB6 /* PaygateOptionView.swift */; };
 		9673823126793F9600230FB6 /* PaygateSpecialOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673822926793F9600230FB6 /* PaygateSpecialOfferView.swift */; };
+		9673823A267B8CDC00230FB6 /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 96738239267B8CC700230FB6 /* SF-Pro-Rounded-Medium.otf */; };
 		967D9C00266A4F2E002251D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967D9BFF266A4F2E002251D7 /* Assets.xcassets */; };
 		967D9D88266A4FF8002251D7 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9C2F266A4FF7002251D7 /* UIColorExtension.swift */; };
 		967D9D89266A4FF8002251D7 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D9C30266A4FF7002251D7 /* Collection+Extension.swift */; };
@@ -345,6 +346,7 @@
 		9673822726793F9600230FB6 /* PaygateMainInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateMainInfoCell.swift; sourceTree = "<group>"; };
 		9673822826793F9600230FB6 /* PaygateOptionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateOptionView.swift; sourceTree = "<group>"; };
 		9673822926793F9600230FB6 /* PaygateSpecialOfferView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateSpecialOfferView.swift; sourceTree = "<group>"; };
+		96738239267B8CC700230FB6 /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
 		967D9BF3266A4F2B002251D7 /* Moto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967D9BFF266A4F2E002251D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		967D9C04266A4F2E002251D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1795,6 +1797,7 @@
 			isa = PBXGroup;
 			children = (
 				967D9E8D266A5002002251D7 /* SF-Pro-Rounded-Semibold.otf */,
+				96738239267B8CC700230FB6 /* SF-Pro-Rounded-Medium.otf */,
 				967D9E8E266A5002002251D7 /* SF-Pro-Rounded-Regular.otf */,
 				967D9E8F266A5002002251D7 /* SF-Pro-Rounded-Bold.otf */,
 			);
@@ -1870,6 +1873,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9673823A267B8CDC00230FB6 /* SF-Pro-Rounded-Medium.otf in Resources */,
 				967D9E9D266A500F002251D7 /* LaunchScreen.storyboard in Resources */,
 				967D9E90266A5002002251D7 /* lato-regular.otf in Resources */,
 				967D9E91266A5002002251D7 /* lato-bold.otf in Resources */,
