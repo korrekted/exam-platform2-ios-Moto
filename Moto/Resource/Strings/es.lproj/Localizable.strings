@@ -119,6 +119,11 @@
 "Question.Counter.Score" = "Puntaje";
 "Question.Counter.Question" = "Pregunta";
 "Question.Counter.RemainingTime" = "Tiempo restante";
+"Question.Title.TodaysQuestion" = "Pregunta de hoy";
+"Question.Title.TenQuestions" = "Prueba rápida de 10 preguntas";
+"Question.Title.MissedQuestions" = "Preguntas incorrectas";
+"Question.Title.RandomSet" = "Prueba de con-junto aleatorio";
+"Question.Title.TimedQuizz" = "Prueba cronometrada";
 
 // MARK: Test Stats
 "TestStats.TestTime" = "Su tiempo";
