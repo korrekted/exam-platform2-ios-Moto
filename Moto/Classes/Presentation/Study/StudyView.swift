@@ -16,6 +16,8 @@ final class StudyView: UIView {
     lazy var unlockButton = makeButton()
     private lazy var stackView = makeStackView()
     
+    private var navigationHeight: NSLayoutConstraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -51,6 +53,10 @@ extension StudyView {
         takeButton.backgroundColor = activeSubscription ? StudyPalette.primaryButton : StudyPalette.secondaryButton
         
         unlockButton.isHidden = activeSubscription
+        
+        navigationHeight?.constant = activeSubscription
+            ? ScreenSize.isIphoneXFamily ? 290.scale : 274.scale
+            : ScreenSize.isIphoneXFamily ? 351.scale : 335.scale
     }
 }
 
@@ -67,9 +73,11 @@ private extension StudyView {
         NSLayoutConstraint.activate([
             navigationView.topAnchor.constraint(equalTo: topAnchor),
             navigationView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            navigationView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            navigationView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 351.scale : 335.scale)
+            navigationView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
+        
+        navigationHeight = navigationView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 351.scale : 335.scale)
+        navigationHeight?.isActive = true
         
         NSLayoutConstraint.activate([
             briefDaysView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
@@ -87,7 +95,6 @@ private extension StudyView {
             stackView.topAnchor.constraint(equalTo: streakLabel.bottomAnchor, constant: 16.scale),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            stackView.heightAnchor.constraint(equalToConstant: 110.scale),
             stackView.bottomAnchor.constraint(equalTo: navigationView.bottomAnchor, constant: -32.scale)
         ])
         
@@ -158,6 +165,7 @@ private extension StudyView {
     func makeButton() -> UIButton {
         let view = UIButton()
         view.layer.cornerRadius = 25.scale
+        view.heightAnchor.constraint(equalToConstant: 49.scale).isActive = true
         stackView.addArrangedSubview(view)
         return view
     }
