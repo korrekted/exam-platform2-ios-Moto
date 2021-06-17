@@ -37,32 +37,32 @@ private extension OSlidePlanView {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 84.scale : 40.scale)
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 85.scale : 40.scale)
         ])
         
         NSLayoutConstraint.activate([
-            chartView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24.scale),
-            chartView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24.scale),
-            chartView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 222.scale : 150.scale),
-            chartView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 307.scale : 265.scale)
+            chartView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 9.scale),
+            chartView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -9.scale),
+            chartView.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 177.scale : 130.scale),
+            chartView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 311.scale : 290.scale)
         ])
         
         NSLayoutConstraint.activate([
             cell1.leadingAnchor.constraint(equalTo: leadingAnchor),
             cell1.trailingAnchor.constraint(equalTo: trailingAnchor),
-            cell1.bottomAnchor.constraint(equalTo: cell2.topAnchor, constant: -8.scale)
+            cell1.bottomAnchor.constraint(equalTo: cell2.topAnchor, constant: -9.scale)
         ])
         
         NSLayoutConstraint.activate([
             cell2.leadingAnchor.constraint(equalTo: leadingAnchor),
             cell2.trailingAnchor.constraint(equalTo: trailingAnchor),
-            cell2.bottomAnchor.constraint(equalTo: cell3.topAnchor, constant: -8.scale)
+            cell2.bottomAnchor.constraint(equalTo: cell3.topAnchor, constant: -9.scale)
         ])
         
         NSLayoutConstraint.activate([
             cell3.leadingAnchor.constraint(equalTo: leadingAnchor),
             cell3.trailingAnchor.constraint(equalTo: trailingAnchor),
-            cell3.bottomAnchor.constraint(equalTo: button.topAnchor, constant: ScreenSize.isIphoneXFamily ? -53.scale : -34.scale)
+            cell3.bottomAnchor.constraint(equalTo: button.topAnchor, constant: ScreenSize.isIphoneXFamily ? -82.scale : -34.scale)
         ])
         
         NSLayoutConstraint.activate([
