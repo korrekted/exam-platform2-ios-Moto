@@ -110,9 +110,12 @@ extension QuestionTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if case .content = elements[indexPath.row] {
+        switch elements[indexPath.row] {
+        case .content:
             return 213.scale
-        } else {
+        case let .answer(element):
+            return AnswerCell.height(for: element, with: tableView.bounds.width)
+        case .explanation, .question:
             return UITableView.automaticDimension
         }
     }
