@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		96155B722689B0DD00228151 /* CoursesMediator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96155B702689B0DD00228151 /* CoursesMediator.swift */; };
+		96155B732689B0DD00228151 /* CoursesMediatorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96155B712689B0DD00228151 /* CoursesMediatorDelegate.swift */; };
 		9673810D2678B7CA00230FB6 /* Flashcard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967380FE2678B7CA00230FB6 /* Flashcard.swift */; };
 		9673810E2678B7CA00230FB6 /* FlashcardTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967380FF2678B7CA00230FB6 /* FlashcardTopic.swift */; };
 		9673810F2678B7CA00230FB6 /* FlashCardManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381012678B7CA00230FB6 /* FlashCardManagerDelegate.swift */; };
@@ -300,6 +302,8 @@
 
 /* Begin PBXFileReference section */
 		0CE2FEF90ACE664491E4DE74 /* Pods-Moto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moto.debug.xcconfig"; path = "Target Support Files/Pods-Moto/Pods-Moto.debug.xcconfig"; sourceTree = "<group>"; };
+		96155B702689B0DD00228151 /* CoursesMediator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesMediator.swift; sourceTree = "<group>"; };
+		96155B712689B0DD00228151 /* CoursesMediatorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoursesMediatorDelegate.swift; sourceTree = "<group>"; };
 		967380FE2678B7CA00230FB6 /* Flashcard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flashcard.swift; sourceTree = "<group>"; };
 		967380FF2678B7CA00230FB6 /* FlashcardTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardTopic.swift; sourceTree = "<group>"; };
 		967381012678B7CA00230FB6 /* FlashCardManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardManagerDelegate.swift; sourceTree = "<group>"; };
@@ -623,6 +627,15 @@
 				C297CB18E8A53E0C4F5101CA /* Pods-Moto.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		96155B6F2689B0DD00228151 /* Mediator */ = {
+			isa = PBXGroup;
+			children = (
+				96155B702689B0DD00228151 /* CoursesMediator.swift */,
+				96155B712689B0DD00228151 /* CoursesMediatorDelegate.swift */,
+			);
+			path = Mediator;
 			sourceTree = "<group>";
 		};
 		967380FC2678B7CA00230FB6 /* Flashcards */ = {
@@ -1073,6 +1086,7 @@
 		967D9C8F266A4FF8002251D7 /* Courses */ = {
 			isa = PBXGroup;
 			children = (
+				96155B6F2689B0DD00228151 /* Mediator */,
 				967D9C90266A4FF8002251D7 /* Models */,
 				967D9C92266A4FF8002251D7 /* Requests */,
 				967D9C95266A4FF8002251D7 /* Manager */,
@@ -1975,6 +1989,7 @@
 				967D9DE1266A4FF8002251D7 /* GetCountriesRequest.swift in Sources */,
 				9673822C26793F9600230FB6 /* PaygateView.swift in Sources */,
 				967D9D91266A4FF8002251D7 /* ScreenSize.swift in Sources */,
+				96155B732689B0DD00228151 /* CoursesMediatorDelegate.swift in Sources */,
 				967D9E20266A4FF9002251D7 /* TestStatsElement.swift in Sources */,
 				967D9E60266A4FF9002251D7 /* MainStatsElement.swift in Sources */,
 				967D9E85266A4FF9002251D7 /* OnboardingView.swift in Sources */,
@@ -1996,6 +2011,7 @@
 				967D9DFF266A4FF8002251D7 /* BottomSheetAnimation.swift in Sources */,
 				967D9DA3266A4FF8002251D7 /* AppDelegate.swift in Sources */,
 				967D9E2C266A4FF9002251D7 /* ImageScrollView.swift in Sources */,
+				96155B722689B0DD00228151 /* CoursesMediator.swift in Sources */,
 				967381122678B7CA00230FB6 /* FlashcardsManagerCore.swift in Sources */,
 				967D9D93266A4FF8002251D7 /* SignError.swift in Sources */,
 				967D9E78266A4FF9002251D7 /* ODatePicker.swift in Sources */,

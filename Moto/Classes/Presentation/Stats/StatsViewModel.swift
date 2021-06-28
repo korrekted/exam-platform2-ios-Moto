@@ -30,20 +30,21 @@ private extension StatsViewModel {
     }
     
     func makeElements() -> Driver<[StatsCellType]> {
-        guard let courseId = courseManager.getSelectedCourse()?.id else {
-            return .just([])
-        }
-        
         let elements = Signal
             .merge(
                 QuestionManagerMediator.shared.rxTestPassed,
-                QuestionManagerMediator.shared.rxTestClosed
+                QuestionManagerMediator.shared.rxTestClosed,
+                CoursesMediator.shared.rxChangedSelectedCourse.map { _ in Void() }
             )
             .asObservable()
             .startWith(())
             .flatMapLatest { [weak self] _ -> Single<[StatsCellType]> in
                 guard let this = self else {
                     return .never()
+                }
+                
+                guard let courseId = this.courseManager.getSelectedCourse()?.id else {
+                    return .just([])
                 }
                 
                 return this.statsManager

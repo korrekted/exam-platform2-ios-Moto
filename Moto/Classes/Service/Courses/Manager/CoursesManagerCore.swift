@@ -20,6 +20,8 @@ extension CoursesManagerCore {
             return
         }
         
+        CoursesMediator.shared.notifyAbout(selectedCourse: course)
+        
         UserDefaults.standard.set(data, forKey: Constants.selectedCourseCacheKey)
     }
     
