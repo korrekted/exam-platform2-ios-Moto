@@ -43,7 +43,7 @@ struct GetTestRequest: APIRequestBody {
         }
         
         if let time = time {
-            params["test_lifetime"] = time
+            params["exam_minutes"] = time
         }
         
         return params
