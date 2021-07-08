@@ -13,41 +13,92 @@
 
 // MARK: Splash
 "Splash.Title.Part1" = "Más de\n";
-"Splash.Title.Part2" = "60,000\n";
+"Splash.Title.Part2" = "10,000\n";
 "Splash.Title.Part3" = "preguntas de\nexamen reales";
 
 // MARK: Onboarding
-"Onboarding.Skip" = "Saltar";
+"Onboarding.FailedToSave" = "Error al guardar";
 "Onboarding.Next" = "Continuar";
 "Onboarding.Yes" = "Sí";
 "Onboarding.No" = "No";
-"Onboarding.Skip" = "Saltar";
-"Onboarding.SlideStarted.Text1" = "NO PASES HORAS\nAPRENDIENDO";
-"Onboarding.SlideStarted.Text2" = "Exámenes de práctica creados por expertos certificados para ayudarte a aprobar en el primer intento";
-"Onboarding.SlideStarted.Button" = "A por ello";
+"Onboarding.Welcome.Title1" = "Plan de estudios personal";
+"Onboarding.Welcome.Subtitle1" = "Su plan de estudio está preparado por los algoritmos, que se basan en miles de casos similares";
+"Onboarding.Welcome.Title2" = "Tasa de aprobación del 98%";
+"Onboarding.Welcome.Subtitle2" = "Prepárese para su examen de manera eficiente. Estudie todos los temas requeridos uno por uno.";
+"Onboarding.Welcome.Title3" = "Pasar por primer intento";
+"Onboarding.Welcome.Subtitle3" = "Un plan de estudio especial respaldado por IA para ayudarlo a aprobar el primer intento";
+"Onboarding.Welcome.GetStarted" = "Empezar";
 "Onboarding.SlideCountry.Title" = "Elige\ntu país";
 "Onboarding.SlideState.Title" = "Seleccione su\nestado, provincia\no distrito";
 "Onboarding.SlideLanguage.Title" = "Elige tu idioma";
-"Onboarding.SlideLocale.Error" = "Error al guardar";
-"Onboarding.Goals.Title" = "¿Cuáles son tus objetivos?";
-"Onboarding.Goals.Cell1" = "Tomar el examen";
-"Onboarding.Goals.Cell2" = "Ser un mejor conductor";
-"Onboarding.Goals.Cell3" = "Ampliar mi conocimiento";
-"Onboarding.Goals.Cell4" = "Refrescar los fundamentos";
-"Onboarding.Goals.Cell5" = "Probar algo nuevo";
+"Onboarding.Goals.Title" = "¿Deberíamos centrarnos\nen algo\nen particular?";
+"Onboarding.Goals.Cell1" = "Más preguntas de práctica";
+"Onboarding.Goals.Cell2" = "Más flashcards";
+"Onboarding.Goals.Cell3" = "Más teoría";
+"Onboarding.Goals.Header" = "Puede modificar esta configuración más tarde";
 "Onboarding.SlideWhenTaking.Title" = "¿Cuándo tomarás\nel examen?";
-"Onboarding.SlideTime.Title" = "¿Cuánto tiempio\npuedes pasar\nen un examen?";
-"Onboarding.SlideTime.Min" = "min";
+"Onboarding.SlideWhenTaking.DontKnow" = "No lo se todavia";
+"Onboarding.SlideWhenTaking.Header" = "Puede modificar esta configuración más tarde";
 "Onboarding.SlideCount.Title" = "¿Cuántos exámenes\nquieres tomar\na diario?";
+"Onboarding.SlideCount.PopularChoise" = "Opción popular: 5 pruebas";
+"Onboarding.SlideCount.LearningSpeed" = "velocidad de\naprendizaje %.1f";
 "Onboarding.Preloader.Title" = "Preparando tu plan\nde estudio individual";
 "Onboarding.Preloader.Cell1" = "Analizando tus objetivos...";
 "Onboarding.Preloader.Cell2" = "Analizando su nivel de competencias...";
 "Onboarding.Preloader.Cell3" = "Analizando tus preferencias de estudio...";
 "Onboarding.SlidePlan.Title" = "Tu plan de estudio con un 98% de aprobados!";
-"Onboarding.SlidePlan.Cell1" = "60,000+ preguntas";
-"Onboarding.SlidePlan.Cell2" = "diferentes modalidades";
-"Onboarding.SlidePlan.Cell3" = "recordatorios y notificaciones";
+"Onboarding.SlidePlan.CellsTitle" = "Tu plan individual:";
+"Onboarding.SlidePlan.Cell1.Title" = "2000+ preguntas";
+"Onboarding.SlidePlan.Cell1.Subtitle" = "Preguntas actualizadas, que reflejan las reglas específicas de su territorio";
+"Onboarding.SlidePlan.Cell2.Title" = "Seguimiento de progreso";
+"Onboarding.SlidePlan.Cell2.Subtitle" = "Realice un seguimiento de su tasa de aprobados y siga mejorando todos los días";
+"Onboarding.SlidePlan.Cell3.Title" = "Materiales de apoyo";
+"Onboarding.SlidePlan.Cell3.Subtitle" = "Comprenda, no memorice. Conjunto útil de materiales (si corresponde a su territorio)";
+"Onboarding.SlidePlan.Cell4.Title" = "Simulador de examen";
+"Onboarding.SlidePlan.Cell4.Subtitle" = "Preguntas similares a exámenes de alta calidad presentadas en diferentes modos de examen";
 "Onboarding.SlidePlan.Button" = "¡Vamos!";
+"Onboarding.Mode.Title" = "Configure su modo de examen";
+"Onboarding.Mode.Subtitle" = "Desliza para elegir entre las opciones";
+"Onboarding.Mode.Cell1.Title" = "Sin explicaciones";
+"Onboarding.Mode.Cell1.Subtitle" = "Ver la respuesta correcta, luego pasar a la siguiente pregunta";
+"Onboarding.Mode.Cell2.Title" = "Juego completo";
+"Onboarding.Mode.Cell2.Subtitle" = "Vea la respuesta correcta, lea la explicación completa, luego continúe";
+"Onboarding.Mode.Cell3.Title" = "Similar a un examen";
+"Onboarding.Mode.Cell3.Subtitle" = "Conozca el puntaje solo después de responder todas las preguntas";
+"Onboarding.Mode.Header" = "Puede modificar esta configuración más tarde";
+"Onboarding.MinutesAtTime.Title" = "¿Cuántos minutos\npuedes dedicar\na aprender a la vez?";
+"Onboarding.MinutesAtTime.Casual" = "Casual";
+"Onboarding.MinutesAtTime.Regular" = "Sistemático";
+"Onboarding.MinutesAtTime.Serious" = "Grave";
+"Onboarding.MinutesAtTime.Intense" = "Intenso";
+"Onboarding.MinutesAtTime.5min" = "5 min";
+"Onboarding.MinutesAtTime.10min" = "10 min";
+"Onboarding.MinutesAtTime.15min" = "15 min";
+"Onboarding.MinutesAtTime.20min" = "20 min";
+"Onboarding.MinutesAtTime.Header" = "Puede modificar esta configuración más tarde";
+"Onboarding.Experience.Title" = "¿Cuál es tu\nexperiencia de\nconducción?";
+"Onboarding.Experience.Cell1.Title" = "No experiencia";
+"Onboarding.Experience.Cell1.Subtitle" = "Nunca intenté estudiar antes";
+"Onboarding.Experience.Cell2.Title" = "Alguna experiencia";
+"Onboarding.Experience.Cell2.Subtitle" = "Conocimiento de reglas y signos generales";
+"Onboarding.Experience.Header" = "Puede modificar esta configuración más tarde";
+"Onboarding.WhenStudy.Title" = "Cuando quieres\nestudiar?";
+"Onboarding.WhenStudy.Cell1" = "Temprano en la mañana";
+"Onboarding.WhenStudy.Cell2" = "Al mediodía";
+"Onboarding.WhenStudy.Cell3" = "Despues del trabajo";
+"Onboarding.WhenStudy.Cell4" = "Antes de la hora de dormir";
+"Onboarding.WhenStudy.Cell5" = "Sin preferencia particular";
+"Onboarding.WhenStudy.Header" = "Puede modificar esta configuración más tarde";
+"Onboarding.Push.Title" = "¡Mantente actualizado!";
+"Onboarding.Push.Subtitle" = "Reciba recordatorios útiles con regularidad para alcanzar sus objetivos más rápido";
+"Onboarding.Push.Allow" = "Permitir notificaciones";
+"Onboarding.Push.NotNow" = "Ahora no";
+"Onboarding.DrivingExperience.Title" = "Describe tu experiencia de\nconducción general.";
+"Onboarding.DrivingExperience.Period1" = "0-2 años";
+"Onboarding.DrivingExperience.Period2" = "2-4 años";
+"Onboarding.DrivingExperience.Period3" = "4-6 años";
+"Onboarding.DrivingExperience.Period4" = "6+ años";
+"Onboarding.DrivingExperience.Header" = "Puede modificar esta configuración más tarde";
 
 // MARK: Study
 "Study.Title" = "Estudio";
@@ -75,7 +126,7 @@
 "Settings.Unlock" = "Desbloquear";
 "Settings.Premium" = "PREMIUM";
 "Settings.ChangeLocale" = "Cambiar locale";
-"Settings.RateUs" = "Nos califica";
+"Settings.RateUs" = "Rate us";
 "Settings.ContactUs" = "Contacta con nosotros";
 "Settings.TermsOfUse" = "Condiciones de uso";
 "Settings.PrivacyPolicy" = "Política de privacidad";
@@ -84,14 +135,15 @@
 
 // MARK: Stats
 "Stats.PassRate.Title" = "Tasa de aprobación";
-"Stats.MainRate.TestsTake" = "Pruebas\nrealizadas";
-"Stats.MainRate.CorrectAnswers" = "Respuestas\ncorrectas";
-"Stats.MainRate.QuestionsTaken" = "Preguntas\nrespondidas";
+"Stats.MainRate.TestsTake" = "Pruebas realizadas";
+"Stats.MainRate.CorrectAnswers" = "Respuestas correctas";
+"Stats.MainRate.QuestionsTaken" = "Preguntas respondidas";
 "Stats.MainRate.LongestStreak" = "Racha más larga";
 "Stats.MainRate.AnsweredQuestions" = "Preguntas respondidas";
 "Stats.MainRate.LearnedFlashcards" = "Tarjetas aprendidas";
 "Stats.Description.TestsTake" = "Pruebas realizadas";
 "Stats.Description.CorrectAnswers" = "Respuestas correctas";
+"Stats.Description.QuestionsTaken" = "Preguntas respondidas";
 "Stats.Title" = "Estadisticas";
 "Stats.Day.One" = "dia";
 "Stats.Day.Two" = "dias";
@@ -100,7 +152,7 @@
 // MARK: Paygate
 "Paygate.Main.Title" = "CONOCE\nLAS PREGUNTAS\nDE ANTEMANO";
 "Paygate.Main.Cell1" = "5 modos de prueba";
-"Paygate.Main.Cell2" = "Practica con más de 2.000 preguntas";
+"Paygate.Main.Cell2" = "Practica con más de 2000 preguntas";
 "Paygate.Main.Cell3" = "¡Tasa de 98% de aprobados!";
 "Paygate.Main.Info" = "Asegurado con iTunes.";
 "Paygate.Main.TermsOfUse" = "Condiciones de uso";
@@ -120,9 +172,9 @@
 "Question.Counter.Question" = "Pregunta";
 "Question.Counter.RemainingTime" = "Tiempo restante";
 "Question.Title.TodaysQuestion" = "Pregunta de hoy";
-"Question.Title.TenQuestions" = "Prueba rápida de 10 preguntas";
+"Question.Title.TenQuestions" = "Prueba rápida";
 "Question.Title.MissedQuestions" = "Preguntas incorrectas";
-"Question.Title.RandomSet" = "Prueba de con-junto aleatorio";
+"Question.Title.RandomSet" = "Prueba de conjunto aleatorio";
 "Question.Title.TimedQuizz" = "Prueba cronometrada";
 
 // MARK: Test Stats
@@ -150,9 +202,9 @@
 "CourseDetails.PassRate" = "Tasa de aprobación";
 
 // MARK: Timed Exam
-"TimedExam.Title" = "Prueba cronometrada";
+"TimedExam.Title" = "Timed test";
 "TimedExam.Subtitle" = "¿Cuántos minutos?";
-"TimedExam.Button" = "Comienzo";
+"TimedExam.Button" = "Vamos";
 
 // MARK: Flashcards
 "Flashcards.Title" = "Tarjetas didácticas";

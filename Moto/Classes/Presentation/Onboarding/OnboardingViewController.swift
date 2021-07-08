@@ -36,7 +36,7 @@ final class OnboardingViewController: UIViewController {
             this.goToNext()
         }
         
-        addSkipAction()
+        addPreviousAction()
     }
 }
 
@@ -81,14 +81,14 @@ private extension OnboardingViewController {
         }
     }
     
-    func addSkipAction() {
-        mainView.skipButton.rx.tap
+    func addPreviousAction() {
+        mainView.previousButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self = self else {
                     return
                 }
                 
-                self.mainView.slideViewDidNext(from: self.mainView.step)
+                self.mainView.slideViewMoveToPrevious(from: self.mainView.step)
             })
             .disposed(by: disposeBag)
     }

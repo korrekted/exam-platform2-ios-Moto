@@ -18,11 +18,6 @@ final class LocaleTableViewCell: UITableViewCell {
         initialize()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        container.layer.cornerRadius = contentView.frame.height / 2
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,12 +26,12 @@ final class LocaleTableViewCell: UITableViewCell {
 // MARK: Public
 extension LocaleTableViewCell {
     func setup(element: LocaleTableViewElement) {
-        container.backgroundColor = element.isSelected ? Onboarding.Locale.selectedBackground : Onboarding.Locale.background
+        container.backgroundColor = element.isSelected ? UIColor(integralRed: 73, green: 132, blue: 241) : UIColor(integralRed: 241, green: 246, blue: 254)
         
         let attrs = TextAttributes()
-            .font(Fonts.SFProRounded.bold(size: 18.scale))
-            .textColor(element.isSelected ? Onboarding.Locale.selectedText : Onboarding.Locale.text)
-            .lineHeight(25.scale)
+            .font(Fonts.SFProRounded.semiBold(size: 20.scale))
+            .textColor(element.isSelected ? UIColor.white : UIColor(integralRed: 73, green: 132, blue: 241))
+            .lineHeight(28.scale)
         label.attributedText = element.name.attributed(with: attrs)
     }
 }
@@ -62,10 +57,10 @@ private extension LocaleTableViewCell {
         ])
         
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 16.scale),
-            label.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -16.scale),
-            label.topAnchor.constraint(equalTo: container.topAnchor, constant: 16.scale),
-            label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -16.scale)
+            label.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 20.scale),
+            label.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -20.scale),
+            label.topAnchor.constraint(equalTo: container.topAnchor, constant: 12.5.scale),
+            label.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -12.5.scale)
         ])
     }
 }
@@ -74,7 +69,7 @@ private extension LocaleTableViewCell {
 private extension LocaleTableViewCell {
     func makeContainer() -> UIView {
         let view = UIView()
-        view.layer.cornerRadius = 12.scale
+        view.layer.cornerRadius = 26.5.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view

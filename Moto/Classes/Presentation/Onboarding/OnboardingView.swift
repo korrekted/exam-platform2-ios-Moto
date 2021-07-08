@@ -9,13 +9,12 @@ import UIKit
 
 final class OnboardingView: UIView {
     enum Step: Int {
-        case started, locale, goals, whenTaking, time, count, preloader, plan
+        case welcome, locale, experience, goals, mode, whenTaking, minutesAtTime, count, drivingExperience, whenStudy, push, preloader, plan
     }
     
     var didFinish: (() -> Void)?
-    var didChangedSlide: ((Step) -> Void)?
     
-    var step = Step.started {
+    var step = Step.welcome {
         didSet {
             scroll()
             headerUpdate()
@@ -24,16 +23,22 @@ final class OnboardingView: UIView {
     
     lazy var scrollView = makeScrollView()
     lazy var progressView = makeProgressView()
-    lazy var skipButton = makeSkipButton()
+    lazy var previousButton = makePreviousButton()
+    lazy var headerLabel = makeHeaderLabel()
     
     private lazy var contentViews: [OSlideView] = {
         [
-            OSlideStartedView(step: .started),
+            OSlideWelcomeView(step: .welcome),
             OSlideLocaleView(step: .locale),
+            OSlideExperienceView(step: .experience),
             OSlideGoalsView(step: .goals),
+            OSlideModeView(step: .mode),
             OSlideWhenTakingView(step: .whenTaking),
-            OSlideTimeView(step: .time),
+            OSlideMinutesAtTimeView(step: .minutesAtTime),
             OSlideCountView(step: .count),
+            OSlideDrivingExperienceView(step: .drivingExperience),
+            OWhenStudyView(step: .whenStudy),
+            OPushView(step: .push),
             OSlidePreloaderView(step: .preloader),
             OSlidePlanView(step: .plan)
         ]
@@ -57,8 +62,6 @@ extension OnboardingView: OSlideViewDelegate {
     func slideViewDidNext(from step: Step) {
         OnboardingAnalytics().log(step: step)
         
-        didChangedSlide?(step)
-        
         let nextRawValue = step.rawValue + 1
         
         guard let nextStep = Step(rawValue: nextRawValue) else {
@@ -68,6 +71,19 @@ extension OnboardingView: OSlideViewDelegate {
         }
         
         self.step = nextStep
+    }
+}
+
+// MARK: Public
+extension OnboardingView {
+    func slideViewMoveToPrevious(from step: Step) {
+        let previousRawValue = step.rawValue - 1
+        
+        guard let previousStep = Step(rawValue: previousRawValue) else {
+            return
+        }
+        
+        self.step = previousStep
     }
 }
 
@@ -109,21 +125,47 @@ private extension OnboardingView {
     
     func headerUpdate() {
         switch step {
-        case .started, .locale, .preloader, .plan:
-            skipButton.isHidden = true
+        case .welcome, .locale, .preloader, .plan, .push:
+            previousButton.isHidden = true
             progressView.isHidden = true
         default:
-            skipButton.isHidden = false
+            previousButton.isHidden = false
             progressView.isHidden = false
         }
         
+        headerLabel.text = ""
+        
         let progressCases: [Step] = [
-            .goals, .whenTaking, .time, .count
+            .experience, .goals, .mode, .whenTaking, .minutesAtTime, .count, .drivingExperience, .whenStudy
         ]
         guard let index = progressCases.firstIndex(of: step) else {
             return
         }
         progressView.progress = Float(index + 1) / Float(progressCases.count)
+        
+        headerLabel.attributedText = localizedHeader()
+            .attributed(with: TextAttributes()
+                            .textColor(UIColor(integralRed: 75, green: 81, blue: 102))
+                            .font(Fonts.SFProRounded.regular(size: 16.scale))
+                            .lineHeight(22.4.scale)
+                            .textAlignment(.center))
+    }
+    
+    func localizedHeader() -> String {
+        switch step {
+        case .goals:
+            return "Onboarding.Goals.Header".localized
+        case .mode:
+            return "Onboarding.Mode.Header".localized
+        case .whenTaking:
+            return "Onboarding.SlideWhenTaking.Header".localized
+        case .experience:
+            return "Onboarding.Experience.Header".localized
+        case .whenStudy:
+            return "Onboarding.WhenStudy.Header".localized
+        default:
+            return ""
+        }
     }
 }
 
@@ -138,15 +180,22 @@ private extension OnboardingView {
         ])
         
         NSLayoutConstraint.activate([
-            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
-            progressView.trailingAnchor.constraint(equalTo: skipButton.leadingAnchor, constant: -24.scale),
-            progressView.centerYAnchor.constraint(equalTo: skipButton.centerYAnchor),
-            progressView.heightAnchor.constraint(equalToConstant: 7.scale)
+            previousButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 69.scale : 29.scale),
+            previousButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            previousButton.widthAnchor.constraint(equalToConstant: 24.scale),
+            previousButton.heightAnchor.constraint(equalToConstant: 24.scale)
         ])
         
         NSLayoutConstraint.activate([
-            skipButton.topAnchor.constraint(equalTo: topAnchor, constant: ScreenSize.isIphoneXFamily ? 69.scale : 29.scale),
-            skipButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale)
+            progressView.leadingAnchor.constraint(equalTo: previousButton.trailingAnchor, constant: 16.scale),
+            progressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            progressView.centerYAnchor.constraint(equalTo: previousButton.centerYAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
+            headerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
+            headerLabel.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 16.scale)
         ])
     }
 }
@@ -166,6 +215,15 @@ private extension OnboardingView {
         return view
     }
     
+    func makePreviousButton() -> UIButton {
+        let view = UIButton()
+        view.setImage(UIImage(named: "Onboarding.Previous"), for: .normal)
+        view.backgroundColor = UIColor.clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
     func makeProgressView() -> UIProgressView {
         let view = UIProgressView()
         view.trackTintColor = Onboarding.Progress.track
@@ -175,14 +233,9 @@ private extension OnboardingView {
         return view
     }
     
-    func makeSkipButton() -> UIButton {
-        let attrs = TextAttributes()
-            .textColor(Onboarding.secondaryText)
-            .font(Fonts.SFProRounded.regular(size: 18.scale))
-        
-        let view = UIButton()
-        view.setAttributedTitle("Onboarding.Skip".localized.attributed(with: attrs), for: .normal)
-        view.backgroundColor = UIColor.clear
+    func makeHeaderLabel() -> UILabel {
+        let view = UILabel()
+        view.numberOfLines = 0
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

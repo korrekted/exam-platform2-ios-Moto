@@ -108,7 +108,7 @@ private extension LocaleStateView {
             pickerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             pickerView.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -24.scale),
             pickerView.widthAnchor.constraint(equalToConstant: 375.scale),
-            pickerView.heightAnchor.constraint(equalToConstant: 360.scale)
+            pickerView.heightAnchor.constraint(equalToConstant: 417.scale)
         ])
         
         NSLayoutConstraint.activate([
@@ -159,7 +159,6 @@ private extension LocaleStateView {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
         view.image = UIImage(named: "Onboarding.Cursor")
-        view.tintColor = Onboarding.pickerText
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

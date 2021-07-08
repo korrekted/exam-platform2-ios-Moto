@@ -58,7 +58,7 @@ extension LocaleTableView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        16.scale
+        12.scale
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

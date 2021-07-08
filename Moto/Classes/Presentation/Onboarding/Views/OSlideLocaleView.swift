@@ -92,7 +92,7 @@ private extension OSlideLocaleView {
             .subscribe(onNext: { [weak self] in
                 self?.onNext()
             }, onError: { _ in
-                Toast.notify(with: "Onboarding.SlideLocale.Error".localized, style: .danger)
+                Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
             })
             .disposed(by: disposeBag)
     }
