@@ -22,6 +22,13 @@ extension StatsManagerCore {
             .restApiTransport
             .callServerApi(requestBody: request)
             .map(GetStatsResponseMapper.map(from:))
+            .flatMap { [weak self] stats -> Single<Stats?> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.write(stats: stats)
+            }
     }
     
     func retrieveBrief(courseId: Int) -> Single<Brief?> {
@@ -35,5 +42,24 @@ extension StatsManagerCore {
             .restApiTransport
             .callServerApi(requestBody: request)
             .map(GetBriefResponseMapper.from(response:))
+    }
+}
+
+// MARK: Private
+private extension StatsManagerCore {
+    func write(stats: Stats?) -> Single<Stats?> {
+        Single<Stats?>
+            .create { event in
+                guard let stats = stats else {
+                    event(.success(stats))
+                    return Disposables.create()
+                }
+                
+                StatsShareManager.shared.write(stats: stats)
+                
+                event(.success(stats))
+                
+                return Disposables.create()
+            }
     }
 }
