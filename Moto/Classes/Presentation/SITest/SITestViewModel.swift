@@ -74,8 +74,11 @@ private extension SITestViewModel {
             }
             .compactMap { $0.map { TestAction.question($0) } }
         
+        let selectedElements = selectedAnswers
+            .withLatestFrom(ProfileManagerCore().obtainTestMode()) { TestAction.answer($0, $1) }
+        
         return Observable
-            .merge(currentQuestion, selectedAnswers.map { .answer($0) })
+            .merge(currentQuestion, selectedElements)
             .scan(nil, accumulator: answerQuestionAccumulator)
             .compactMap { $0 }
             .asDriver(onErrorDriveWith: .empty())
@@ -213,7 +216,7 @@ private extension SITestViewModel {
     
     enum TestAction {
         case question(SIQuestionElement)
-        case answer([SIAnswerElement])
+        case answer([SIAnswerElement], TestMode?)
     }
     
     var questionElementMapper: ([SIQuestion]) -> [SIQuestionElement] {
@@ -248,25 +251,30 @@ private extension SITestViewModel {
     var answerQuestionAccumulator: (SIQuestionElement?, TestAction) -> SIQuestionElement? {
         return { [weak self] old, action -> SIQuestionElement? in
             switch action {
-            case .question(let question):
+            case let .question(question):
                 return question
-            case .answer(let answers):
+            case let .answer(answers, testMode):
                 guard let currentQuestion = old else { return old }
                 self?.notAnsweredQuestions.removeAll(where: { $0.id == currentQuestion.id })
                 let answerIds = answers.map { $0.id }
-                let newElements = currentQuestion.elements.map { element -> SITestCellType in
-                    guard case var .answer(value) = element else { return element }
-                    
-                    let state: AnswerState = answerIds.contains(value.id)
-                        ? value.isCorrect ? .correct : .error
-                        : value.isCorrect ? currentQuestion.isMultiple ? .warning : .correct : .initial
-                    
-                    value.state = state
-                    
-                    return .answer(value)
-                }
+                let newElements = testMode == .onAnExam
+                  ? currentQuestion.elements
+                  : currentQuestion.elements
+                      .map { element -> SITestCellType in
+                          guard case var .answer(value) = element else { return element }
+
+                          let state: AnswerState = answerIds.contains(value.id)
+                              ? value.isCorrect ? .correct : .error
+                              : value.isCorrect ? currentQuestion.isMultiple ? .warning : .correct : .initial
+
+                          value.state = state
+
+                          return .answer(value)
+                      }
                 
-                let explanation: [SITestCellType] = currentQuestion.explanation.map { [.explanation($0)] } ?? []
+                let explanation: [SITestCellType] = [.none, .fullComplect].contains(testMode)
+                     ? currentQuestion.explanation.map { [.explanation($0)] } ?? []
+                     : []
                 
                 return SIQuestionElement(
                     id: currentQuestion.id,

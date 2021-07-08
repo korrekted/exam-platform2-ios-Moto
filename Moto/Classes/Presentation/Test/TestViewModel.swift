@@ -75,8 +75,11 @@ private extension TestViewModel {
             .scan((nil, []),accumulator: currentQuestionAccumulator)
             .compactMap { $0.0.map { TestAction.question($0) } }
         
+        let selectedElements = selectedAnswers
+            .withLatestFrom(ProfileManagerCore().obtainTestMode()) { TestAction.answer($0, $1) }
+        
         let test = Observable
-            .merge(currentQuestion, selectedAnswers.map { .answer($0) })
+            .merge(currentQuestion, selectedElements)
             .scan(nil, accumulator: answerQuestionAccumulator)
             .compactMap { $0 }
         
@@ -356,7 +359,7 @@ private extension TestViewModel {
     
     enum TestAction {
         case question(QuestionElement)
-        case answer([AnswerElement])
+        case answer([AnswerElement], TestMode?)
     }
     
     var questionElementMapper: ([Question]) -> [QuestionElement] {
@@ -414,31 +417,36 @@ private extension TestViewModel {
     var answerQuestionAccumulator: (QuestionElement?, TestAction) -> QuestionElement? {
         return { [weak self] old, action -> QuestionElement? in
             switch action {
-            case .question(let question):
+            case let .question(question):
                 return question
-            case .answer(let answers):
+            case let .answer(answers, testMode):
                 guard let currentQuestion = old else { return old }
                 var answersState: [AnswerState] = []
                 let answerIds = answers.map { $0.id }
-                let newElements = currentQuestion.elements.map { element -> TestingCellType in
-                    guard case var .answer(value) = element else { return element }
-                    
-                    let state: AnswerState = answerIds.contains(value.id)
-                        ? value.isCorrect ? .correct : .error
-                        : value.isCorrect ? currentQuestion.isMultiple ? .warning : .correct : .initial
-                    
-                    value.state = state
-                    answersState.append(state)
-                    
-                    return .answer(value)
-                }
+                let newElements = testMode == .onAnExam
+                  ? currentQuestion.elements
+                  : currentQuestion.elements
+                      .map { element -> TestingCellType in
+                          guard case var .answer(value) = element else { return element }
+
+                          let state: AnswerState = answerIds.contains(value.id)
+                              ? value.isCorrect ? .correct : .error
+                              : value.isCorrect ? currentQuestion.isMultiple ? .warning : .correct : .initial
+
+                          value.state = state
+                          answersState.append(state)
+
+                          return .answer(value)
+                      }
                 
                 let isIncorrect = answersState
                     .contains(where: { $0 == .warning || $0 == .error })
                 
                 self?.scoreRelay.accept(!isIncorrect)
                 
-                let explanation: [TestingCellType] = currentQuestion.explanation.map { [.explanation($0)] } ?? []
+                let explanation: [TestingCellType] = [.none, .fullComplect].contains(testMode)
+                  ? currentQuestion.explanation.map { [.explanation($0)] } ?? []
+                  : []
                 
                 return QuestionElement(
                     id: currentQuestion.id,
