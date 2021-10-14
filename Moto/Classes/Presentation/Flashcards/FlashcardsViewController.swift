@@ -33,9 +33,15 @@ final class FlashcardsViewController: UIViewController {
             .bind(to: viewModel.selectedAnswer)
             .disposed(by: disposeBag)
         
+        let leftAction = mainView.navigationView.leftAction.rx.tap
+            .asObservable()
+            .do(onNext: {
+                SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Tap", parameters: ["what": "back"])
+            })
+        
         Observable
             .merge(
-                mainView.navigationView.leftAction.rx.tap.asObservable(),
+                leftAction,
                 mainView.flashCardContainer.finish
             )
             .bind(to: Binder(self) { base, _ in

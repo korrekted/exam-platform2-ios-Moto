@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import RushSDK
 
 final class RateManagerCore: RateManager {
     
@@ -20,6 +21,7 @@ extension RateManagerCore {
         guard !isFirstAfterPass else { return }
         
         SKStoreReviewController.requestReview()
+        SDKStorage.shared.amplitudeManager.logEvent(name: "Rating Request", parameters: [:])
         UserDefaults.standard.setValue(true, forKey: Constants.showFirstAfterPass)
     }
 }
