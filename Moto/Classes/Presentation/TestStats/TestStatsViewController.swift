@@ -15,6 +15,7 @@ class TestStatsViewController: UIViewController {
     private lazy var disposeBag = DisposeBag()
     
     private lazy var viewModel = TestStatsViewModel()
+    private var closeAfterDismiss: (() -> Void)?
     
     override func loadView() {
         view = mainView
@@ -49,7 +50,7 @@ class TestStatsViewController: UIViewController {
         
         mainView.navigationView.rightAction.rx.tap
             .bind(to: Binder(self) { base, _ in
-                (base.presentingViewController as? UINavigationController)?.popViewController(animated: false)
+                base.closeAfterDismiss?()
                 base.dismiss(animated: true)
             })
             .disposed(by: disposeBag)
@@ -78,8 +79,9 @@ class TestStatsViewController: UIViewController {
 
 // MARK: Make
 extension TestStatsViewController {
-    static func make(element: TestStatsElement) -> TestStatsViewController {
+    static func make(element: TestStatsElement, closeAfterDismiss: @escaping () -> Void) -> TestStatsViewController {
         let controller = TestStatsViewController()
+        controller.closeAfterDismiss = closeAfterDismiss
         controller.modalPresentationStyle = .fullScreen
         controller.viewModel.isTopicTest = element.isTopicTest
         controller.viewModel.userTestId.accept(element.userTestId)

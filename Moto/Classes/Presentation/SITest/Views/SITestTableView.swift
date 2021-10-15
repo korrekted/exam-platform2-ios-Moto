@@ -11,6 +11,7 @@ import RxCocoa
 class SITestTableView: UITableView {
     private lazy var elements = [SITestCellType]()
     let selectedAnswers = PublishRelay<[SIAnswerElement]>()
+    let expandContent = PublishRelay<QuestionContentType>()
     
     private var selectedCells: Set<IndexPath> = [] {
         didSet {
@@ -100,7 +101,9 @@ extension SITestTableView: UITableViewDataSource {
         switch element {
         case let .content(content):
             let cell = dequeueReusableCell(withIdentifier: String(describing: QuestionContentCell.self), for: indexPath) as! QuestionContentCell
-            cell.configure(content: content)
+            cell.configure(content: content) { [weak self] in
+                self?.expandContent.accept($0)
+            }
             return cell
         case let .question(question, html):
             let cell = dequeueReusableCell(withIdentifier: String(describing: SIQuestionCell.self), for: indexPath) as! SIQuestionCell

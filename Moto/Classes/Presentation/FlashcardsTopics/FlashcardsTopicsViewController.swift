@@ -21,7 +21,7 @@ final class FlashcardsTopicsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Sets Screen", parameters: [:])
         viewModel.flashcardsTopics
             .drive(onNext: { [weak self] flashcardsTopics in
                 self?.mainView.tableView.setup(flashcards: flashcardsTopics)
@@ -38,6 +38,7 @@ final class FlashcardsTopicsViewController: UIViewController {
                 } else {
                     let vc = FlashcardsViewController.make(topic: topic)
                     self?.parent?.navigationController?.pushViewController(vc, animated: true)
+                    SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Sets Tap", parameters: ["what": "flashcard set"])
                 }
             })
             .disposed(by: disposeBag)
@@ -60,6 +61,7 @@ extension FlashcardsTopicsViewController {
 private extension FlashcardsTopicsViewController {
     @objc
     func popAction() {
+        SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Set Tap", parameters: ["what": "back"])
         navigationController?.popViewController(animated: true)
     }
 }

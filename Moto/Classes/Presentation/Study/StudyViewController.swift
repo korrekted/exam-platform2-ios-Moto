@@ -109,6 +109,7 @@ final class StudyViewController: UIViewController {
             .asSignal(onErrorSignalWith: .never())
             .emit(onNext: { [weak self] course in
                 self?.navigationController?.pushViewController(FlashcardsTopicsViewController.make(courseId: course.id), animated: true)
+                SDKStorage.shared.amplitudeManager.logEvent(name: "Study tap", parameters: ["what": "flashcards"])
             })
             .disposed(by: disposeBag)
         

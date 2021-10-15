@@ -11,6 +11,7 @@ import RxCocoa
 class QuestionContentCollectionView: UICollectionView {
 
     private lazy var elements = [QuestionContentType]()
+    var expandContent: ((QuestionContentType) -> Void)?
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
@@ -36,7 +37,9 @@ extension QuestionContentCollectionView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let element = elements[indexPath.row]
         let cell = dequeueReusableCell(withReuseIdentifier: String(describing: QuestionCollectionCell.self), for: indexPath) as! QuestionCollectionCell
-        cell.setup(content: element)
+        cell.setup(content: element) { [weak self] in
+            self?.expandContent?(element)
+        }
         return cell
     }
 }
