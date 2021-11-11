@@ -36,6 +36,8 @@ final class PaygateMainView: UIView {
     }
     
     func setup(paygate: PaygateMainOffer) {
+        infoCell2.title = String(format: "Paygate.Main.Cell2".localized, paygate.questionCount)
+        
         let options = paygate.options?.prefix(2) ?? []
         
         if let leftOption = options.first {

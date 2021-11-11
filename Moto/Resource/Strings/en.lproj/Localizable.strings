@@ -152,7 +152,7 @@
 // MARK: Paygate
 "Paygate.Main.Title" = "KNOW THE QUESTIONS\nBEFOREHAND";
 "Paygate.Main.Cell1" = "Don’t spend hours learning";
-"Paygate.Main.Cell2" = "Train yourself with 2000+ questions";
+"Paygate.Main.Cell2" = "Train yourself with %i+ questions";
 "Paygate.Main.Cell3" = "98% pass rate on the first attempt!";
 "Paygate.Main.Info" = "Secured with iTunes. Cancel anytime.";
 "Paygate.Main.TermsOfUse" = "Terms of use";

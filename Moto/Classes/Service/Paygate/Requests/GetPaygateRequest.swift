@@ -11,10 +11,12 @@ import Alamofire
 struct GetPaygateRequest: APIRequestBody {
     private let userToken: String?
     private let version: String
+    private let usedProducts: [String]
     
-    init(userToken: String?, version: String) {
+    init(userToken: String?, version: String, usedProducts: [String]) {
         self.userToken = userToken
         self.version = version
+        self.usedProducts = usedProducts
     }
     
     var url: String {
@@ -26,10 +28,11 @@ struct GetPaygateRequest: APIRequestBody {
     }
     
     var parameters: Parameters? {
-        var params = [
+        var params: [String: Any] = [
             "_api_key": GlobalDefinitions.apiKey,
             "version": version,
-            "anonymous_id": SDKStorage.shared.applicationAnonymousID
+            "anonymous_id": SDKStorage.shared.applicationAnonymousID,
+            "used_products": usedProducts
         ]
         
         if let userToken = userToken {

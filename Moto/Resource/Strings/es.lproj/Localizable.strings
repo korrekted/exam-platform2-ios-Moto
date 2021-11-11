@@ -152,7 +152,7 @@
 // MARK: Paygate
 "Paygate.Main.Title" = "CONOCE\nLAS PREGUNTAS\nDE ANTEMANO";
 "Paygate.Main.Cell1" = "5 modos de prueba";
-"Paygate.Main.Cell2" = "Practica con más de 2000 preguntas";
+"Paygate.Main.Cell2" = "Practica con más de %i+ preguntas";
 "Paygate.Main.Cell3" = "¡Tasa de 98% de aprobados!";
 "Paygate.Main.Info" = "Asegurado con iTunes.";
 "Paygate.Main.TermsOfUse" = "Condiciones de uso";
