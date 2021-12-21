@@ -7,4 +7,5 @@
 
 protocol ProfileMediatorDelegate: AnyObject {
     func didUpdated(profileLocale: ProfileLocale)
+    func didUpdated(testMode: TestMode)
 }

@@ -15,6 +15,10 @@ final class GetTestModeResponseMapper {
             return nil
         }
         
+        return make(by: code)
+    }
+    
+    static func make(by code: Int) -> TestMode? {
         switch code {
         case 0:
             return .fullComplect

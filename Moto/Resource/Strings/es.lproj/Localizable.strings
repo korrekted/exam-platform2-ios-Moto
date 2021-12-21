@@ -132,6 +132,7 @@
 "Settings.PrivacyPolicy" = "Política de privacidad";
 "Settings.YourLocale" = "Tu localidad";
 "Settings.YourLanguage" = "Tu lenguaje";
+"Settings.Mode" = "Modo de prueb";
 
 // MARK: Stats
 "Stats.PassRate.Title" = "Tasa de aprobación";

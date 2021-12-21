@@ -10,7 +10,7 @@ import RxCocoa
 
 final class SettingsTableView: UITableView {
     enum Tapped {
-        case unlock, rateUs, contactUs, termsOfUse, privacyPoliicy, locale
+        case unlock, rateUs, contactUs, termsOfUse, privacyPoliicy, locale, mode(TestMode)
     }
     
     lazy var tapped = PublishRelay<Tapped>()
@@ -45,7 +45,7 @@ extension SettingsTableView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch sections[section] {
-        case .links, .unlockPremium:
+        case .links, .unlockPremium, .mode:
             return 1
         case .settings(let change):
             return change.count
@@ -79,6 +79,13 @@ extension SettingsTableView: UITableViewDataSource {
             let cell = dequeueReusableCell(withIdentifier: String(describing: STLocaleCell.self), for: indexPath) as! STLocaleCell
             cell.setup(title: locales[indexPath.row].0, value: locales[indexPath.row].1)
             return cell
+        case .mode(let mode):
+            let cell = dequeueReusableCell(withIdentifier: String(describing: STModeCell.self), for: indexPath) as! STModeCell
+            cell.setup(mode: mode)
+            cell.tapped = { [weak self] value in
+                self?.tapped.accept(value)
+            }
+            return cell
         }
     }
 }
@@ -86,7 +93,7 @@ extension SettingsTableView: UITableViewDataSource {
 // MARK: UITableViewDelegate
 extension SettingsTableView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        20.scale
+        0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -99,7 +106,7 @@ extension SettingsTableView: UITableViewDelegate {
         switch sections[indexPath.section] {
         case .unlockPremium:
             return 81.scale
-        case .links, .settings, .locale:
+        case .links, .settings, .locale, .mode:
             return UITableView.automaticDimension
         }
     }
@@ -112,6 +119,7 @@ private extension SettingsTableView {
         register(STLinksCell.self, forCellReuseIdentifier: String(describing: STLinksCell.self))
         register(STSettingLinksCell.self, forCellReuseIdentifier: String(describing: STSettingLinksCell.self))
         register(STLocaleCell.self, forCellReuseIdentifier: String(describing: STLocaleCell.self))
+        register(STModeCell.self, forCellReuseIdentifier: String(describing: STModeCell.self))
         
         dataSource = self
         delegate = self

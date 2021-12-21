@@ -14,4 +14,5 @@ enum SettingsTableSection {
     case links
     case settings([Change])
     case locale([(String, String)])
+    case mode(TestMode)
 }

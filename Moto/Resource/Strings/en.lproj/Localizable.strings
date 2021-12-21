@@ -132,6 +132,7 @@
 "Settings.PrivacyPolicy" = "Privacy Policy";
 "Settings.YourLocale" = "Your locale";
 "Settings.YourLanguage" = "Your language";
+"Settings.Mode" = "Exam mode";
 
 // MARK: Stats
 "Stats.PassRate.Title" = "Current pass rate";

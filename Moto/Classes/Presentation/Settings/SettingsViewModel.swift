@@ -21,11 +21,12 @@ private extension SettingsViewModel {
     func makeSections() -> Driver<[SettingsTableSection]> {
         let activeSubscription = self.activeSubscription()
         let profileLocale = getProfieLocale()
+        let testMode = getTestMode()
         let countries = getCountries()
         let course = getCourse()
         
         return Driver
-            .combineLatest(activeSubscription, profileLocale, countries, course) { [weak self] activeSubscription, profileLocale, countries, course -> [SettingsTableSection] in
+            .combineLatest(activeSubscription, profileLocale, testMode, countries, course) { [weak self] activeSubscription, profileLocale, testMode, countries, course -> [SettingsTableSection] in
                 guard let self = self else {
                     return []
                 }
@@ -38,6 +39,10 @@ private extension SettingsViewModel {
                 
                 if !activeSubscription {
                     sections.append(.unlockPremium)
+                }
+                
+                if let testMode = testMode {
+                    sections.append(.mode(testMode))
                 }
                 
                 if let settingsSection = self.makeSettingsSection(countries: countries) {
@@ -60,6 +65,19 @@ private extension SettingsViewModel {
             .asDriver(onErrorDriveWith: .never())
             .map { locale -> ProfileLocale? in locale }
         
+        return Driver.merge(initial, updated)
+    }
+    
+    func getTestMode() -> Driver<TestMode?> {
+        let initial = profileManager
+            .obtainTestMode()
+            .asDriver(onErrorJustReturn: nil)
+
+        let updated = ProfileMediator.shared
+            .rxUpdatedTestMode
+            .asDriver(onErrorDriveWith: .never())
+            .map { locale -> TestMode? in locale }
+
         return Driver.merge(initial, updated)
     }
     

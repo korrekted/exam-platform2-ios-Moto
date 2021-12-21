@@ -340,6 +340,8 @@
 		967D9E9D266A500F002251D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967D9E9C266A500F002251D7 /* LaunchScreen.storyboard */; };
 		967D9EA9266A5132002251D7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 967D9EA8266A5132002251D7 /* GoogleService-Info.plist */; };
 		CA01D719378EF2EC082D57CB /* Pods_Moto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED3110117CD792B481C47706 /* Pods_Moto.framework */; };
+		DE3449FE2771E1FC00632F72 /* STChangeModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3449FD2771E1FC00632F72 /* STChangeModeView.swift */; };
+		DE344A002771E21C00632F72 /* STModeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3449FF2771E21C00632F72 /* STModeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -704,6 +706,8 @@
 		967D9E9E266A5014002251D7 /* Moto-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moto-Bridging-Header.h"; sourceTree = "<group>"; };
 		967D9EA8266A5132002251D7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C297CB18E8A53E0C4F5101CA /* Pods-Moto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moto.release.xcconfig"; path = "Target Support Files/Pods-Moto/Pods-Moto.release.xcconfig"; sourceTree = "<group>"; };
+		DE3449FD2771E1FC00632F72 /* STChangeModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STChangeModeView.swift; sourceTree = "<group>"; };
+		DE3449FF2771E21C00632F72 /* STModeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STModeCell.swift; sourceTree = "<group>"; };
 		ED3110117CD792B481C47706 /* Pods_Moto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1627,6 +1631,7 @@
 				967D9CCC266A4FF8002251D7 /* STChangeLocaleView.swift */,
 				967D9CCD266A4FF8002251D7 /* SettingsTableView.swift */,
 				967D9CCE266A4FF8002251D7 /* SettingsTableSection.swift */,
+				DE3449FD2771E1FC00632F72 /* STChangeModeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1639,6 +1644,7 @@
 				967D9CC9266A4FF8002251D7 /* STLinksCell.swift */,
 				967D9CCA266A4FF8002251D7 /* STSettingLinksCell.swift */,
 				967D9CCB266A4FF8002251D7 /* STUnlockCell.swift */,
+				DE3449FF2771E21C00632F72 /* STModeCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2438,6 +2444,7 @@
 				967D9DDF266A4FF8002251D7 /* GetLocaleResponseMapper.swift in Sources */,
 				967D9E26266A4FF9002251D7 /* TestView.swift in Sources */,
 				967D9E52266A4FF9002251D7 /* SIAnswerCell.swift in Sources */,
+				DE344A002771E21C00632F72 /* STModeCell.swift in Sources */,
 				9673823126793F9600230FB6 /* PaygateSpecialOfferView.swift in Sources */,
 				966FE10026972BD000B8FC20 /* ODrivingExperienceProgressView.swift in Sources */,
 				966FE0D02695D21D00B8FC20 /* OSlider.swift in Sources */,
@@ -2556,6 +2563,7 @@
 				967D9D8E266A4FF8002251D7 /* GlobalDefinitions.swift in Sources */,
 				967D9E0F266A4FF9002251D7 /* CourseCellProgressView.swift in Sources */,
 				9673822A26793F9600230FB6 /* PaygateViewModel.swift in Sources */,
+				DE3449FE2771E1FC00632F72 /* STChangeModeView.swift in Sources */,
 				967D9DE9266A4FF8002251D7 /* GetBriefResponseMapper.swift in Sources */,
 				967D9E3D266A4FF9002251D7 /* TestStatsProgressElement.swift in Sources */,
 				967D9E11266A4FF9002251D7 /* CourseCollectionView.swift in Sources */,
@@ -2604,7 +2612,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsWidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = StatsWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2613,7 +2621,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto.stats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto StatsWidgets Development Profile";
@@ -2631,7 +2639,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsWidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = StatsWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2640,7 +2648,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto.stats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto StatsWidgets AppStore Profile";
@@ -2776,7 +2784,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moto/Moto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = "$(SRCROOT)/Moto/Resource/Info.plist";
@@ -2785,7 +2793,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto Development Profile";
@@ -2805,7 +2813,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moto/Moto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = "$(SRCROOT)/Moto/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -2813,7 +2821,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.5.5;
+				MARKETING_VERSION = 1.6.1;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto AppStore Profile";

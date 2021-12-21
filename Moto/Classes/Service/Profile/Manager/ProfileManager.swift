@@ -20,7 +20,6 @@ protocol ProfileManager {
     // MARK: Study
     func set(level: Int?,
              assetsPreferences: [Int]?,
-             testMode: Int?,
              examDate: String?,
              testMinutes: Int?,
              testNumber: Int?,
@@ -28,5 +27,6 @@ protocol ProfileManager {
              notificationKey: String?) -> Single<Void>
     
     // MARK: Test Mode
+    func set(testMode: Int) -> Single<Void>
     func obtainTestMode() -> Single<TestMode?>
 }

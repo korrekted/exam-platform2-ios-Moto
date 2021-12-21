@@ -10,7 +10,7 @@ import RxSwift
 
 final class SettingsOpener {
     enum Screen {
-        case locale
+        case locale, mode(TestMode)
     }
     
     private lazy var disposeBag = DisposeBag()
@@ -56,6 +56,8 @@ private extension SettingsOpener {
         switch screen {
         case .locale:
             view = STChangeLocaleView(step: .locale)
+        case .mode(let mode):
+            view = STChangeModeView(step: .mode)
         }
 
         view.frame = UIScreen.main.bounds

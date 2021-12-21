@@ -1,14 +1,14 @@
 //
-//  OSlideModeView.swift
-//  CDL
+//  STChangeModeView.swift
+//  Moto
 //
-//  Created by Andrey Chernyshev on 20.06.2021.
+//  Created by Андрей Чернышев on 21.12.2021.
 //
 
 import UIKit
 import RxSwift
 
-final class OSlideModeView: OSlideView {
+final class STChangeModeView: OSlideView {
     lazy var titleLabel = makeTitleLabel()
     lazy var subtitleLabel = makeSubtitleLabel()
     lazy var modesView = makeModesView()
@@ -31,8 +31,10 @@ final class OSlideModeView: OSlideView {
 }
 
 // MARK: Private
-private extension OSlideModeView {
+private extension STChangeModeView {
     func initialize() {
+        backgroundColor = Onboarding.background
+        
         button.rx.tap
             .flatMapLatest { [weak self] _ -> Single<Bool> in
                 guard let self = self else {
@@ -85,7 +87,7 @@ private extension OSlideModeView {
 }
 
 // MARK: Make constraints
-private extension OSlideModeView {
+private extension STChangeModeView {
     func makeConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8.scale),
@@ -116,11 +118,11 @@ private extension OSlideModeView {
 }
 
 // MARK: Lazy initialization
-private extension OSlideModeView {
+private extension STChangeModeView {
     func makeTitleLabel() -> UILabel {
         let attrs = TextAttributes()
             .textColor(Onboarding.primaryText)
-            .font(Fonts.SFProRounded.semiBold(size: 32.scale))
+            .font(Fonts.SFProRounded.bold(size: 32.scale))
             .lineHeight(38.scale)
             .textAlignment(.center)
         
@@ -167,7 +169,7 @@ private extension OSlideModeView {
         
         let view = UIButton()
         view.backgroundColor = Onboarding.primaryButton
-        view.layer.cornerRadius = 20.scale
+        view.layer.cornerRadius = 30.scale
         view.setAttributedTitle("Onboarding.Next".localized.attributed(with: attrs), for: .normal)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
