@@ -1,0 +1,215 @@
+// MARK: General
+"Cancel" = "Annulla";
+"Continue" = "Continua";
+
+// MARK: ImagePicker
+"ImagePicker.TakePhoto" = "Scatta una foto";
+"ImagePicker.CameraRoll" = "Rullino";
+"ImagePicker.PhotoLibrary" = "Galleria";
+
+// MARK: Course
+"Course.Tab.Stats" = "Statistiche";
+"Course.Tab.Study" = "Studio";
+
+// MARK: Splash
+"Splash.Title.Part1" = "Preparato da\n";
+"Splash.Title.Part2" = "esperti\n";
+"Splash.Title.Part3" = "CERTIFICATI";
+
+// MARK: Onboarding
+"Onboarding.FailedToSave" = "Salvataggio fallito";
+"Onboarding.Next" = "Prossimo";
+"Onboarding.Yes" = "Si";
+"Onboarding.No" = "No";
+"Onboarding.Welcome.Title1" = "Piano di studio personale";
+"Onboarding.Welcome.Subtitle1" = "Il tuo piano di studio viene preparato dall’algoritmo, che si affida a migliaia di casi simili";
+"Onboarding.Welcome.Title2" = "tasso di successo del 98%";
+"Onboarding.Welcome.Subtitle2" = "Prepara il tuo esame in modo efficiente. Studia tutti gli argomenti richiesti uno ad uno.";
+"Onboarding.Welcome.Title3" = "Passa al primo tentativo";
+"Onboarding.Welcome.Subtitle3" = "Uno speciale piano di studio supportato da IA per aiutarti a dominare il tuo esame della patente al primo tentativo";
+"Onboarding.Welcome.GetStarted" = "Inizia ora";
+"Onboarding.SlideCountry.Title" = "Scegli\nil tuo paese";
+"Onboarding.SlideState.Title" = "Seleziona il tuo stato,\nprovincia o distretto";
+"Onboarding.SlideLanguage.Title" = "Seleziona la tua lingua";
+"Onboarding.Goals.Title" = "Vuoi che ci concentriamo\nsu qualcosa in\nparticolare?";
+"Onboarding.Goals.Cell1" = "Altre domande di pratica";
+"Onboarding.Goals.Cell2" = "Più flashcard";
+"Onboarding.Goals.Cell3" = "Più teoria";
+"Onboarding.Goals.Header" = "Puoi modificare queste impostazioni più tardi";
+"Onboarding.SlideWhenTaking.Title" = "Quando hai\nil tuo esame?";
+"Onboarding.SlideWhenTaking.DontKnow" = "Non lo so ancora";
+"Onboarding.SlideWhenTaking.Header" = "Puoi modificare queste impostazioni più tardi";
+"Onboarding.SlideCount.Title" = "Quanti test\nvorresti svolgere\nal giorno?";
+"Onboarding.SlideCount.PopularChoise" = "Scelta popolare: 5 test";
+"Onboarding.SlideCount.LearningSpeed" = "velocità\ndi apprendimento %.1f";
+"Onboarding.Preloader.Title" = "Preparazione del tuo\npiano di studio\nindividuale...";
+"Onboarding.Preloader.Cell1" = "Analisi del tuo livello di abilità %i%%";
+"Onboarding.Preloader.Cell2" = "Analisi dei tuoi obiettivi %i%%";
+"Onboarding.Preloader.Cell3" = "Elaborazione degli esami richiesti %i%%";
+"Onboarding.SlidePlan.Title" = "Il tuo piano di studio\ncon tasso di successo del 98% è\npronto!";
+"Onboarding.SlidePlan.CellsTitle" = "Il tuo piano individuale:";
+"Onboarding.SlidePlan.Cell1.Title" = "Oltre 2000 domande individuali";
+"Onboarding.SlidePlan.Cell1.Subtitle" = "Domande aggiornate, che riflettono le regole specifiche del tuo territorio";
+"Onboarding.SlidePlan.Cell2.Title" = "Tracciamento dei progressi";
+"Onboarding.SlidePlan.Cell2.Subtitle" = "Traccia il tuo tasso di successo e migliora ogni giorno";
+"Onboarding.SlidePlan.Cell3.Title" = "Materiale di supporto";
+"Onboarding.SlidePlan.Cell3.Subtitle" = "Capisci, non memorizzare. Set di materiali utili (se applicabile al tuo territorio)";
+"Onboarding.SlidePlan.Cell4.Title" = "Simulatore d'esame";
+"Onboarding.SlidePlan.Cell4.Subtitle" = "Domande simili a quelle d’esame di alta qualità presentate in diverse modalità d’esame";
+"Onboarding.SlidePlan.Button" = "Crea il mio piano";
+"Onboarding.Mode.Title" = "Configura la tua modalità di esame";
+"Onboarding.Mode.Subtitle" = "Scorri per scegliere fra le opzioni";
+"Onboarding.Mode.Cell1.Title" = "Nessuna spiegazione";
+"Onboarding.Mode.Cell1.Subtitle" = "Visualizza la risposta corretta, poi passa alla prossima domanda";
+"Onboarding.Mode.Cell2.Title" = "Set completo";
+"Onboarding.Mode.Cell2.Subtitle" = "Visualizza la risposta corretta, leggi la spiegazione completa, e vai avanti";
+"Onboarding.Mode.Cell3.Title" = "Simile all'esame";
+"Onboarding.Mode.Cell3.Subtitle" = "Scopri il punteggio solo dopo aver risposto a tutte le domande";
+"Onboarding.Mode.Header" = "Puoi modificare queste impostazioni più tardi";
+"Onboarding.MinutesAtTime.Title" = "Quanti minuti\npuoi passare a\nstudiare per volta?";
+"Onboarding.MinutesAtTime.Casual" = "Casual";
+"Onboarding.MinutesAtTime.Regular" = "Normale";
+"Onboarding.MinutesAtTime.Serious" = "Serio";
+"Onboarding.MinutesAtTime.Intense" = "Intenso";
+"Onboarding.MinutesAtTime.5min" = "5 min";
+"Onboarding.MinutesAtTime.10min" = "10 min";
+"Onboarding.MinutesAtTime.15min" = "15 min";
+"Onboarding.MinutesAtTime.20min" = "20 min";
+"Onboarding.MinutesAtTime.Header" = "Puoi modificare queste impostazioni più tardi";
+"Onboarding.Experience.Title" = "Hai esperienza nella\nguida di moto?";
+"Onboarding.Experience.Cell1.Title" = "Nessuna esperienza";
+"Onboarding.Experience.Cell1.Subtitle" = "Non ho mai provato a studiare prima";
+"Onboarding.Experience.Cell2.Title" = "Un po’ di esperienza";
+"Onboarding.Experience.Cell2.Subtitle" = "Conosco le regole generali e i cartelli";
+"Onboarding.Experience.Header" = "Puoi modificare queste impostazioni più tardi";
+"Onboarding.WhenStudy.Title" = "Quando vuoi\nstudiare?";
+"Onboarding.WhenStudy.Cell1" = "Mattina presto";
+"Onboarding.WhenStudy.Cell2" = "A metà giornata";
+"Onboarding.WhenStudy.Cell3" = "Dopo il lavoro";
+"Onboarding.WhenStudy.Cell4" = "Prima di andare a letto";
+"Onboarding.WhenStudy.Cell5" = "Nessuna preferenza in particolare";
+"Onboarding.WhenStudy.Header" = "Puoi modificare queste impostazioni più tardi";
+"Onboarding.Push.Title" = "Rimani concentrato!";
+"Onboarding.Push.Subtitle" = "Ricevi promemoria utili regolarmente per raggiungere i tuoi obiettivi più velocemente";
+"Onboarding.Push.Allow" = "Attiva notifiche";
+"Onboarding.Push.NotNow" = "Non ora";
+"Onboarding.DrivingExperience.Title" = "Descrivi la tua normale\nesperienza di guida";
+"Onboarding.DrivingExperience.Period1" = "0-2 anni";
+"Onboarding.DrivingExperience.Period2" = "2-4 anni";
+"Onboarding.DrivingExperience.Period3" = "4-6 anni";
+"Onboarding.DrivingExperience.Period4" = "Più di 6 anni";
+"Onboarding.DrivingExperience.Header" = "Puoi modificare queste impostazioni più tardi";
+
+// MARK: Study
+"Study.Title" = "Studio";
+"Study.Day.One" = "giorno";
+"Study.Day.Two" = "giorni";
+"Study.Day.Many" = "giorni";
+"Study.Streak" = "striscia di";
+"Study.TakeTest" = "Fai un test";
+"Study.TakeFreeTest" = "Fai un test gratuito";
+"Study.UnlockQuestions" = "Sblocca tutto";
+"Study.Mode.TodaysQuestion" = "Domanda di\noggi";
+"Study.Mode.TenQuestions" = "Esame rapido\na 10 risposte";
+"Study.Mode.MissedQuestions" = "Set di domande\nmancate";
+"Study.Mode.RandomSet" = "Set di esame\ncasuale";
+"Study.Mode.TimedQuizz" = "Esame\na tempo";
+"Study.Mode.TryMe" = "PROVALO!";
+"Study.Course.CourseCount" = "%d test";
+"Study.Course.Title" = " modalità di esame";
+"Study.Flashcards.Title" = "Flashcard";
+"Study.Flashcards.TopicsToLearn" = "argomenti\nda imparare";
+"Study.Flashcards.TopicsLearned" = "argomenti\nimparare";
+
+// MARK: Settings
+"Settings.Title" = "Impostazioni";
+"Settings.Unlock" = "Sblocca";
+"Settings.Premium" = "Premium";
+"Settings.ChangeLocale" = "Cambia zona";
+"Settings.RateUs" = "Valutaci";
+"Settings.ContactUs" = "Contattaci";
+"Settings.TermsOfUse" = "Termini di utilizzo";
+"Settings.PrivacyPolicy" = "Politica sulla riservatezza";
+"Settings.YourLocale" = "La tua zona";
+"Settings.YourLanguage" = "La tua lingua";
+"Settings.Mode" = "Exam mode";
+
+// MARK: Stats
+"Stats.PassRate.Title" = "Tasso di successo attuale";
+"Stats.MainRate.TestsTake" = "Test svolti";
+"Stats.MainRate.CorrectAnswers" = "Risposte corrette";
+"Stats.MainRate.QuestionsTaken" = "Domande";
+"Stats.MainRate.LongestStreak" = "Striscia più lunga";
+"Stats.MainRate.AnsweredQuestions" = "Domande risposte";
+"Stats.MainRate.LearnedFlashcards" = "Set di flashcard appresi";
+"Stats.Description.TestsTake" = "Test svolti";
+"Stats.Description.CorrectAnswers" = "Risposte corrette";
+"Stats.Description.QuestionsTaken" = "Domande risposte";
+"Stats.Title" = "Statistiche";
+"Stats.Day.One" = "giorno";
+"Stats.Day.Two" = "giorni";
+"Stats.Day.Many" = "giorni";
+
+// MARK: Paygate
+"Paygate.Main.Title" = "CONOSCI TUTTE LE DOMANDE\nIN ANTICIPO";
+"Paygate.Main.Cell1" = "Non passare ore a studiare";
+"Paygate.Main.Cell2" = "Allenati con %i+ domande";
+"Paygate.Main.Cell3" = "Tasso di successo del 98% al primo tentativo!";
+"Paygate.Main.Info" = "Assicurato da iTunes. Annulla in qualsiasi momento.";
+"Paygate.Main.TermsOfUse" = "Termini di utilizzo";
+"Paygate.Main.And" = " e ";
+"Paygate.Main.PrivacyPolicy" = "Politica sulla riservatezza";
+"Paygate.Main.RestorePurchases" = "Ripristina acquisti";
+"Paygate.Purchase.Failed" = "Impossibile effettuare un acquisto";
+"Paygate.Continue" = "Continua→";
+
+// MARK: Question
+"Question.Explanation" = "Spiegazione";
+"Question.Continue" = "Continua";
+"Question.Submit" = "Invia test";
+"Question.Finish" = "Termina";
+"Question.BackToStudying" = "Torna a studiare";
+"Question.Counter.Score" = "Punteggio";
+"Question.Counter.Question" = "Domanda";
+"Question.Counter.RemainingTime" = "Tempo rimanente";
+"Question.Title.TodaysQuestion" = "Domanda di oggi";
+"Question.Title.TenQuestions" = "Esame rapido a 10 domande";
+"Question.Title.MissedQuestions" = "Set di domande mancate";
+"Question.Title.RandomSet" = "Set di esame casuale";
+"Question.Title.TimedQuizz" = "Set di esame a tempo";
+
+// MARK: Test Stats
+"TestStats.TestTime" = "il tuo tempo";
+"TestStats.ComunityAverage" = "media della comunità";
+"TestStats.ComunityScore" = "punteggio della comunità";
+"TestStats.Attempted" = "Tentativo";
+"TestStats.Correct" = "Corretto";
+"TestStats.Incorrect" = "Errato";
+"TestStats.Filter.Incorrect" = "Errato";
+"TestStats.Filter.Correct" = "Corretto";
+"TestStats.Filter.All" = "Tutto";
+"TestStats.NextTest" = "Prossimo test";
+"TestStats.TryAgain" = "Riprova";
+"TestStats.PassingScore" = "Punteggio necessario";
+
+// MARK: Trophy
+"Trophy.LearnMore" = "Scopri di più";
+"Trophy.Title" = "Passa il tuo esame con una sicurezza del 100%";
+
+// MARK: Course Details
+"CourseDetails.Questions" = "domande";
+"CourseDetails.Saved" = "Salvato";
+"CourseDetails.Incorrect" = "Errato";
+"CourseDetails.PassRate" = "Tasso di successo";
+
+// MARK: Timed Exam
+"TimedExam.Title" = "Esame a tempo";
+"TimedExam.Subtitle" = "Quanti minuti?";
+"TimedExam.Button" = "Inizia";
+
+// MARK: Flashcards
+"Flashcards.Title" = "Flashcard";
+"Flashcards.Count" = "%i flashcard";
+"Flashcards.ShowAnswer" = "Mostra risposta";
+"Flashcards.Knew" = "Lo sapevo";
+"Flashcards.DintKnow" = "Non lo sapevo";
