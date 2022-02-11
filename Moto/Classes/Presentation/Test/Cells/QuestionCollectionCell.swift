@@ -118,8 +118,8 @@ private extension QuestionCollectionCell {
         return view
     }
     
-    func makeExpandButton() -> UIButton {
-        let view = UIButton()
+    func makeExpandButton() -> TapAreaButton {
+        let view = TapAreaButton()
         view.setImage(UIImage(named: "Question.Expand"), for: .normal)
         view.tintColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
