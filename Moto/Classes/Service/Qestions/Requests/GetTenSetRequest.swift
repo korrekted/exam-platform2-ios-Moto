@@ -19,7 +19,7 @@ struct GetTenSetRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.domainUrl + "/api/tests/ten_set"
+        GlobalDefinitions.domainUrl + "/api/testings/ten_set"
     }
     
     var method: HTTPMethod {

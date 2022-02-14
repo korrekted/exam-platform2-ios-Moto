@@ -23,7 +23,7 @@ struct GetTestRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.domainUrl + "/api/tests/get"
+        GlobalDefinitions.domainUrl + "/api/testings/get"
     }
     
     var method: HTTPMethod {

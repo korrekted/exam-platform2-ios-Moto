@@ -25,7 +25,7 @@ extension QuestionManagerCore {
         
         return SDKStorage.shared
             .restApiTransport
-            .callServerApi(requestBody: request)
+            .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
     
@@ -40,7 +40,7 @@ extension QuestionManagerCore {
         
         return SDKStorage.shared
             .restApiTransport
-            .callServerApi(requestBody: request)
+            .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
     
@@ -55,7 +55,7 @@ extension QuestionManagerCore {
         
         return SDKStorage.shared
             .restApiTransport
-            .callServerApi(requestBody: request)
+            .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
     
@@ -70,7 +70,7 @@ extension QuestionManagerCore {
         
         return SDKStorage.shared
             .restApiTransport
-            .callServerApi(requestBody: request)
+            .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
     
@@ -85,7 +85,7 @@ extension QuestionManagerCore {
         
         return SDKStorage.shared
             .restApiTransport
-            .callServerApi(requestBody: request)
+            .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
     
@@ -149,7 +149,7 @@ extension QuestionManagerCore {
         
         return SDKStorage.shared
             .restApiTransport
-            .callServerApi(requestBody: request)
+            .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
     

@@ -19,7 +19,7 @@ struct GetFailedSetRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.domainUrl + "/api/tests/failed_set"
+        GlobalDefinitions.domainUrl + "/api/testings/failed_set"
     }
     
     var method: HTTPMethod {

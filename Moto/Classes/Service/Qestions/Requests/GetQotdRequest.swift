@@ -19,7 +19,7 @@ struct GetQotdRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.domainUrl + "/api/tests/qotd"
+        GlobalDefinitions.domainUrl + "/api/testings/qotd"
     }
     
     var method: HTTPMethod {

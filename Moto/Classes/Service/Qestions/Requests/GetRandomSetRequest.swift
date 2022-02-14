@@ -19,7 +19,7 @@ struct GetRandomSetRequest: APIRequestBody {
     }
     
     var url: String {
-        GlobalDefinitions.domainUrl + "/api/tests/random_set"
+        GlobalDefinitions.domainUrl + "/api/testings/random_set"
     }
     
     var method: HTTPMethod {
