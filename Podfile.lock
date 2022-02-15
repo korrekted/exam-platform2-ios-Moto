@@ -152,7 +152,7 @@ DEPENDENCIES:
   - Kingfisher
   - lottie-ios
   - NotificationBannerSwift
-  - RushSDK (from `https://github.com/AgentChe/RushSDK.git`)
+  - RushSDK (from `https://github.com/AgentChe/RushSDK.git`, branch `fb_log_after_purchase`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -187,11 +187,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   RushSDK:
+    :branch: fb_log_after_purchase
     :git: https://github.com/AgentChe/RushSDK.git
 
 CHECKOUT OPTIONS:
   RushSDK:
-    :commit: 45f4e1493c9f0fe82da7494d2c701c0157aa1e1c
+    :commit: 3edb621ae253847e6f5190786bc120c999017f3c
     :git: https://github.com/AgentChe/RushSDK.git
 
 SPEC CHECKSUMS:
@@ -225,6 +226,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
 
-PODFILE CHECKSUM: 4b5f97e58e541c3367fcc6545e11cc67efba93e0
+PODFILE CHECKSUM: e2e11af1a1927a2cda56964f446a956d8993f1eb
 
 COCOAPODS: 1.11.2
