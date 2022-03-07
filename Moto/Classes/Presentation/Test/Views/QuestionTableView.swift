@@ -97,7 +97,7 @@ extension QuestionTableView: UITableViewDelegate {
             selectedCells.remove(indexPath)
             cell.setSelected(false, animated: false)
         } else {
-            if isMultipleTouchEnabled {
+            if allowsMultipleSelection {
                 selectedCells.insert(indexPath)
             } else {
                 selectedCells = [indexPath]
