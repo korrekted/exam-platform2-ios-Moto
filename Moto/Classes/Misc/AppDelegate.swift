@@ -103,7 +103,7 @@ private extension AppDelegate {
                                    featureAppBackendApiKey: GlobalDefinitions.apiKey,
                                    appleAppID: GlobalDefinitions.appStoreId)
         
-        sdkProvider.initialize(settings: settings) { [weak self] in
+        sdkProvider.initialize(settings: settings) { [weak self] _ in
             self?.generateStepInSplash.accept(Void())
         }
     }

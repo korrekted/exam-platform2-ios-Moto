@@ -9,7 +9,7 @@ target 'Moto' do
   pod 'lottie-ios'
   pod 'Kingfisher'
   
-  pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git", :branch => "fb_log_after_purchase"
+  pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git", :branch => "master"
 end
 
 post_install do |installer|
