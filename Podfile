@@ -1,3 +1,4 @@
+
 platform :ios, ‘12.0’
 inhibit_all_warnings!
 use_frameworks!
@@ -9,7 +10,7 @@ target 'Moto' do
   pod 'lottie-ios'
   pod 'Kingfisher'
   
-  pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git", :branch => "master"
+  pod 'RushSDK', :git => "https://github.com/AgentChe/RushSDK.git", :branch => "fb_log_after_purchase"
 end
 
 post_install do |installer|
