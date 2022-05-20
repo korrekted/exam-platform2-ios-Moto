@@ -101,7 +101,7 @@
 		967381332678B7D900230FB6 /* FlashcardsTopicsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673812E2678B7D900230FB6 /* FlashcardsTopicsTableCell.swift */; };
 		967381352678B80300230FB6 /* CourseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381342678B80300230FB6 /* CourseConfig.swift */; };
 		967381372678B93D00230FB6 /* SCFlashcardsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967381362678B93D00230FB6 /* SCFlashcardsCell.swift */; };
-		9673821226793F7700230FB6 /* PaygateManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673820126793F7700230FB6 /* PaygateManagerCore.swift */; };
+		9673821226793F7700230FB6 /* PaygateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673820126793F7700230FB6 /* PaygateManager.swift */; };
 		9673821326793F7700230FB6 /* MonetizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673820226793F7700230FB6 /* MonetizationManager.swift */; };
 		9673821426793F7700230FB6 /* PaygateMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673820426793F7700230FB6 /* PaygateMapper.swift */; };
 		9673821526793F7700230FB6 /* GetMonetizationResponseMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673820526793F7700230FB6 /* GetMonetizationResponseMapper.swift */; };
@@ -114,7 +114,6 @@
 		9673821C26793F7800230FB6 /* GetPaygateRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673820E26793F7700230FB6 /* GetPaygateRequest.swift */; };
 		9673821D26793F7800230FB6 /* GetMonetizationConfigRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673820F26793F7700230FB6 /* GetMonetizationConfigRequest.swift */; };
 		9673821E26793F7800230FB6 /* MonetizationManagerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673821026793F7700230FB6 /* MonetizationManagerCore.swift */; };
-		9673821F26793F7800230FB6 /* PaygateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673821126793F7700230FB6 /* PaygateManager.swift */; };
 		9673822A26793F9600230FB6 /* PaygateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673822126793F9600230FB6 /* PaygateViewModel.swift */; };
 		9673822B26793F9600230FB6 /* PaygateViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673822226793F9600230FB6 /* PaygateViewControllerDelegate.swift */; };
 		9673822C26793F9600230FB6 /* PaygateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9673822326793F9600230FB6 /* PaygateView.swift */; };
@@ -353,6 +352,9 @@
 		DEADEB2F28375BE10057AA44 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB2E28375BE10057AA44 /* Spinner.swift */; };
 		DEADEB3128375C4B0057AA44 /* NumberLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3028375C4B0057AA44 /* NumberLaunches.swift */; };
 		DEADEB3328375C590057AA44 /* ObservableRetrySingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3228375C590057AA44 /* ObservableRetrySingle.swift */; };
+		DEADEB3628375FA90057AA44 /* SplashActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3528375FA80057AA44 /* SplashActivity.swift */; };
+		DEADEB3828375FB80057AA44 /* SplashSDKInitialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3728375FB80057AA44 /* SplashSDKInitialize.swift */; };
+		DEADEB3A283760510057AA44 /* ContentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB39283760510057AA44 /* ContentError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -474,7 +476,7 @@
 		9673812E2678B7D900230FB6 /* FlashcardsTopicsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashcardsTopicsTableCell.swift; sourceTree = "<group>"; };
 		967381342678B80300230FB6 /* CourseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseConfig.swift; sourceTree = "<group>"; };
 		967381362678B93D00230FB6 /* SCFlashcardsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCFlashcardsCell.swift; sourceTree = "<group>"; };
-		9673820126793F7700230FB6 /* PaygateManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManagerCore.swift; sourceTree = "<group>"; };
+		9673820126793F7700230FB6 /* PaygateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManager.swift; sourceTree = "<group>"; };
 		9673820226793F7700230FB6 /* MonetizationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationManager.swift; sourceTree = "<group>"; };
 		9673820426793F7700230FB6 /* PaygateMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateMapper.swift; sourceTree = "<group>"; };
 		9673820526793F7700230FB6 /* GetMonetizationResponseMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMonetizationResponseMapper.swift; sourceTree = "<group>"; };
@@ -487,7 +489,6 @@
 		9673820E26793F7700230FB6 /* GetPaygateRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetPaygateRequest.swift; sourceTree = "<group>"; };
 		9673820F26793F7700230FB6 /* GetMonetizationConfigRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetMonetizationConfigRequest.swift; sourceTree = "<group>"; };
 		9673821026793F7700230FB6 /* MonetizationManagerCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonetizationManagerCore.swift; sourceTree = "<group>"; };
-		9673821126793F7700230FB6 /* PaygateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateManager.swift; sourceTree = "<group>"; };
 		9673822126793F9600230FB6 /* PaygateViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateViewModel.swift; sourceTree = "<group>"; };
 		9673822226793F9600230FB6 /* PaygateViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateViewControllerDelegate.swift; sourceTree = "<group>"; };
 		9673822326793F9600230FB6 /* PaygateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaygateView.swift; sourceTree = "<group>"; };
@@ -731,6 +732,9 @@
 		DEADEB2E28375BE10057AA44 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		DEADEB3028375C4B0057AA44 /* NumberLaunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberLaunches.swift; sourceTree = "<group>"; };
 		DEADEB3228375C590057AA44 /* ObservableRetrySingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableRetrySingle.swift; sourceTree = "<group>"; };
+		DEADEB3528375FA80057AA44 /* SplashActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashActivity.swift; sourceTree = "<group>"; };
+		DEADEB3728375FB80057AA44 /* SplashSDKInitialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSDKInitialize.swift; sourceTree = "<group>"; };
+		DEADEB39283760510057AA44 /* ContentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentError.swift; sourceTree = "<group>"; };
 		ED3110117CD792B481C47706 /* Pods_Moto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1102,13 +1106,12 @@
 		9673820026793F7700230FB6 /* Paygate */ = {
 			isa = PBXGroup;
 			children = (
-				9673820126793F7700230FB6 /* PaygateManagerCore.swift */,
+				9673820126793F7700230FB6 /* PaygateManager.swift */,
 				9673820226793F7700230FB6 /* MonetizationManager.swift */,
 				9673820326793F7700230FB6 /* Mapper */,
 				9673820626793F7700230FB6 /* Models */,
 				9673820D26793F7700230FB6 /* Requests */,
 				9673821026793F7700230FB6 /* MonetizationManagerCore.swift */,
-				9673821126793F7700230FB6 /* PaygateManager.swift */,
 			);
 			path = Paygate;
 			sourceTree = "<group>";
@@ -1271,6 +1274,7 @@
 			isa = PBXGroup;
 			children = (
 				967D9C3C266A4FF7002251D7 /* SignError.swift */,
+				DEADEB39283760510057AA44 /* ContentError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1702,6 +1706,7 @@
 		967D9CD5266A4FF8002251D7 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
+				DEADEB3428375F9D0057AA44 /* Utils */,
 				967D9CD6266A4FF8002251D7 /* SplashViewController.swift */,
 				967D9CD7266A4FF8002251D7 /* SplashViewModel.swift */,
 				967D9CD8266A4FF8002251D7 /* SplashView.swift */,
@@ -2134,6 +2139,15 @@
 			path = TryAgain;
 			sourceTree = "<group>";
 		};
+		DEADEB3428375F9D0057AA44 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DEADEB3528375FA80057AA44 /* SplashActivity.swift */,
+				DEADEB3728375FB80057AA44 /* SplashSDKInitialize.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2412,7 +2426,6 @@
 				967D9E37266A4FF9002251D7 /* TestStatsProgressCell.swift in Sources */,
 				967D9E16266A4FF9002251D7 /* CourseViewCoordinator.swift in Sources */,
 				966FE0F22695D21D00B8FC20 /* OnboardingView.swift in Sources */,
-				9673821F26793F7800230FB6 /* PaygateManager.swift in Sources */,
 				9673821726793F7700230FB6 /* MonetizationConfig.swift in Sources */,
 				967D9E24266A4FF9002251D7 /* QuestionContentType.swift in Sources */,
 				967D9E40266A4FF9002251D7 /* TestStatsDescriptionElement.swift in Sources */,
@@ -2442,12 +2455,14 @@
 				967D9E27266A4FF9002251D7 /* TestViewController.swift in Sources */,
 				967D9E28266A4FF9002251D7 /* QuestionTableView.swift in Sources */,
 				967D9E46266A4FF9002251D7 /* TestStatsResultView.swift in Sources */,
+				DEADEB3A283760510057AA44 /* ContentError.swift in Sources */,
 				967D9E4E266A4FF9002251D7 /* CourseDetailsTabelView.swift in Sources */,
 				967D9E08266A4FF8002251D7 /* SCTrophyCollectionCell.swift in Sources */,
 				967D9E17266A4FF9002251D7 /* TabItemView.swift in Sources */,
 				9673821D26793F7800230FB6 /* GetMonetizationConfigRequest.swift in Sources */,
 				967D9DBC266A4FF8002251D7 /* TestConfig.swift in Sources */,
 				967D9D94266A4FF8002251D7 /* Weak.swift in Sources */,
+				DEADEB3828375FB80057AA44 /* SplashSDKInitialize.swift in Sources */,
 				967D9D9A266A4FF8002251D7 /* TapAreaButton.swift in Sources */,
 				967D9E1B266A4FF9002251D7 /* QuestionCell.swift in Sources */,
 				967D9E4B266A4FF9002251D7 /* CourseDetailsTableElement.swift in Sources */,
@@ -2556,6 +2571,7 @@
 				967D9E06266A4FF8002251D7 /* SCTitleCell.swift in Sources */,
 				967D9DEF266A4FF8002251D7 /* SessionManagerCore.swift in Sources */,
 				967D9E12266A4FF9002251D7 /* CourseFlowLayout.swift in Sources */,
+				DEADEB3628375FA90057AA44 /* SplashActivity.swift in Sources */,
 				967D9DC0266A4FF8002251D7 /* GetTestConfigResponseMapper.swift in Sources */,
 				9673810F2678B7CA00230FB6 /* FlashCardManagerDelegate.swift in Sources */,
 				967D9E44266A4FF9002251D7 /* TestStatsProgressView.swift in Sources */,
@@ -2619,7 +2635,7 @@
 				966FE0E82695D21D00B8FC20 /* OWhenStudyView.swift in Sources */,
 				966FE0DA2695D21D00B8FC20 /* OModeCollectionElement.swift in Sources */,
 				966FE0D52695D21D00B8FC20 /* LocaleStateView.swift in Sources */,
-				9673821226793F7700230FB6 /* PaygateManagerCore.swift in Sources */,
+				9673821226793F7700230FB6 /* PaygateManager.swift in Sources */,
 				967D9DC8266A4FF8002251D7 /* SendAnswerRequest.swift in Sources */,
 				967D9DFE266A4FF8002251D7 /* TimedExamViewController.swift in Sources */,
 				967D9E56266A4FF9002251D7 /* SITestCellType.swift in Sources */,

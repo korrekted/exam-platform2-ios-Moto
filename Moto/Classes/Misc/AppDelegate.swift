@@ -13,9 +13,9 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
-    private lazy var generateStepInSplash = PublishRelay<Void>()
+    lazy var sdkProvider = SDKProvider()
     
-    private lazy var sdkProvider = SDKProvider()
+    private lazy var generateStepInSplash = PublishRelay<Bool>()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -104,7 +104,7 @@ private extension AppDelegate {
                                    appleAppID: GlobalDefinitions.appStoreId)
         
         sdkProvider.initialize(settings: settings) { [weak self] success in
-            self?.generateStepInSplash.accept(Void())
+            self?.generateStepInSplash.accept(success)
         }
     }
     

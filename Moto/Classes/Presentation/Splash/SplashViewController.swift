@@ -16,9 +16,11 @@ final class SplashViewController: UIViewController {
     
     private lazy var viewModel = SplashViewModel()
     
-    private let generateStep: Signal<Void>
+    private lazy var sdkInitialize = SplashSDKInitialize(vc: self, rushSDKSignal: generateStep)
     
-    private init(generateStep: Signal<Void>) {
+    private let generateStep: Signal<Bool>
+    
+    private init(generateStep: Signal<Bool>) {
         self.generateStep = generateStep
         
         super.init(nibName: nil, bundle: .main)
@@ -35,19 +37,49 @@ final class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        generateStep
-            .delay(RxTimeInterval.seconds(1))
-            .flatMap { [weak self] in
-                self?.viewModel.step() ?? .empty()
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .empty()
             }
-            .drive(onNext: step(_:))
+            
+            return self.openError()
+        }
+        
+        sdkInitialize.initialize { [weak self] progress in
+            guard let self = self else {
+                return
+            }
+            
+            switch progress {
+            case .error:
+                self.activity(state: .none)
+            case .initializing:
+                self.activity(state: .sdkInitialize)
+            case .complete:
+                // MARK: задержка, чтобы токен успел сохраниться до запросов на кеширование контента
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
+                    self.activity(state: .library)
+                    self.viewModel.validationComplete.accept(Void())
+                }
+            }
+        }
+        
+        viewModel.step()
+            .drive(onNext: { [weak self] step in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(state: step == .onboarding ? .prepareOnboarding : .none)
+                self.step(step)
+            })
             .disposed(by: disposeBag)
     }
 }
 
 // MARK: Make
 extension SplashViewController {
-    static func make(generateStep: Signal<Void>) -> SplashViewController {
+    static func make(generateStep: Signal<Bool>) -> SplashViewController {
         SplashViewController(generateStep: generateStep)
     }
 }
@@ -55,7 +87,7 @@ extension SplashViewController {
 // MARK: PaygateViewControllerDelegate
 extension SplashViewController: PaygateViewControllerDelegate {
     func paygateDidClosed(with result: PaygateViewControllerResult) {
-        step(viewModel.stepAfterPaygateClosed())
+        step(.course)
     }
 }
 
@@ -64,13 +96,41 @@ private extension SplashViewController {
     func step(_ step: SplashViewModel.Step) {
         switch step {
         case .onboarding:
-            UIApplication.shared.keyWindow?.rootViewController = OnboardingViewController.make()
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = OnboardingViewController.make()
         case .course:
-            UIApplication.shared.keyWindow?.rootViewController = CourseViewController.make()
+            UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController = CourseViewController.make()
         case .paygate:
             let vc = PaygateViewController.make()
             vc.delegate = self
             present(vc, animated: true)
         }
+    }
+    
+    func activity(state: SplashActivity) {
+        state == .none ? mainView.preloaderView.stopAnimating() : mainView.preloaderView.startAnimating()
+        
+        let attrs = TextAttributes()
+            .textColor(UIColor(integralRed: 245, green: 245, blue: 245))
+            .font(Fonts.SFProRounded.regular(size: 17.scale))
+            .lineHeight(23.8.scale)
+            .textAlignment(.center)
+        mainView.preloaderLabel.attributedText = state.text.attributed(with: attrs)
+    }
+    
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+        
     }
 }

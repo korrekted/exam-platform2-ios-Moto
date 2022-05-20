@@ -15,6 +15,10 @@
 "Splash.Title.Part1" = "Más de\n";
 "Splash.Title.Part2" = "10,000\n";
 "Splash.Title.Part3" = "preguntas de\nexamen reales";
+"Splash.Preloader1" = "Checking your account...";
+"Splash.Preloader2" = "Syncing the question bank...";
+"Splash.Preloader3" = "Setting up the onboarding...";
+"Splash.Preloader4" = "Setting up your account...";
 
 // MARK: Onboarding
 "Onboarding.FailedToSave" = "Error al guardar";

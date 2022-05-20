@@ -13,53 +13,70 @@ final class SplashViewModel {
         case onboarding, course, paygate
     }
     
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
+    lazy var validationComplete = PublishRelay<Void>()
+    
     private lazy var monetizationManager = MonetizationManagerCore()
     private lazy var profileManager = ProfileManagerCore()
     private lazy var sessionManager = SessionManagerCore()
+    private lazy var paygateManager = PaygateManager()
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
     
     func step() -> Driver<Step> {
-        library()
-            .andThen(makeStep())
+        return validationComplete
+            .flatMapLatest { [weak self] void -> Observable<Void> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.library()
+            }
+            .compactMap { [weak self] void -> Step? in
+                self?.makeStep()
+            }
             .asDriver(onErrorDriveWith: .empty())
-    }
-    
-    /// Вызывается в методе делегата PaygateViewControllerDelegate для определения, какой экран открыть после закрытия пейгейта. Отличается от makeStep тем, что не учитывает повторное открытие пейгейта.
-    func stepAfterPaygateClosed() -> Step {
-        guard OnboardingViewController.wasViewed() else {
-            return .onboarding
-        }
-        
-        return .course
     }
 }
 
 // MARK: Private
 private extension SplashViewModel {
-    func library() -> Completable {
-        let monetization = monetizationManager
-            .rxRetrieveMonetizationConfig(forceUpdate: true)
-            .catchAndReturn(nil)
-            .asCompletable()
+    func library() -> Observable<Void> {
+        func source() -> Single<Void> {
+            let monetization = monetizationManager
+                .rxRetrieveMonetizationConfig(forceUpdate: true)
+            
+            let countries = profileManager
+                .retrieveCountries(forceUpdate: true)
+            
+            let paygate = paygateManager
+                .retrievePaygate(forceUpdate: true)
+            
+            return Single
+                .zip(monetization, countries, paygate)
+                .map { _ in Void() }
+        }
         
-        let countries = profileManager
-            .retrieveCountries(forceUpdate: true)
-            .catchAndReturn([])
-            .asCompletable()
+        func trigger(error: Error) -> Observable<Void> {
+            guard let tryAgain = tryAgain?(error) else {
+                return .empty()
+            }
+            
+            return tryAgain
+        }
         
-        return Completable
-            .zip(monetization, countries)
+        return observableRetrySingle
+            .retry(source: { source() },
+                   trigger: { trigger(error: $0) })
     }
     
-    func makeStep() -> Observable<Step> {
+    func makeStep() -> Step {
         guard OnboardingViewController.wasViewed() else {
-            return .deferred { .just(.onboarding) }
+            return .onboarding
         }
         
-        if needPayment() {
-            return .deferred { .just(.paygate) }
-        }
-        
-        return .deferred { .just(.course) }
+        return needPayment() ? .paygate : .course
     }
     
     func needPayment() -> Bool {
