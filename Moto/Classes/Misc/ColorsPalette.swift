@@ -291,3 +291,10 @@ enum FlashcardPalette {
         static let initialButton = UIColor(integralRed: 237, green: 237, blue: 237)
     }
 }
+
+enum TryAgainPalette {
+    static let background = UIColor(integralRed: 237, green: 237, blue: 237)
+    static let title = UIColor(integralRed: 31, green: 31, blue: 31)
+    static let subTitle = UIColor(integralRed: 68, green: 68, blue: 68)
+    static let tryAgainButtonBackground = UIColor(integralRed: 31, green: 31, blue: 31)
+}

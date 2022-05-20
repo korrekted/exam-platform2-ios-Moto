@@ -213,3 +213,9 @@
 "Flashcards.ShowAnswer" = "Mostrar la respuesta";
 "Flashcards.Knew" = "Yo sabía";
 "Flashcards.DintKnow" = "Yo no sabia";
+
+// MARK: TryAgain
+"TryAgain.Title" = "The app failed to perform a\nrequest";
+"TryAgain.SubTitle" = "If there’s a connection issue on your side please try one more time. If the connection is fine and the error keeps on repeating please get in touch with the support";
+"TryAgain.Button" = "Try again";
+"TryAgain.Contact" = "Contact the support";

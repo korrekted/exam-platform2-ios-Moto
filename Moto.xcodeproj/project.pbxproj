@@ -348,6 +348,11 @@
 		DEADEB23283753AB0057AA44 /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB22283753AB0057AA44 /* XORRequestWrapper.swift */; };
 		DEADEB25283755400057AA44 /* SSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB24283755400057AA44 /* SSlideView.swift */; };
 		DEADEB28283756500057AA44 /* OnboardingScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB27283756500057AA44 /* OnboardingScope.swift */; };
+		DEADEB2B28375AAD0057AA44 /* TryAgainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB2A28375AAD0057AA44 /* TryAgainViewController.swift */; };
+		DEADEB2D28375ABF0057AA44 /* TryAgainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB2C28375ABF0057AA44 /* TryAgainView.swift */; };
+		DEADEB2F28375BE10057AA44 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB2E28375BE10057AA44 /* Spinner.swift */; };
+		DEADEB3128375C4B0057AA44 /* NumberLaunches.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3028375C4B0057AA44 /* NumberLaunches.swift */; };
+		DEADEB3328375C590057AA44 /* ObservableRetrySingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3228375C590057AA44 /* ObservableRetrySingle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -721,6 +726,11 @@
 		DEADEB22283753AB0057AA44 /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
 		DEADEB24283755400057AA44 /* SSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSlideView.swift; sourceTree = "<group>"; };
 		DEADEB27283756500057AA44 /* OnboardingScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScope.swift; sourceTree = "<group>"; };
+		DEADEB2A28375AAD0057AA44 /* TryAgainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainViewController.swift; sourceTree = "<group>"; };
+		DEADEB2C28375ABF0057AA44 /* TryAgainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TryAgainView.swift; sourceTree = "<group>"; };
+		DEADEB2E28375BE10057AA44 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		DEADEB3028375C4B0057AA44 /* NumberLaunches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberLaunches.swift; sourceTree = "<group>"; };
+		DEADEB3228375C590057AA44 /* ObservableRetrySingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableRetrySingle.swift; sourceTree = "<group>"; };
 		ED3110117CD792B481C47706 /* Pods_Moto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1251,6 +1261,8 @@
 				967D9C3B266A4FF7002251D7 /* Error */,
 				967D9C3D266A4FF7002251D7 /* Weak.swift */,
 				DE93781327BA78AF0073F27C /* XOREncryption.swift */,
+				DEADEB3028375C4B0057AA44 /* NumberLaunches.swift */,
+				DEADEB3228375C590057AA44 /* ObservableRetrySingle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1287,6 +1299,7 @@
 				967D9C4C266A4FF7002251D7 /* CircleView.swift */,
 				967D9C4D266A4FF7002251D7 /* GradientView.swift */,
 				967D9C4E266A4FF7002251D7 /* TrophyView.swift */,
+				DEADEB2E28375BE10057AA44 /* Spinner.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1602,6 +1615,7 @@
 		967D9CBE266A4FF8002251D7 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				DEADEB2928375AA30057AA44 /* TryAgain */,
 				966FE0992695D21D00B8FC20 /* Onboarding */,
 				9673822026793F9600230FB6 /* Paygate */,
 				967381282678B7D900230FB6 /* FlashcardsTopics */,
@@ -2111,6 +2125,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		DEADEB2928375AA30057AA44 /* TryAgain */ = {
+			isa = PBXGroup;
+			children = (
+				DEADEB2A28375AAD0057AA44 /* TryAgainViewController.swift */,
+				DEADEB2C28375ABF0057AA44 /* TryAgainView.swift */,
+			);
+			path = TryAgain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2393,6 +2416,7 @@
 				9673821726793F7700230FB6 /* MonetizationConfig.swift in Sources */,
 				967D9E24266A4FF9002251D7 /* QuestionContentType.swift in Sources */,
 				967D9E40266A4FF9002251D7 /* TestStatsDescriptionElement.swift in Sources */,
+				DEADEB2B28375AAD0057AA44 /* TryAgainViewController.swift in Sources */,
 				967D9DD9266A4FF8002251D7 /* Language.swift in Sources */,
 				967381262678B7D500230FB6 /* FlashCardContainerView.swift in Sources */,
 				967D9E42266A4FF9002251D7 /* TestStatsViewModel.swift in Sources */,
@@ -2400,6 +2424,7 @@
 				966FE0F32695D21D00B8FC20 /* OnboardingViewModel.swift in Sources */,
 				967D9E5E266A4FF9002251D7 /* StatsViewController.swift in Sources */,
 				9673821E26793F7800230FB6 /* MonetizationManagerCore.swift in Sources */,
+				DEADEB2F28375BE10057AA44 /* Spinner.swift in Sources */,
 				967D9DD0266A4FF8002251D7 /* QuestionManager.swift in Sources */,
 				967D9E22266A4FF9002251D7 /* TestType.swift in Sources */,
 				967D9DF3266A4FF8002251D7 /* RateUs.swift in Sources */,
@@ -2465,6 +2490,7 @@
 				967D9DF2266A4FF8002251D7 /* SettingsViewModel.swift in Sources */,
 				967D9E19266A4FF9002251D7 /* QuestionContentCell.swift in Sources */,
 				967D9E5D266A4FF9002251D7 /* StatsViewModel.swift in Sources */,
+				DEADEB3328375C590057AA44 /* ObservableRetrySingle.swift in Sources */,
 				967D9E1A266A4FF9002251D7 /* QuestionCollectionCell.swift in Sources */,
 				967D9DD5266A4FF8002251D7 /* GetCourcesRequest.swift in Sources */,
 				966FE0D72695D21D00B8FC20 /* OModesCollectionLayout.swift in Sources */,
@@ -2541,6 +2567,7 @@
 				967D9DC3266A4FF8002251D7 /* GetFailedSetRequest.swift in Sources */,
 				967D9E21266A4FF9002251D7 /* TestingCellType.swift in Sources */,
 				967D9DE5266A4FF8002251D7 /* ProfileMediator.swift in Sources */,
+				DEADEB2D28375ABF0057AA44 /* TryAgainView.swift in Sources */,
 				967D9D92266A4FF8002251D7 /* Fonts.swift in Sources */,
 				966FE0E92695D21D00B8FC20 /* OSlideView.swift in Sources */,
 				967D9DD8266A4FF8002251D7 /* CoursesManager.swift in Sources */,
@@ -2564,6 +2591,7 @@
 				9673810D2678B7CA00230FB6 /* Flashcard.swift in Sources */,
 				DE93781427BA78AF0073F27C /* XOREncryption.swift in Sources */,
 				9673810E2678B7CA00230FB6 /* FlashcardTopic.swift in Sources */,
+				DEADEB3128375C4B0057AA44 /* NumberLaunches.swift in Sources */,
 				966FE0D92695D21D00B8FC20 /* OModesCollectionView.swift in Sources */,
 				967D9DE4266A4FF8002251D7 /* ProfileMediatorDelegate.swift in Sources */,
 				966FE0D32695D21D00B8FC20 /* LocaleTableViewElement.swift in Sources */,
