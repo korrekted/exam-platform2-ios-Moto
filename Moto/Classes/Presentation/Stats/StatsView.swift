@@ -11,6 +11,7 @@ final class StatsView: UIView {
     lazy var tableView = makeTableView()
     lazy var navigationView = makeNavigationView()
     lazy var progressView = makeProgressView()
+    lazy var preloader = makePreloader()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +53,11 @@ private extension StatsView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -79,6 +85,13 @@ private extension StatsView {
         let view = ProgressView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setTitle(title: "Stats.PassRate.Title".localized)
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 60.scale, height: 60.scale), color: .blue)
+        view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }

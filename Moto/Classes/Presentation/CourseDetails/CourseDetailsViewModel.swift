@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 
 final class CourseDetailsViewModel {
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
     let course = BehaviorRelay<Course?>(value: nil)
     
     private lazy var questionManager = QuestionManagerCore()
@@ -20,7 +22,11 @@ final class CourseDetailsViewModel {
     lazy var elements = makeElements()
     lazy var config = makeConfig().share(replay: 1, scope: .forever)
     
+    lazy var activity = RxActivityIndicator()
+    
     lazy var activeSubscription = makeActiveSubscription().share(replay: 1, scope: .forever)
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
 }
 
 extension CourseDetailsViewModel {
@@ -43,11 +49,36 @@ extension CourseDetailsViewModel {
     func makeConfig() -> Observable<[TestConfig]> {
         let config = courseId
             .asObservable()
-            .flatMapLatest { [manager = questionManager] courseId -> Observable<[TestConfig]> in
-                manager.retrieveConfig(courseId: courseId)
-                    .asObservable()
-                    .map { $0?.testsConfigs ?? [] }
-                    .catchAndReturn([])
+            .flatMapLatest { [weak self] courseId -> Observable<[TestConfig]> in
+                guard let self = self else {
+                    return .empty()
+                }
+                
+                func source() -> Single<CourseConfig> {
+                    self.questionManager
+                        .retrieveConfig(courseId: courseId)
+                        .flatMap { config -> Single<CourseConfig> in
+                            guard let config = config else {
+                                return .error(ContentError(.notContent))
+                            }
+                            
+                            return .just(config)
+                        }
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+                    
+                    return tryAgain
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+                    .trackActivity(self.activity)
+                    .map { $0.testsConfigs }
             }
         
         return Signal

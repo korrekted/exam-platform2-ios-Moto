@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 
 final class StatsTableView: UITableView {
-    private lazy var elements = [StatsCellType]()
+    lazy var elements = [StatsCellType]()
     lazy var didTapLearnMore = PublishRelay<Void>()
     
     override init(frame: CGRect, style: UITableView.Style) {

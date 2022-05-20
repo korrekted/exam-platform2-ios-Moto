@@ -13,6 +13,7 @@ class CourseDetailsView: UIView {
     lazy var progressView = makeProgressView()
     lazy var savedButton = makeButton(title: "CourseDetails.Saved".localized, icon: UIImage(named: "CourseDetails.Saved"))
     lazy var incorrectButton = makeButton(title: "CourseDetails.Incorrect".localized, icon: UIImage(named: "CourseDetails.Incorrect"))
+    lazy var preloader = makePreloader()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,6 +73,11 @@ private extension CourseDetailsView {
             tableView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -113,6 +119,13 @@ private extension CourseDetailsView {
         view.contentEdgeInsets.left = -30.scale
         view.titleEdgeInsets.left = 8.scale
         view.layer.cornerRadius = 12.scale
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 60.scale, height: 60.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

@@ -9,6 +9,8 @@ import RxSwift
 import RxCocoa
 
 final class FlashcardsViewModel {
+    var tryAgain: ((Error) -> (Observable<Void>))?
+    
     lazy var flashcardTopicId = BehaviorRelay<Int?>(value: nil)
     
     lazy var flashcards = makeFlashcards()
@@ -16,38 +18,73 @@ final class FlashcardsViewModel {
     
     lazy var selectedAnswer = PublishRelay<(id: Int, answer: Bool)>()
     
+    lazy var activity = RxActivityIndicator()
+    
     private lazy var flashcardsManager = FlashcardsManagerCore()
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
 }
 
 // MARK: Private
 private extension FlashcardsViewModel {
     func makeFlashcards() -> Driver<[FlashCardModel]> {
         flashcardTopicId.compactMap { $0 }
-            .flatMapLatest { [weak self] flashcardTopicId -> Single<[FlashCardModel]> in
+            .flatMapLatest { [weak self] flashcardTopicId -> Observable<[FlashCardModel]> in
                 guard let self = self else {
-                    return .never()
+                    return .empty()
                 }
                 
-                return self.flashcardsManager
-                    .obtainFlashcards(flashcardTopicId: flashcardTopicId)
-                    .map { elements in
-                        elements.enumerated()
-                            .map { index, element in
-                                let progress = "\(index + 1)/\(elements.count)"
-                                return FlashCardModel(model: element, progress: progress)
-                            }
+                func source() -> Single<[FlashCardModel]> {
+                    self.flashcardsManager
+                        .obtainFlashcards(flashcardTopicId: flashcardTopicId)
+                        .map { elements in
+                            elements.enumerated()
+                                .map { index, element in
+                                    let progress = "\(index + 1)/\(elements.count)"
+                                    return FlashCardModel(model: element, progress: progress)
+                                }
+                        }
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
                     }
-                    .catchAndReturn([])
+                    
+                    return tryAgain
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+                    .trackActivity(self.activity)
             }
             .asDriver(onErrorJustReturn: [])
     }
     
     func makeMark() -> Observable<Void> {
         selectedAnswer
-            .flatMapFirst { [flashcardsManager] id, isKnew -> Observable<Void> in
-                flashcardsManager.mark(flashcardId: id, know: isKnew)
-                    .asObservable()
-                    .catchAndReturn(())
+            .flatMapFirst { [weak self] id, isKnew -> Observable<Void> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                func source() -> Single<Void> {
+                    self.flashcardsManager
+                        .mark(flashcardId: id, know: isKnew)
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+                    
+                    return tryAgain
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
             }
     }
 }

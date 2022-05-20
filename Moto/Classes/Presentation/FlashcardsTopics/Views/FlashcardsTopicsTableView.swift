@@ -11,7 +11,7 @@ import RxCocoa
 final class FlashcardsTopicsTableView: UITableView {
     var didTappedRelay = PublishRelay<FlashcardTopic>()
     
-    private lazy var flashcards = [FlashcardTopic]()
+    lazy var flashcards = [FlashcardTopic]()
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)

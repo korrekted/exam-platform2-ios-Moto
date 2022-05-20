@@ -14,6 +14,7 @@ class TestStatsView: UIView {
     lazy var nextTestButton = makeBottomButton()
     lazy var tryAgainButton = makeBottomButton()
     private lazy var stackView = makeStackView()
+    lazy var preloader = makePreloader()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -85,6 +86,11 @@ private extension TestStatsView {
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16.scale),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16.scale)
         ])
+        
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -142,6 +148,13 @@ private extension TestStatsView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.spacing = 8.scale
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 60.scale, height: 60.scale))
+        view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view
     }

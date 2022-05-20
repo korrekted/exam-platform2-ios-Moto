@@ -10,7 +10,7 @@ import RxCocoa
 
 class CourseDetailsTabelView: UIView {
     private lazy var tableView = makeTableView()
-    private var elements = [CourseDetailsTableElement]()
+    var elements = [CourseDetailsTableElement]()
     
     let didTapLearnMore = PublishRelay<Void>()
     let selectedTestId = PublishRelay<Int>()

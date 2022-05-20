@@ -24,6 +24,24 @@ class CourseDetailsViewController: UIViewController {
         super.viewDidLoad()
         mainView.navigationView.leftAction.addTarget(self, action: #selector(popAction), for: .touchUpInside)
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        viewModel.activity
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.passRate
             .drive(Binder(mainView.progressView) {
                 $0.setProgress(percent: $1)
@@ -94,6 +112,30 @@ extension CourseDetailsViewController {
 
 // MARK: Private
 private extension CourseDetailsViewController {
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+    }
+    
+    func activity(_ activity: Bool) {
+        let empty = mainView.tableView.elements.isEmpty
+        
+        let inProgress = empty && activity
+        
+        inProgress ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
+    }
+    
     @objc func popAction() {
         navigationController?.popViewController(animated: true)
     }

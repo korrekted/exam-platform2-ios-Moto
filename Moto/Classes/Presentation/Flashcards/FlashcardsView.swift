@@ -10,6 +10,7 @@ import UIKit
 final class FlashcardsView: UIView {
     lazy var navigationView = makeNavigationView()
     lazy var flashCardContainer = makeFlashCardContainer()
+    lazy var preloader = makePreloader()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,6 +47,11 @@ private extension FlashcardsView {
             flashCardContainer.trailingAnchor.constraint(equalTo: trailingAnchor),
             flashCardContainer.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+        
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -69,6 +75,13 @@ private extension FlashcardsView {
             left: 20.scale,
             bottom: ScreenSize.isIphoneXFamily ? 73.scale : 43.scale,
             right: 20.scale)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 60.scale, height: 60.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

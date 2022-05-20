@@ -10,6 +10,7 @@ import UIKit
 final class FlashcardsTopicsView: UIView {
     lazy var navigationView = makeNavigationView()
     lazy var tableView = makeTableView()
+    lazy var preloader = makePreloader()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,6 +47,11 @@ private extension FlashcardsTopicsView {
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             tableView.topAnchor.constraint(equalTo: topAnchor, constant: 125.scale)
         ])
+        
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
     }
 }
 
@@ -67,6 +73,13 @@ private extension FlashcardsTopicsView {
         view.showsVerticalScrollIndicator = false
         view.separatorStyle = .none
         view.backgroundColor = UIColor.clear
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 60.scale, height: 60.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

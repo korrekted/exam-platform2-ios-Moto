@@ -12,7 +12,7 @@ final class SITestView: UIView {
     lazy var gradientView = makeGradientView()
     lazy var navigationView = makeNavigationView()
     lazy var progressView = makeCollectionView()
-    lazy var loader = makeLoader()
+    lazy var preloader = makePreloader()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -107,10 +107,8 @@ private extension SITestView {
         ])
         
         NSLayoutConstraint.activate([
-            loader.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
-            loader.centerYAnchor.constraint(equalTo: centerYAnchor),
-            loader.heightAnchor.constraint(equalToConstant: 35.scale),
-            loader.widthAnchor.constraint(equalTo: loader.heightAnchor)
+            preloader.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
 }
@@ -189,8 +187,8 @@ private extension SITestView {
         return view
     }
     
-    func makeLoader() -> LoaderView {
-        let view = LoaderView()
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 60.scale, height: 60.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

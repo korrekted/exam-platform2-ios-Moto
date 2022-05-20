@@ -22,6 +22,24 @@ final class FlashcardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        viewModel.activity
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel.flashcards
             .drive(Binder(mainView) {
                 $0.flashCardContainer.showCards(for: $1)
@@ -67,3 +85,25 @@ extension FlashcardsViewController {
     }
 }
 
+// MARK: Private
+private extension FlashcardsViewController {
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+    }
+    
+    func activity(_ activity: Bool) {
+        activity ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
+    }
+}

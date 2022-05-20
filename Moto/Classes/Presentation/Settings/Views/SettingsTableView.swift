@@ -15,7 +15,7 @@ final class SettingsTableView: UITableView {
     
     lazy var tapped = PublishRelay<Tapped>()
     
-    private lazy var sections = [SettingsTableSection]()
+    lazy var sections = [SettingsTableSection]()
     
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)

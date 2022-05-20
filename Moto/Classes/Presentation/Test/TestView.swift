@@ -13,6 +13,8 @@ final class TestView: UIView {
     lazy var gradientView = makeGradientView()
     lazy var navigationView = makeNavigationView()
     lazy var counter = makeCounterView()
+    lazy var preloader = makePreloader()
+    lazy var buttonPreloader = makeButtonPreloader()
     
     private var navigationHeightConstraint: NSLayoutConstraint?
     
@@ -186,6 +188,23 @@ private extension TestView {
     func makeCounterView() -> TestProgressView {
         let view = TestProgressView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 60.scale, height: 60.scale))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makeButtonPreloader() -> TestBottomSpinner {
+        let view = TestBottomSpinner()
+        view.layer.cornerRadius = 30.scale
+        view.backgroundColor = TestPalette.primaryButton
+        view.stop()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
         return view
     }
 }

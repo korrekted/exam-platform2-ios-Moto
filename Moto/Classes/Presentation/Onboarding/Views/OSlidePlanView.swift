@@ -10,6 +10,8 @@ import Lottie
 import RxSwift
 
 final class OSlidePlanView: OSlideView {
+    weak var vc: UIViewController?
+    
     lazy var titleLabel = makeTitleLabel()
     lazy var chartView = makeChartView()
     lazy var planTitleLabel = makePlanTitleLabel()
@@ -29,6 +31,10 @@ final class OSlidePlanView: OSlideView {
     lazy var button = makeButton()
     
     private lazy var profileManager = ProfileManagerCore()
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
+    
+    private lazy var activity = RxActivityIndicator()
     
     private lazy var disposeBag = DisposeBag()
     
@@ -52,28 +58,51 @@ final class OSlidePlanView: OSlideView {
 private extension OSlidePlanView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Void> in
+            .flatMapLatest { [weak self] _ -> Observable<Void> in
                 guard let self = self else {
                     return .never()
                 }
                 
-                return self.profileManager
-                    .globalSet(level: self.scope.level,
-                               assetsPreferences: self.scope.assetsPreferences,
-                               examDate: self.scope.examDate,
-                               testMinutes: self.scope.testMinutes,
-                               testNumber: self.scope.testNumber,
-                               testWhen: self.scope.testWhen,
-                               notificationKey: self.scope.notificationKey,
-                               country: self.scope.country,
-                               state: self.scope.state,
-                               language: self.scope.language,
-                               testMode: self.scope.testMode)
+                func source() -> Single<Void> {
+                    self.profileManager
+                        .globalSet(level: self.scope.level,
+                                   assetsPreferences: self.scope.assetsPreferences,
+                                   examDate: self.scope.examDate,
+                                   testMinutes: self.scope.testMinutes,
+                                   testNumber: self.scope.testNumber,
+                                   testWhen: self.scope.testWhen,
+                                   notificationKey: self.scope.notificationKey,
+                                   country: self.scope.country,
+                                   state: self.scope.state,
+                                   language: self.scope.language,
+                                   testMode: self.scope.testMode)
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { _ in self.openError() })
+                    .trackActivity(self.activity)
             }
             .subscribe(onNext: { [weak self] in
                 self?.onNext()
             })
             .disposed(by: disposeBag)
+    }
+    
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.vc?.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
     }
 }
 

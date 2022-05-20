@@ -355,6 +355,7 @@
 		DEADEB3628375FA90057AA44 /* SplashActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3528375FA80057AA44 /* SplashActivity.swift */; };
 		DEADEB3828375FB80057AA44 /* SplashSDKInitialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3728375FB80057AA44 /* SplashSDKInitialize.swift */; };
 		DEADEB3A283760510057AA44 /* ContentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB39283760510057AA44 /* ContentError.swift */; };
+		DEADEB3C283766170057AA44 /* TestBottomSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3B283766170057AA44 /* TestBottomSpinner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -735,6 +736,7 @@
 		DEADEB3528375FA80057AA44 /* SplashActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashActivity.swift; sourceTree = "<group>"; };
 		DEADEB3728375FB80057AA44 /* SplashSDKInitialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSDKInitialize.swift; sourceTree = "<group>"; };
 		DEADEB39283760510057AA44 /* ContentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentError.swift; sourceTree = "<group>"; };
+		DEADEB3B283766170057AA44 /* TestBottomSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBottomSpinner.swift; sourceTree = "<group>"; };
 		ED3110117CD792B481C47706 /* Pods_Moto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1086,10 +1088,10 @@
 		967381282678B7D900230FB6 /* FlashcardsTopics */ = {
 			isa = PBXGroup;
 			children = (
+				9673812C2678B7D900230FB6 /* Views */,
 				967381292678B7D900230FB6 /* FlashcardsTopicsView.swift */,
 				9673812A2678B7D900230FB6 /* FlashcardsTopicsViewController.swift */,
 				9673812B2678B7D900230FB6 /* FlashcardsTopicsViewModel.swift */,
-				9673812C2678B7D900230FB6 /* Views */,
 			);
 			path = FlashcardsTopics;
 			sourceTree = "<group>";
@@ -1870,6 +1872,7 @@
 				967D9D0F266A4FF8002251D7 /* TestProgressView.swift */,
 				967D9D10266A4FF8002251D7 /* ImageScrollView.swift */,
 				967D9D11266A4FF8002251D7 /* AVPlayerView.swift */,
+				DEADEB3B283766170057AA44 /* TestBottomSpinner.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2503,6 +2506,7 @@
 				967D9E6B266A4FF9002251D7 /* MainStatsView.swift in Sources */,
 				967D9E14266A4FF9002251D7 /* CourseViewController.swift in Sources */,
 				967D9DF2266A4FF8002251D7 /* SettingsViewModel.swift in Sources */,
+				DEADEB3C283766170057AA44 /* TestBottomSpinner.swift in Sources */,
 				967D9E19266A4FF9002251D7 /* QuestionContentCell.swift in Sources */,
 				967D9E5D266A4FF9002251D7 /* StatsViewModel.swift in Sources */,
 				DEADEB3328375C590057AA44 /* ObservableRetrySingle.swift in Sources */,

@@ -22,6 +22,24 @@ final class StatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        viewModel.activity
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                self.activity(activity)
+            })
+            .disposed(by: disposeBag)
+        
         viewModel
             .courseName
             .drive(onNext: { name in
@@ -58,5 +76,32 @@ final class StatsViewController: UIViewController {
 extension StatsViewController {
     static func make() -> StatsViewController {
         StatsViewController()
+    }
+}
+
+// MARK: Private
+private extension StatsViewController {
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+    }
+    
+    func activity(_ activity: Bool) {
+        let empty = mainView.tableView.elements.isEmpty
+        
+        let inProgress = empty && activity
+        
+        inProgress ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
     }
 }

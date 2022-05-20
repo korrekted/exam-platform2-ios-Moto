@@ -23,6 +23,10 @@ final class STChangeLocaleView: SSlideView {
     
     private lazy var completeTrigger = PublishRelay<Void>()
     
+    private lazy var activity = RxActivityIndicator()
+    
+    private lazy var observableRetrySingle = ObservableRetrySingle()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -91,19 +95,28 @@ private extension STChangeLocaleView {
             .disposed(by: disposeBag)
         
         completeTrigger
-            .flatMapLatest { [weak self] _ -> Single<Void> in
+            .flatMapLatest { [weak self] _ -> Observable<Void> in
                 guard let self = self else {
                     return .never()
                 }
                 
-                return self.manager.set(country: self.getSelectedCountry(),
-                                        state: self.getSelectedState(),
-                                        language: self.getSelectedLanguage())
+                func source() -> Single<Void> {
+                    self.manager.set(country: self.getSelectedCountry(),
+                                     state: self.getSelectedState(),
+                                     language: self.getSelectedLanguage())
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    self.openError()
+                }
+                
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+                    .trackActivity(self.activity)
             }
             .subscribe(onNext: { [weak self] in
                 self?.onNext()
-            }, onError: { _ in
-                Toast.notify(with: "Onboarding.SlideLocale.Error".localized, style: .danger)
             })
             .disposed(by: disposeBag)
     }
@@ -205,6 +218,22 @@ private extension STChangeLocaleView {
         let frame = view.frame
         
         scrollView.scrollRectToVisible(frame, animated: true)
+    }
+    
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.vc?.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
     }
 }
 

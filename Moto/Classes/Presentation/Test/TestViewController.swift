@@ -36,6 +36,30 @@ final class TestViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        viewModel.tryAgain = { [weak self] error -> Observable<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            return self.openError()
+        }
+        
+        viewModel.loadTestActivityIndicator
+            .drive(onNext: { [weak self] activity in
+                self?.activity(activity)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.sendAnswerActivityIndicator
+            .drive(onNext: { [weak self] activity in
+                guard let self = self else {
+                    return
+                }
+                
+                activity ? self.mainView.buttonPreloader.start() : self.mainView.buttonPreloader.stop()
+            })
+            .disposed(by: disposeBag)
+        
         mainView.navigationView.leftAction.rx.tap
             .withLatestFrom(viewModel.userTestId)
             .withLatestFrom(viewModel.currentTestType) { ($0, $1) }
@@ -287,6 +311,28 @@ extension TestViewController {
 
 // MARK: Private
 private extension TestViewController {
+    func activity(_ activity: Bool) {
+        mainView.tableView.isHidden = activity
+        activity ? mainView.preloader.startAnimating() : mainView.preloader.stopAnimating()
+    }
+    
+    func openError() -> Observable<Void> {
+        Observable<Void>
+            .create { [weak self] observe in
+                guard let self = self else {
+                    return Disposables.create()
+                }
+                
+                let vc = TryAgainViewController.make {
+                    observe.onNext(())
+                }
+                self.present(vc, animated: true)
+                
+                return Disposables.create()
+            }
+        
+    }
+    
     func logAnalytics(courseName: String) {
         guard let type = viewModel.currentType else {
             return

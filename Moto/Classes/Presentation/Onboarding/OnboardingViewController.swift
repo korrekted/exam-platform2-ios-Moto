@@ -37,6 +37,8 @@ final class OnboardingViewController: UIViewController {
         }
         
         addPreviousAction()
+        
+        mainView.planView.vc = self
     }
 }
 
