@@ -14,12 +14,10 @@ final class OSlideModeView: OSlideView {
     lazy var modesView = makeModesView()
     lazy var button = makeButton()
     
-    private lazy var manager = ProfileManagerCore()
-    
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -34,31 +32,18 @@ final class OSlideModeView: OSlideView {
 private extension OSlideModeView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else {
-                    return .never()
-                }
-                
-                guard let selected = self.modesView
-                        .elements
-                        .first(where: { $0.isSelected })
-                else {
-                    return .never()
-                }
-                
-                return self.manager
-                    .set(testMode: selected.code)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
                     return
                 }
                 
-                self?.onNext()
+                guard let selected = self.modesView.elements.first(where: { $0.isSelected }) else {
+                    return
+                }
+                        
+                self.scope.testMode = selected.code
+                
+                self.onNext()
             })
             .disposed(by: disposeBag)
         

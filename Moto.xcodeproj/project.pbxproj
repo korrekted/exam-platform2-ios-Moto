@@ -346,6 +346,8 @@
 		DE93781427BA78AF0073F27C /* XOREncryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE93781327BA78AF0073F27C /* XOREncryption.swift */; };
 		DEADEB21283753970057AA44 /* DefaultRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB20283753970057AA44 /* DefaultRequestWrapper.swift */; };
 		DEADEB23283753AB0057AA44 /* XORRequestWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB22283753AB0057AA44 /* XORRequestWrapper.swift */; };
+		DEADEB25283755400057AA44 /* SSlideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB24283755400057AA44 /* SSlideView.swift */; };
+		DEADEB28283756500057AA44 /* OnboardingScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB27283756500057AA44 /* OnboardingScope.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -717,6 +719,8 @@
 		DE93781327BA78AF0073F27C /* XOREncryption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XOREncryption.swift; sourceTree = "<group>"; };
 		DEADEB20283753970057AA44 /* DefaultRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestWrapper.swift; sourceTree = "<group>"; };
 		DEADEB22283753AB0057AA44 /* XORRequestWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XORRequestWrapper.swift; sourceTree = "<group>"; };
+		DEADEB24283755400057AA44 /* SSlideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSlideView.swift; sourceTree = "<group>"; };
+		DEADEB27283756500057AA44 /* OnboardingScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingScope.swift; sourceTree = "<group>"; };
 		ED3110117CD792B481C47706 /* Pods_Moto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -784,6 +788,7 @@
 		966FE09B2695D21D00B8FC20 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DEADEB262837563A0057AA44 /* Utils */,
 				966FE09E2695D21D00B8FC20 /* Atoms */,
 				966FE09C2695D21D00B8FC20 /* OSlideWelcomeView.swift */,
 				966FE09D2695D21D00B8FC20 /* OSlideModeView.swift */,
@@ -1644,6 +1649,7 @@
 				967D9CCD266A4FF8002251D7 /* SettingsTableView.swift */,
 				967D9CCE266A4FF8002251D7 /* SettingsTableSection.swift */,
 				DE3449FD2771E1FC00632F72 /* STChangeModeView.swift */,
+				DEADEB24283755400057AA44 /* SSlideView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2097,6 +2103,14 @@
 			path = RequestWrapper;
 			sourceTree = "<group>";
 		};
+		DEADEB262837563A0057AA44 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DEADEB27283756500057AA44 /* OnboardingScope.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2482,6 +2496,7 @@
 				DEADEB21283753970057AA44 /* DefaultRequestWrapper.swift in Sources */,
 				967D9E59266A4FF9002251D7 /* SITestViewController.swift in Sources */,
 				967D9E64266A4FF9002251D7 /* TrophyCell.swift in Sources */,
+				DEADEB25283755400057AA44 /* SSlideView.swift in Sources */,
 				9673823026793F9600230FB6 /* PaygateOptionView.swift in Sources */,
 				967D9DCC266A4FF8002251D7 /* GetIncorrectRequest.swift in Sources */,
 				967D9E3A266A4FF9002251D7 /* TestStatsResultCell.swift in Sources */,
@@ -2519,6 +2534,7 @@
 				9673810F2678B7CA00230FB6 /* FlashCardManagerDelegate.swift in Sources */,
 				967D9E44266A4FF9002251D7 /* TestStatsProgressView.swift in Sources */,
 				967D9E2A266A4FF9002251D7 /* AnswerView.swift in Sources */,
+				DEADEB28283756500057AA44 /* OnboardingScope.swift in Sources */,
 				DEADEB23283753AB0057AA44 /* XORRequestWrapper.swift in Sources */,
 				966FE0F12695D21D00B8FC20 /* OSlideLocaleView.swift in Sources */,
 				967D9E0C266A4FF8002251D7 /* StudyCollectionElement.swift in Sources */,

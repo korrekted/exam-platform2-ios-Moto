@@ -23,8 +23,8 @@ final class OSlideLocaleView: OSlideView {
     
     private lazy var completeTrigger = PublishRelay<Void>()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -80,19 +80,16 @@ private extension OSlideLocaleView {
             .disposed(by: disposeBag)
         
         completeTrigger
-            .flatMapLatest { [weak self] _ -> Single<Void> in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else {
-                    return .never()
+                    return
                 }
                 
-                return self.manager.set(country: self.getSelectedCountry(),
-                                        state: self.getSelectedState(),
-                                        language: self.getSelectedLanguage())
-            }
-            .subscribe(onNext: { [weak self] in
-                self?.onNext()
-            }, onError: { _ in
-                Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
+                self.scope.country = self.getSelectedCountry()
+                self.scope.state = self.getSelectedState()
+                self.scope.language = self.getSelectedLanguage()
+                
+                self.onNext()
             })
             .disposed(by: disposeBag)
     }

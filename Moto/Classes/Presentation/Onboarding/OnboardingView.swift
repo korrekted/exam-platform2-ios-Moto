@@ -26,21 +26,25 @@ final class OnboardingView: UIView {
     lazy var previousButton = makePreviousButton()
     lazy var headerLabel = makeHeaderLabel()
     
+    lazy var planView = OSlidePlanView(step: .plan, scope: scope)
+    
+    private lazy var scope = OnboardingScope()
+    
     private lazy var contentViews: [OSlideView] = {
         [
-            OSlideWelcomeView(step: .welcome),
-            OSlideLocaleView(step: .locale),
-            OSlideExperienceView(step: .experience),
-            OSlideGoalsView(step: .goals),
-            OSlideModeView(step: .mode),
-            OSlideWhenTakingView(step: .whenTaking),
-            OSlideMinutesAtTimeView(step: .minutesAtTime),
-            OSlideCountView(step: .count),
-            OSlideDrivingExperienceView(step: .drivingExperience),
-            OWhenStudyView(step: .whenStudy),
-            OPushView(step: .push),
-            OSlidePreloaderView(step: .preloader),
-            OSlidePlanView(step: .plan)
+            OSlideWelcomeView(step: .welcome, scope: scope),
+            OSlideLocaleView(step: .locale, scope: scope),
+            OSlideExperienceView(step: .experience, scope: scope),
+            OSlideGoalsView(step: .goals, scope: scope),
+            OSlideModeView(step: .mode, scope: scope),
+            OSlideWhenTakingView(step: .whenTaking, scope: scope),
+            OSlideMinutesAtTimeView(step: .minutesAtTime, scope: scope),
+            OSlideCountView(step: .count, scope: scope),
+            OSlideDrivingExperienceView(step: .drivingExperience, scope: scope),
+            OWhenStudyView(step: .whenStudy, scope: scope),
+            OPushView(step: .push, scope: scope),
+            OSlidePreloaderView(step: .preloader, scope: scope),
+            planView
         ]
     }()
     

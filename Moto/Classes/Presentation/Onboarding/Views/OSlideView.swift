@@ -13,12 +13,14 @@ protocol OSlideViewDelegate: AnyObject {
 
 class OSlideView: UIView {
     let step: OnboardingView.Step
+    let scope: OnboardingScope
     
     weak var delegate: OSlideViewDelegate?
     var didNextTapped: ((OnboardingView.Step) -> Void)?
     
-    init(step: OnboardingView.Step) {
+    init(step: OnboardingView.Step, scope: OnboardingScope) {
         self.step = step
+        self.scope = scope
         
         super.init(frame: .zero)
     }

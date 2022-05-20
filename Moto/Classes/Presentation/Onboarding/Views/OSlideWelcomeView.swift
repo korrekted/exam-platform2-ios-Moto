@@ -17,8 +17,8 @@ final class OSlideWelcomeView: OSlideView {
         .font(Fonts.SFProRounded.semiBold(size: 20.scale))
         .textAlignment(.center)
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()

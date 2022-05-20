@@ -23,10 +23,8 @@ final class OSlideExperienceView: OSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
-    private lazy var manager = ProfileManagerCore()
-    
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -42,28 +40,18 @@ final class OSlideExperienceView: OSlideView {
 private extension OSlideExperienceView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else {
-                    return .never()
-                }
-                
-                guard let level = [self.cell1, self.cell2].first(where: { $0.isChecked })?.tag else {
-                    return .never()
-                }
-                
-                return self.manager
-                    .set(level: level)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
                     return
                 }
                 
-                self?.onNext()
+                guard let level = [self.cell1, self.cell2].first(where: { $0.isChecked })?.tag else {
+                    return
+                }
+                
+                self.scope.level = level
+                
+                self.onNext()
             })
             .disposed(by: disposeBag)
     }

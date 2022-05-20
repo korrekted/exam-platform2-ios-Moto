@@ -6,17 +6,14 @@
 //
 
 import UIKit
-import RxSwift
 
 final class OSlideDrivingExperienceView: OSlideView {
     lazy var titleLabel = makeTitleLabel()
     lazy var experienceView = makeExperienceView()
     lazy var button = makeButton()
     
-    private lazy var disposeBag = DisposeBag()
-    
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
     }

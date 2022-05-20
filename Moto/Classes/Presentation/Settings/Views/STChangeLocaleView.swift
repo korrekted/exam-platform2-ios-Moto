@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class STChangeLocaleView: OSlideView {
+final class STChangeLocaleView: SSlideView {
     lazy var scrollView = makeScrollView()
     lazy var countryView = LocaleCountryView()
     lazy var languageView = LocaleLanguageView()
@@ -23,8 +23,8 @@ final class STChangeLocaleView: OSlideView {
     
     private lazy var completeTrigger = PublishRelay<Void>()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         makeConstraints()
         initialize()

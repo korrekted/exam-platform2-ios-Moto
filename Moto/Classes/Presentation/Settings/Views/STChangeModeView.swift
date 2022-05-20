@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-final class STChangeModeView: OSlideView {
+final class STChangeModeView: SSlideView {
     lazy var titleLabel = makeTitleLabel()
     lazy var subtitleLabel = makeSubtitleLabel()
     lazy var modesView = makeModesView()
@@ -18,8 +18,8 @@ final class STChangeModeView: OSlideView {
     
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         makeConstraints()
         initialize()

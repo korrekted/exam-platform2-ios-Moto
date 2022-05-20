@@ -21,12 +21,10 @@ final class OSlideCountView: OSlideView {
     
     private lazy var valueLabel = makeValueLabel()
     
-    private lazy var manager = ProfileManagerCore()
-    
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -47,26 +45,14 @@ final class OSlideCountView: OSlideView {
 private extension OSlideCountView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else {
-                    return .never()
-                }
-
-                let count = Int(self.slider.value)
-                
-                return self.manager
-                    .set(testNumber: count)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
                     return
                 }
+                
+                self.scope.testNumber = Int(self.slider.value)
 
-                self?.onNext()
+                self.onNext()
             })
             .disposed(by: disposeBag)
     }

@@ -16,12 +16,10 @@ final class OSlideWhenTakingView: OSlideView {
     lazy var button = makeButton()
     lazy var dontKnowButton = makeDontNowButton()
     
-    private lazy var manager = ProfileManagerCore()
-    
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -36,11 +34,11 @@ final class OSlideWhenTakingView: OSlideView {
 private extension OSlideWhenTakingView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else {
-                    return .never()
+                    return
                 }
-
+                
                 let date = self.datePickerView.date
                 
                 let formatter = DateFormatter()
@@ -48,19 +46,9 @@ private extension OSlideWhenTakingView {
                 
                 let examDate = formatter.string(from: date)
                 
-                return self.manager
-                    .set(examDate: examDate)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
-                    return
-                }
+                self.scope.examDate = examDate
 
-                self?.onNext()
+                self.onNext()
             })
             .disposed(by: disposeBag)
     }

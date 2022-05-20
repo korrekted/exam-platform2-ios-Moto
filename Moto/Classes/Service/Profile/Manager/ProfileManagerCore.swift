@@ -133,6 +133,39 @@ extension ProfileManagerCore {
             .callServerApi(requestBody: request)
             .map { _ in Void() }
     }
+    
+    func globalSet(level: Int?,
+                   assetsPreferences: [Int]?,
+                   examDate: String?,
+                   testMinutes: Int?,
+                   testNumber: Int?,
+                   testWhen: [Int]?,
+                   notificationKey: String?,
+                   country: String?,
+                   state: String?,
+                   language: String?,
+                   testMode: Int?) -> Single<Void> {
+        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+            return .error(SignError.tokenNotFound)
+        }
+        
+        let request = SetRequest(userToken: userToken,
+                                 country: country,
+                                 state: state,
+                                 language: language,
+                                 level: level,
+                                 assetsPreferences: assetsPreferences,
+                                 testMode: testMode,
+                                 examDate: examDate,
+                                 testMinutes: testMinutes,
+                                 testNumber: testNumber,
+                                 testWhen: testWhen,
+                                 notificationKey: notificationKey)
+        
+        return defaultRequestWrapper
+            .callServerApi(requestBody: request)
+            .map { _ in Void() }
+    }
 }
 
 // MARK: Test Mode

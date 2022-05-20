@@ -7,6 +7,7 @@
 
 import UIKit
 import Lottie
+import RxSwift
 
 final class OSlidePlanView: OSlideView {
     lazy var titleLabel = makeTitleLabel()
@@ -27,10 +28,15 @@ final class OSlidePlanView: OSlideView {
                               image: "Onboarding.SlidePlan.Cell4")
     lazy var button = makeButton()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    private lazy var profileManager = ProfileManagerCore()
+    
+    private lazy var disposeBag = DisposeBag()
+    
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
+        initialize()
     }
     
     required init?(coder: NSCoder) {
@@ -39,6 +45,35 @@ final class OSlidePlanView: OSlideView {
     
     override func moveToThis() {
         chartView.play()
+    }
+}
+
+// MARK: Private
+private extension OSlidePlanView {
+    func initialize() {
+        button.rx.tap
+            .flatMapLatest { [weak self] _ -> Single<Void> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.profileManager
+                    .globalSet(level: self.scope.level,
+                               assetsPreferences: self.scope.assetsPreferences,
+                               examDate: self.scope.examDate,
+                               testMinutes: self.scope.testMinutes,
+                               testNumber: self.scope.testNumber,
+                               testWhen: self.scope.testWhen,
+                               notificationKey: self.scope.notificationKey,
+                               country: self.scope.country,
+                               state: self.scope.state,
+                               language: self.scope.language,
+                               testMode: self.scope.testMode)
+            }
+            .subscribe(onNext: { [weak self] in
+                self?.onNext()
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -181,7 +216,6 @@ private extension OSlidePlanView {
         view.backgroundColor = Onboarding.primaryButton
         view.layer.cornerRadius = 20.scale
         view.setAttributedTitle("Onboarding.SlidePlan.Button".localized.attributed(with: attrs), for: .normal)
-        view.addTarget(self, action: #selector(onNext), for: .touchUpInside)
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

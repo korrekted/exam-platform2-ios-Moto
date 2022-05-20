@@ -16,12 +16,10 @@ final class OSlideGoalsView: OSlideView {
     lazy var cell3 = makeCell(title: "Onboarding.Goals.Cell3", tag: 2)
     lazy var button = makeButton()
     
-    private lazy var manager = ProfileManagerCore()
-    
     private lazy var disposeBag = DisposeBag()
     
-    override init(step: OnboardingView.Step) {
-        super.init(step: step)
+    override init(step: OnboardingView.Step, scope: OnboardingScope) {
+        super.init(step: step, scope: scope)
         
         makeConstraints()
         initialize()
@@ -37,9 +35,9 @@ final class OSlideGoalsView: OSlideView {
 private extension OSlideGoalsView {
     func initialize() {
         button.rx.tap
-            .flatMapLatest { [weak self] _ -> Single<Bool> in
+            .subscribe(onNext: { [weak self] in
                 guard let self = self else {
-                    return .never()
+                    return
                 }
                 
                 let selectedGoals = [
@@ -48,19 +46,9 @@ private extension OSlideGoalsView {
                 .filter { $0.isSelected }
                 .map { $0.tag }
                 
-                return self.manager
-                    .set(assetsPreferences: selectedGoals)
-                    .map { true }
-                    .catchAndReturn(false)
-            }
-            .asDriver(onErrorDriveWith: .never())
-            .drive(onNext: { [weak self] success in
-                guard success else {
-                    Toast.notify(with: "Onboarding.FailedToSave".localized, style: .danger)
-                    return
-                }
+                self.scope.assetsPreferences = selectedGoals
                 
-                self?.onNext()
+                self.onNext()
             })
             .disposed(by: disposeBag)
     }
