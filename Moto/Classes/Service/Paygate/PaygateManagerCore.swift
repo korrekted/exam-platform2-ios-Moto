@@ -8,13 +8,14 @@
 
 import RxSwift
 
-final class PaygateManagerCore: PaygateManager {}
+final class PaygateManagerCore: PaygateManager {
+    private let defaultRequestWrapper = DefaultRequestWrapper()
+}
 
 // MARK: Retrieve
 extension PaygateManagerCore {
     func retrievePaygate() -> Single<PaygateMapper.PaygateResponse?> {
-        SDKStorage.shared
-            .restApiTransport
+        defaultRequestWrapper
             .callServerApi(requestBody: GetPaygateRequest(userToken: SessionManagerCore().getSession()?.userToken,
                                                           version: UIDevice.appVersion ?? "1",
                                                           usedProducts: SessionManagerCore().getSession()?.usedProducts ?? []))

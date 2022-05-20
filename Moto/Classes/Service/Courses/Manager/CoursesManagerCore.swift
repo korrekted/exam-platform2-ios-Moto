@@ -11,6 +11,8 @@ final class CoursesManagerCore: CoursesManager {
     struct Constants {
         static let selectedCourseCacheKey = "courses_manager_core_selected_course_cache_key"
     }
+    
+    private let defaultRequestWrapper = DefaultRequestWrapper()
 }
 
 // MARK: API
@@ -43,8 +45,7 @@ extension CoursesManagerCore {
         
         let request = GetCourcesRequest(userToken: userToken)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetCourcesResponseMapper.map(from:))
     }

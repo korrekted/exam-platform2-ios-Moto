@@ -11,6 +11,8 @@ final class MonetizationManagerCore: MonetizationManager {
     struct Constants {
         static let cachedMonetizationConfig = "monetization_manager_core_cached_monetization_config"
     }
+    
+    private let defaultRequestWrapper = DefaultRequestWrapper()
 }
 
 // MARK: API
@@ -48,8 +50,7 @@ private extension MonetizationManagerCore {
                                                    version: UIDevice.appVersion ?? "1",
                                                    appAnonymousId: SDKStorage.shared.applicationAnonymousID)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { GetMonetizationResponseMapper.map(from: $0) }
             .catchAndReturn(nil)

@@ -7,7 +7,10 @@
 
 import RxSwift
 
-final class QuestionManagerCore: QuestionManager {}
+final class QuestionManagerCore: QuestionManager {
+    private let defaultRequestWrapper = DefaultRequestWrapper()
+    private let xorRequestWrapper = XORRequestWrapper()
+}
 
 extension QuestionManagerCore {
     func retrieve(courseId: Int, testId: Int?, time: Int?, activeSubscription: Bool) -> Single<Test?> {
@@ -23,8 +26,7 @@ extension QuestionManagerCore {
             activeSubscription: activeSubscription
         )
         
-        return SDKStorage.shared
-            .restApiTransport
+        return xorRequestWrapper
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -38,8 +40,7 @@ extension QuestionManagerCore {
                                        courseId: courseId,
                                        activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return xorRequestWrapper
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -53,8 +54,7 @@ extension QuestionManagerCore {
                                           courseId: courseId,
                                           activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return xorRequestWrapper
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -68,8 +68,7 @@ extension QuestionManagerCore {
                                      courseId: courseId,
                                      activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return xorRequestWrapper
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -83,8 +82,7 @@ extension QuestionManagerCore {
                                           courseId: courseId,
                                           activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return xorRequestWrapper
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -101,8 +99,7 @@ extension QuestionManagerCore {
             answerIds: answerIds
         )
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(SendAnswerResponseMapper.map(from:))
             .do(onSuccess: { isEndOfTest in
@@ -121,8 +118,7 @@ extension QuestionManagerCore {
         let request = GetTestConfigRequest(userToken: userToken,
                                                courseId: courseId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetTestConfigResponseMapper.from(response:))
     }
@@ -134,8 +130,7 @@ extension QuestionManagerCore {
         
         let request = FinishTestRequest(userToken: userToken, userTestId: userTestId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .asCompletable()
     }
@@ -147,8 +142,7 @@ extension QuestionManagerCore {
         
         let request = GetAgainTestRequest(userToken: userToken, courseId: courseId, testId: testId, activeSubscription: activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return xorRequestWrapper
             .callServerStringApi(requestBody: request)
             .map(GetTestResponseMapper.map(from:))
     }
@@ -160,8 +154,7 @@ extension QuestionManagerCore {
         
         let request = SaveQuestionRequest(userToken: userToken, questionId: questionId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .asCompletable()
     }
@@ -173,8 +166,7 @@ extension QuestionManagerCore {
         
         let request = RemoveSavedQuestionRequest(userToken: userToken, questionId: questionId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .asCompletable()
     }
@@ -186,7 +178,7 @@ extension QuestionManagerCore {
         
         let request = GetSavedRequest(userToken: userToken, courseId: courseId)
         
-        return SDKStorage.shared.restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetSavedAndIncorrectResponseMapper.map(from:))
     }
@@ -198,7 +190,7 @@ extension QuestionManagerCore {
         
         let request = GetIncorrectRequest(userToken: userToken, courseId: courseId)
         
-        return SDKStorage.shared.restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetSavedAndIncorrectResponseMapper.map(from:))
     }

@@ -12,6 +12,8 @@ final class ProfileManagerCore {
         static let cachedSelectedSpecificTopicsKey = "cachedSelectedSpecificTopicsKey"
         static let cachedCountiesKey = "cachedCountiesKey"
     }
+    
+    private let defaultRequestWrapper = DefaultRequestWrapper()
 }
 
 // MARK: Counties
@@ -21,8 +23,7 @@ extension ProfileManagerCore {
             return getCachedCountries()
         }
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: GetCountriesRequest())
             .map(GetCountriesResponseMapper.map(from:))
             .flatMap(cache)
@@ -77,8 +78,7 @@ extension ProfileManagerCore {
         
         let request = GetLocaleRequest(userToken: userToken)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetLocaleResponseMapper.map(from:))
     }
@@ -95,8 +95,7 @@ extension ProfileManagerCore {
                                  state: state,
                                  language: language)
 
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { _ in Void() }
             .do(onSuccess: {
@@ -130,8 +129,7 @@ extension ProfileManagerCore {
                                  testWhen: testWhen,
                                  notificationKey: notificationKey)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { _ in Void() }
     }
@@ -147,8 +145,7 @@ extension ProfileManagerCore {
         let request = SetRequest(userToken: userToken,
                                  testMode: testMode)
 
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { _ in Void() }
             .do(onSuccess: {
@@ -167,8 +164,7 @@ extension ProfileManagerCore {
         
         let request = GetTestModeRequest(userToken: userToken)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetTestModeResponseMapper.map(from:))
     }

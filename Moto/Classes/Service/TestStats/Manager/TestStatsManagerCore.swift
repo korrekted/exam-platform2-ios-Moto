@@ -8,9 +8,8 @@
 import RxSwift
 
 final class TestStatsManagerCore: TestStatsManager {
-    
+    private let defaultRequestWrapper = DefaultRequestWrapper()
 }
-
 
 extension TestStatsManagerCore {
     func retrieve(userTestId: Int) -> Single<TestStats?> {
@@ -20,8 +19,7 @@ extension TestStatsManagerCore {
         
         let request = GetTestStatsRequest(userToken: userToken, userTestId: userTestId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetTestStatsResponseMapper.map(from:))
     }

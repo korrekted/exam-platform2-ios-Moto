@@ -7,7 +7,9 @@
 
 import RxSwift
 
-final class FlashcardsManagerCore: FlashcardsManager {}
+final class FlashcardsManagerCore: FlashcardsManager {
+    private let defaultRequestWrapper = DefaultRequestWrapper()
+}
 
 // MARK: Public
 extension FlashcardsManagerCore {
@@ -19,8 +21,7 @@ extension FlashcardsManagerCore {
         let request = GetFlashcardsTopicsRequest(userToken: userToken,
                                                  courseId: courseId)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetFlashcardsTopicsResponseMapper.map(from:))
     }
@@ -38,8 +39,7 @@ extension FlashcardsManagerCore {
                                            flashcardTopicId: flashcardTopicId,
                                            activeSubscription: session.activeSubscription)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map(GetFlashcardsResponseMapper.map(from:))
     }
@@ -53,8 +53,7 @@ extension FlashcardsManagerCore {
                                            flashcardId: flashcardId,
                                            know: know)
         
-        return SDKStorage.shared
-            .restApiTransport
+        return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { _ in Void() }
     }
