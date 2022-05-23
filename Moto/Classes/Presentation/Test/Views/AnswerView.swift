@@ -4,12 +4,15 @@
 //
 //  Created by Vitaliy Zagorodnov on 30.01.2021.
 //
+
 import UIKit
 import RxCocoa
+import Kingfisher
 
 final class AnswerView: UIView {
     private lazy var answerLabel = makeAnswerLabel()
     private lazy var imageView = makeImageView()
+    private lazy var preloader = makePreloader()
     private var labelBottomConstraint: NSLayoutConstraint?
     
     var state: State = .initial {
@@ -40,17 +43,18 @@ extension AnswerView {
             .font(Fonts.SFProRounded.regular(size: 18.scale))
             .lineHeight(25.scale)
         
+        imageView.image = nil
+        imageView.kf.cancelDownloadTask()
+        preloader.stopAnimating()
+        
         if let imageUrl = image {
             needUpdateConstraints()
             
-            let queue = DispatchQueue.global(qos: .utility)
-            queue.async { [weak self] in
-                if let data = try? Data(contentsOf: imageUrl){
-                    DispatchQueue.main.async {
-                        self?.imageView.image = UIImage(data: data)
-                    }
-                }
-            }
+            preloader.startAnimating()
+        
+            imageView.kf.setImage(with: imageUrl, completionHandler: { [weak self] _ in
+                self?.preloader.stopAnimating()
+            })
         }
         
         answerLabel.attributedText = answer.attributed(with: attrs)
@@ -115,6 +119,11 @@ private extension AnswerView {
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -44.scale)
         ])
         
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+        ])
+        
         labelBottomConstraint = imageView.topAnchor.constraint(equalTo: answerLabel.bottomAnchor, constant: 10.scale)
         labelBottomConstraint?.isActive = true
     }
@@ -133,6 +142,13 @@ private extension AnswerView {
     func makeImageView() -> UIImageView {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
+        view.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 24.scale, height: 24.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

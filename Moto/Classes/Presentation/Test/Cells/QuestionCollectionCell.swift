@@ -9,12 +9,14 @@ import UIKit
 import AVFoundation
 import RxSwift
 import RxCocoa
+import Kingfisher
 
 class QuestionCollectionCell: UICollectionViewCell {
     
     private lazy var questionImageView = makeImageView()
     lazy var videoView = makeVideoView()
     lazy var expandButton = makeExpandButton()
+    lazy var preloader = makePreloader()
     private var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
@@ -30,7 +32,12 @@ class QuestionCollectionCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
         questionImageView.image = nil
+        questionImageView.kf.cancelDownloadTask()
+        
+        preloader.stopAnimating()
+        
         disposeBag = DisposeBag()
     }
 }
@@ -42,14 +49,12 @@ extension QuestionCollectionCell {
         case let .image(url):
             videoView.isHidden = true
             questionImageView.isHidden = false
-            let queue = DispatchQueue.global(qos: .utility)
-                queue.async { [weak self] in
-                    if let data = try? Data(contentsOf: url){
-                        DispatchQueue.main.async {
-                            self?.questionImageView.image = UIImage(data: data)
-                        }
-                    }
-                }
+            
+            preloader.startAnimating()
+            
+            questionImageView.kf.setImage(with: url, completionHandler: { [weak self] _ in
+                self?.preloader.stopAnimating()
+            })
         case let .video(url):
             let player = AVPlayer(url: url)
             videoView.player = player
@@ -94,6 +99,11 @@ private extension QuestionCollectionCell {
             expandButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15.scale),
             expandButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15.scale)
         ])
+        
+        NSLayoutConstraint.activate([
+            preloader.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            preloader.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ])
     }
 }
 
@@ -122,6 +132,13 @@ private extension QuestionCollectionCell {
         let view = TapAreaButton()
         view.setImage(UIImage(named: "Question.Expand"), for: .normal)
         view.tintColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(view)
+        return view
+    }
+    
+    func makePreloader() -> Spinner {
+        let view = Spinner(size: CGSize(width: 24.scale, height: 24.scale))
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
