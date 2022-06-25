@@ -55,20 +55,33 @@ class CourseDetailsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        let courseIdAndActiveSubscription = Observable
+        let courseAndActiveSubscription = Observable
             .combineLatest(
-                viewModel.courseId.asObservable(),
+                viewModel.course.compactMap { $0 }.asObservable(),
                 viewModel.activeSubscription
             )
             .share(replay: 1)
         
         mainView.tableView.selectedTestId
-            .withLatestFrom(courseIdAndActiveSubscription) { ($0, $1) }
+            .withLatestFrom(courseAndActiveSubscription) { ($0, $1) }
+            .withLatestFrom(viewModel.config) { ($0, $1) }
             .bind(to: Binder(self) { base, tuple in
-                let (testId, (courseId, activeSubscription)) = tuple
+                let ((testId, (course, activeSubscription)), config) = tuple
+                let types: [TestType]
                 
-                let controller = TestViewController.make(testType: .get(testId: testId), activeSubscription: activeSubscription, courseId: courseId, isTopicTest: true)
-                base.parent?.navigationController?.pushViewController(controller, animated: true)
+                if activeSubscription, let selected = config.first(where: { $0.id == testId }) {
+                    types = config
+                        .split(separator: selected)
+                        .reversed()
+                        .flatMap { $0 }
+                        .reduce(into: [.get(testId: selected.id)]) { old, new in
+                            old.append(.get(testId: new.id))
+                        }
+                } else {
+                    types = [.get(testId: testId)]
+                }
+                
+                TestCoordinator.shared.start(testTypes: types, course: course, isTopicTest: true, from: base)
             })
             .disposed(by: disposeBag)
         
@@ -77,12 +90,12 @@ class CourseDetailsViewController: UIViewController {
                 mainView.savedButton.rx.tap.map { _ in .saved },
                 mainView.incorrectButton.rx.tap.map { _ in .incorrect }
             )
-            .withLatestFrom(courseIdAndActiveSubscription) { ($0, $1) }
+            .withLatestFrom(courseAndActiveSubscription) { ($0, $1) }
             .bind(to: Binder(self) { base, tuple in
-                let (testType, (courseId, activeSubscription)) = tuple
+                let (testType, (course, activeSubscription)) = tuple
                 if activeSubscription {
-                    let controller = SITestViewController.make(testType: testType, activeSubscription: activeSubscription, courseId: courseId)
-                    base.parent?.navigationController?.pushViewController(controller, animated: true)
+                    let vc = SITestViewController.make(course: course, testType: testType)
+                    base.present(vc, animated: true)
                 } else {
                     UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
                 }

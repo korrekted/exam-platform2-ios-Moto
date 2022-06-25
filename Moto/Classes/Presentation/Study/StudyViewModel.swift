@@ -15,7 +15,7 @@ final class StudyViewModel {
     
     private lazy var courseManager = CoursesManagerCore()
     private lazy var sessionManager = SessionManagerCore()
-    private lazy var questionManager = QuestionManagerCore()
+    private lazy var questionManager = QuestionManager()
     private lazy var statsManager = StatsManagerCore()
     private lazy var flashcardsManager = FlashcardsManagerCore()
     
@@ -23,7 +23,6 @@ final class StudyViewModel {
     lazy var activeSubscription = makeActiveSubscription()
     lazy var course = makeCourseName()
     lazy var brief = makeBrief()
-    lazy var finishedTimedTest = makeTimedFinish()
     
     let selectedCourse = BehaviorRelay<Course?>(value: nil)
     lazy var config = makeConfig().share(replay: 1, scope: .forever)
@@ -87,8 +86,8 @@ private extension StudyViewModel {
     func makeCoursesElements() -> Driver<StudyCollectionSection> {
         let courses = Signal
             .merge(
-                QuestionManagerMediator.shared.rxTestPassed,
-                QuestionManagerMediator.shared.rxTestClosed,
+                QuestionMediator.shared.testPassed,
+                TestCloseMediator.shared.testClosed.map { _ in Void() },
                 ProfileMediator.shared.rxUpdatedProfileLocale.map { _ in () }
             )
             .asObservable()
@@ -132,8 +131,8 @@ private extension StudyViewModel {
     func makeBrief() -> Driver<SCEBrief> {
         let testPassed = Signal
             .merge(
-                QuestionManagerMediator.shared.rxTestPassed,
-                QuestionManagerMediator.shared.rxTestClosed
+                QuestionMediator.shared.testPassed,
+                TestCloseMediator.shared.testClosed.map { _ in Void() }
             )
             .asObservable()
             .startWith(())
@@ -278,7 +277,7 @@ private extension StudyViewModel {
                 
                 func source() -> Single<CourseConfig> {
                     self.questionManager
-                        .retrieveConfig(courseId: course.id)
+                        .obtainConfig(courseId: course.id)
                         .flatMap { config -> Single<CourseConfig> in
                             guard let config = config else {
                                 return .error(ContentError(.notContent))
@@ -286,34 +285,6 @@ private extension StudyViewModel {
                             
                             return .just(config)
                         }
-                }
-                
-                func trigger(error: Error) -> Observable<Void> {
-                    guard let tryAgain = self.tryAgain?(error) else {
-                        return .empty()
-                    }
-                    
-                    return tryAgain
-                }
-                
-                return self.observableRetrySingle
-                    .retry(source: { source() },
-                           trigger: { trigger(error: $0) })
-                    .trackActivity(self.activity)
-            }
-    }
-    
-    func makeTimedFinish() -> Observable<Void> {
-        QuestionManagerMediator.shared.rxTimedTestClosed
-            .asObservable()
-            .flatMap { [weak self] userTestId -> Observable<Void> in
-                guard let self = self else {
-                    return .empty()
-                }
-                
-                func source() -> Single<Void> {
-                    self.questionManager.finishTest(userTestId: userTestId)
-                        .andThen(.just(()))
                 }
                 
                 func trigger(error: Error) -> Observable<Void> {

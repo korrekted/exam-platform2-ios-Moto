@@ -14,7 +14,7 @@ final class CourseDetailsViewModel {
     
     let course = BehaviorRelay<Course?>(value: nil)
     
-    private lazy var questionManager = QuestionManagerCore()
+    private lazy var questionManager = QuestionManager()
     private lazy var sessionManager = SessionManagerCore()
     
     lazy var passRate = course.asDriver().compactMap { $0?.progress }
@@ -56,7 +56,7 @@ extension CourseDetailsViewModel {
                 
                 func source() -> Single<CourseConfig> {
                     self.questionManager
-                        .retrieveConfig(courseId: courseId)
+                        .obtainConfig(courseId: courseId)
                         .flatMap { config -> Single<CourseConfig> in
                             guard let config = config else {
                                 return .error(ContentError(.notContent))
@@ -83,8 +83,8 @@ extension CourseDetailsViewModel {
         
         return Signal
             .merge(
-                QuestionManagerMediator.shared.rxTestPassed,
-                QuestionManagerMediator.shared.rxTestClosed
+                QuestionMediator.shared.testPassed,
+                TestCloseMediator.shared.testClosed.map { _ in Void() }
             )
             .asObservable()
             .startWith(())

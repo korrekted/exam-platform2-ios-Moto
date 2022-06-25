@@ -39,7 +39,7 @@ extension FlashCardManagerMediator {
 
 // MARK: Observer
 extension FlashCardManagerMediator {
-    func add(delegate: QuestionManagerDelegate) {
+    func add(delegate: FlashCardManagerDelegate) {
         let weakly = delegate as AnyObject
         delegates.append(Weak<FlashCardManagerDelegate>(weakly))
         delegates = delegates.filter { $0.weak != nil }

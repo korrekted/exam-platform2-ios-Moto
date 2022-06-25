@@ -25,8 +25,6 @@ final class StudyViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         
-        let activeSubscription = viewModel.activeSubscription
-        
         viewModel.tryAgain = { [weak self] error -> Observable<Void> in
             guard let self = self else {
                 return .never()
@@ -82,12 +80,9 @@ final class StudyViewController: UIViewController {
             .disposed(by: disposeBag)
         
         mainView.takeButton.rx.tap
-            .withLatestFrom(viewModel.activeSubscription)
-            .withLatestFrom(viewModel.course) { ($0, $1) }
-            .bind(to: Binder(self) { base, tuple in
-                let (activeSubscription, course) = tuple
-                
-                base.openTest(type: .get(testId: nil), activeSubscription: activeSubscription, courseId: course.id)
+            .withLatestFrom(viewModel.course)
+            .bind(to: Binder(self) { base, course in
+                base.openTest(types: [.get(testId: nil)], course: course)
                 
                 SDKStorage.shared
                     .amplitudeManager
@@ -107,11 +102,10 @@ final class StudyViewController: UIViewController {
         
         mainView.collectionView
             .selectedMode
-            .withLatestFrom(activeSubscription) { ($0, $1) }
-            .withLatestFrom(viewModel.course) { ($0.0, $0.1, $1) }
+            .withLatestFrom(viewModel.course) { ($0, $1) }
             .bind(to: Binder(self) { base, tuple in
-                let (mode, activeSubscription, course) = tuple
-                base.tapped(mode: mode, activeSubscription: activeSubscription, courseId: course.id)
+                let (mode, course) = tuple
+                base.tapped(mode: mode, course: course)
             })
             .disposed(by: disposeBag)
         
@@ -140,10 +134,6 @@ final class StudyViewController: UIViewController {
             .didTapSelectedCourse.bind(to: Binder(self) {
                 $0.openCourseDetails(course: $1)
             })
-            .disposed(by: disposeBag)
-        
-        viewModel.finishedTimedTest
-            .subscribe()
             .disposed(by: disposeBag)
     }
 }
@@ -191,35 +181,35 @@ private extension StudyViewController {
             .logEvent(name: "Study Tap", parameters: ["what": "settings"])
     }
     
-    func tapped(mode: SCEMode.Mode, activeSubscription: Bool, courseId: Int) {
+    func tapped(mode: SCEMode.Mode, course: Course) {
         switch mode {
         case .ten:
-            openTest(type: .tenSet, activeSubscription: activeSubscription, courseId: courseId)
+            openTest(types: [.tenSet], course: course)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "10 questions"])
         case .random:
-            openTest(type: .randomSet, activeSubscription: activeSubscription, courseId: courseId)
+            openTest(types: [.randomSet], course: course)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "random set"])
         case .missed:
-            openTest(type: .failedSet, activeSubscription: activeSubscription, courseId: courseId)
+            openTest(types: [.failedSet], course: course)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "missed questions"])
         case .today:
-            openTest(type: .qotd, activeSubscription: activeSubscription, courseId: courseId)
+            openTest(types: [.qotd], course: course)
             
             SDKStorage.shared
                 .amplitudeManager
                 .logEvent(name: "Study Tap", parameters: ["what": "question of the day"])
         case .time:
             let controller = TimedExamViewController.make() { [weak self] minutes in
-                self?.openTest(type: .timedQuizz(minutes: minutes), activeSubscription: activeSubscription, courseId: courseId)
+                self?.openTest(types: [.timed(minutes: minutes)], course: course)
             }
             controller.modalPresentationStyle = .custom
             controller.transitioningDelegate = self
@@ -227,9 +217,8 @@ private extension StudyViewController {
         }
     }
     
-    func openTest(type: TestType, activeSubscription: Bool, courseId: Int) {
-             let controller = TestViewController.make(testType: type, activeSubscription: activeSubscription, courseId: courseId, isTopicTest: false)
-        parent?.navigationController?.pushViewController(controller, animated: true)
+    func openTest(types: [TestType], course: Course) {
+        TestCoordinator.shared.start(testTypes: types, course: course, isTopicTest: false, from: self)
     }
     
     func openCourseDetails(course: Course) {

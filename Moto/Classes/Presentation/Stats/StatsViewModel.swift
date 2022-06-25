@@ -38,8 +38,8 @@ private extension StatsViewModel {
     func makeElements() -> Driver<[StatsCellType]> {
         let elements = Signal
             .merge(
-                QuestionManagerMediator.shared.rxTestPassed,
-                QuestionManagerMediator.shared.rxTestClosed,
+                QuestionMediator.shared.testPassed,
+                TestCloseMediator.shared.testClosed.map { _ in Void() },
                 CoursesMediator.shared.rxChangedSelectedCourse.map { _ in Void() }
             )
             .asObservable()
