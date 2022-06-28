@@ -45,7 +45,6 @@ private extension GetTestResponseMapper {
         
         guard
             let data = json["_data"] as? [String: Any],
-            let timeLeft = data["time_left"] as? Int,
             let userTestId = data["user_test_id"] as? Int,
             let questionsJSON = data["questions"] as? [[String: Any]]
         else {
@@ -53,6 +52,7 @@ private extension GetTestResponseMapper {
         }
         
         let paid = data["paid"] as? Bool ?? false
+        let timeLeft = data["time_left"] as? Int
         
         let questions = QuestionMapper.map(from: questionsJSON)
         
