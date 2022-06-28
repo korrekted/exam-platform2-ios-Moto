@@ -187,28 +187,46 @@ private extension TestViewModel {
         let didFinishTest = timer
             .compactMap { $0 == 0 ? () : nil }
             .withLatestFrom(userTestId)
-            .flatMap { [weak self] userTestId -> Single<Int> in
-                guard let self = self else {
-                    return .never()
-                }
-                
-                return self.questionManager
-                    .finishTest(userTestId: userTestId)
-                    .map { userTestId }
-            }
         
         let submit = didTapSubmit
             .withLatestFrom(userTestId)
         
-        return Observable.merge(didFinishTest, submit)
+        let userTestId = Observable
+            .merge(didFinishTest, submit)
+            .flatMapLatest { [weak self] userTestId -> Observable<Int> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                func source() -> Single<Int> {
+                    self.questionManager
+                        .finishTest(userTestId: userTestId)
+                        .map { userTestId }
+                }
+                
+                func trigger(error: Error) -> Observable<Void> {
+                    guard let tryAgain = self.tryAgain?(error) else {
+                        return .empty()
+                    }
+                    
+                    return tryAgain
+                }
+
+                return self.observableRetrySingle
+                    .retry(source: { source() },
+                           trigger: { trigger(error: $0) })
+                    .trackActivity(self.sendAnswerActivityIndicator)
+            }
+        
+        return userTestId
             .withLatestFrom(courseName) { ($0, $1) }
             .withLatestFrom(testType) { ($0.0, $0.1, $1) }
             .withLatestFrom(isTopicTest) { ($0.0, $0.1, $0.2, $1) }
             .compactMap { userTestId, courseName, testType, isTopicTest -> TestFinishElement? in
-                TestFinishElement(userTestId: userTestId,
-                                  courseName: courseName,
-                                  testType: testType,
-                                  isTopicTest: isTopicTest)
+                return TestFinishElement(userTestId: userTestId,
+                                         courseName: courseName,
+                                         testType: testType,
+                                         isTopicTest: isTopicTest)
             }
             .asDriver(onErrorDriveWith: .never())
     }
