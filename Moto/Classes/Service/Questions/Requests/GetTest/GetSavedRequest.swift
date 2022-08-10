@@ -8,13 +8,9 @@
 import Alamofire
 
 struct GetSavedRequest: APIRequestBody {
-    private let userToken: String
-    private let courseId: Int
-    
-    init(userToken: String, courseId: Int) {
-        self.userToken = userToken
-        self.courseId = courseId
-    }
+    let userToken: String
+    let courseId: Int
+    let activeSubscription: Bool
     
     var url: String {
         GlobalDefinitions.domainUrl + "/api/tests/saved"
@@ -28,7 +24,8 @@ struct GetSavedRequest: APIRequestBody {
          [
             "_api_key": GlobalDefinitions.apiKey,
             "_user_token": userToken,
-            "course_id": courseId
+            "course_id": courseId,
+            "user_is_premium": activeSubscription
         ]
     }
 }

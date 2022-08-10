@@ -13,8 +13,8 @@ protocol QuestionManagerProtocol: AnyObject {
     func obtainFailedSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainQotd(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainRandomSet(courseId: Int, activeSubscription: Bool) -> Single<Test?>
-    func obtainSaved(courseId: Int) -> Single<Test?>
-    func obtainIncorrect(courseId: Int) -> Single<Test?>
+    func obtainSaved(courseId: Int, activeSubscription: Bool) -> Single<Test?>
+    func obtainIncorrect(courseId: Int, activeSubscription: Bool) -> Single<Test?>
     func obtainAgainTest(userTestId: Int) -> Single<Test?>
     func finishTest(userTestId: Int) -> Single<Void>
     func sendAnswer(questionId: Int, userTestId: Int, answerIds: [Int]) -> Single<Bool?>
@@ -105,24 +105,28 @@ extension QuestionManager {
             .map { try GetTestResponseMapper.map(from: $0, isEncryption: true) }
     }
     
-    func obtainSaved(courseId: Int) -> Single<Test?> {
+    func obtainSaved(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
-        let request = GetSavedRequest(userToken: userToken, courseId: courseId)
+        let request = GetSavedRequest(userToken: userToken,
+                                      courseId: courseId,
+                                      activeSubscription: activeSubscription)
         
         return defaultRequestWrapper
             .callServerApi(requestBody: request)
             .map { try GetTestResponseMapper.map(from: $0, isEncryption: false) }
     }
     
-    func obtainIncorrect(courseId: Int) -> Single<Test?> {
+    func obtainIncorrect(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
         guard let userToken = SessionManagerCore().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
-        let request = GetIncorrectRequest(userToken: userToken, courseId: courseId)
+        let request = GetIncorrectRequest(userToken: userToken,
+                                          courseId: courseId,
+                                          activeSubscription: activeSubscription)
         
         return defaultRequestWrapper
             .callServerApi(requestBody: request)

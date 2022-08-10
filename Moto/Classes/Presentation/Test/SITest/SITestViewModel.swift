@@ -171,15 +171,17 @@ private extension SITestViewModel {
                     return .empty()
                 }
                 
+                let activeSubscription = self.sessionManager.getSession()?.activeSubscription ?? false
+                
                 func source() -> Single<Test> {
                     let test: Single<Test?>
                     switch type {
                     case .saved:
                         test = self.questionManager
-                            .obtainSaved(courseId: courseId)
+                            .obtainSaved(courseId: courseId, activeSubscription: activeSubscription)
                     case .incorrect:
                         test = self.questionManager
-                            .obtainIncorrect(courseId: courseId)
+                            .obtainIncorrect(courseId: courseId, activeSubscription: activeSubscription)
                     }
                     
                     return test.flatMap { test -> Single<Test> in
