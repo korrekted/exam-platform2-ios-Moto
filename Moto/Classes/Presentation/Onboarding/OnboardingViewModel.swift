@@ -15,13 +15,9 @@ final class OnboardingViewModel {
         case nextScreen
     }
     
-    private lazy var coursesManager = CoursesManagerCore()
+    private lazy var coursesManager = CoursesManager()
     private lazy var sessionManager = SessionManagerCore()
     private lazy var monetizationManager = MonetizationManagerCore()
-    
-    var hasSelectedCourse: Bool {
-        coursesManager.getSelectedCourse() != nil
-    }
     
     func whatNext() -> Step {
         let hasActiveSubscription = sessionManager.getSession()?.activeSubscription ?? false

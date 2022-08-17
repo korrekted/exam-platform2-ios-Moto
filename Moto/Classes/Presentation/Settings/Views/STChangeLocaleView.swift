@@ -15,7 +15,7 @@ final class STChangeLocaleView: SSlideView {
     lazy var languageView = LocaleLanguageView()
     lazy var stateView = LocaleStateView()
     
-    private lazy var manager = ProfileManagerCore()
+    private lazy var manager = ProfileManager()
     
     private lazy var disposeBag = DisposeBag()
     
@@ -84,7 +84,7 @@ private extension STChangeLocaleView {
                 }
                 
                 return self.manager
-                    .retrieveCountries(forceUpdate: false)
+                    .obtainCountries(forceUpdate: false)
             }
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self] countries in

@@ -18,7 +18,7 @@ final class SplashViewModel {
     lazy var validationComplete = PublishRelay<Void>()
     
     private lazy var monetizationManager = MonetizationManagerCore()
-    private lazy var profileManager = ProfileManagerCore()
+    private lazy var profileManager = ProfileManager()
     private lazy var sessionManager = SessionManagerCore()
     private lazy var paygateManager = PaygateManager()
     
@@ -33,8 +33,12 @@ final class SplashViewModel {
                 
                 return self.library()
             }
-            .compactMap { [weak self] void -> Step? in
-                self?.makeStep()
+            .flatMap { [weak self] _ -> Single<Step> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                return self.makeStep()
             }
             .asDriver(onErrorDriveWith: .empty())
     }
@@ -48,13 +52,16 @@ private extension SplashViewModel {
                 .rxRetrieveMonetizationConfig(forceUpdate: true)
             
             let countries = profileManager
-                .retrieveCountries(forceUpdate: true)
+                .obtainCountries(forceUpdate: true)
             
             let paygate = paygateManager
                 .retrievePaygate(forceUpdate: true)
             
+            let profile = profileManager
+                .obtainProfile(forceUpdate: true)
+            
             return Single
-                .zip(monetization, countries, paygate)
+                .zip(monetization, countries, paygate, profile)
                 .map { _ in Void() }
         }
         
@@ -71,12 +78,24 @@ private extension SplashViewModel {
                    trigger: { trigger(error: $0) })
     }
     
-    func makeStep() -> Step {
-        guard OnboardingViewController.wasViewed() else {
-            return .onboarding
-        }
-        
-        return needPayment() ? .paygate : .course
+    func makeStep() -> Single<Step> {
+        profileManager
+            .obtainSelectedCourse(forceUpdate: false)
+            .map { [weak self] selectedCourse -> Step in
+                guard let self = self else {
+                    return .onboarding
+                }
+                
+                if selectedCourse != nil {
+                    return self.needPayment() ? .paygate : .course
+                }
+                
+                if !OnboardingViewController.wasViewed() {
+                    return .onboarding
+                }
+                
+                return .course
+            }
     }
     
     func needPayment() -> Bool {

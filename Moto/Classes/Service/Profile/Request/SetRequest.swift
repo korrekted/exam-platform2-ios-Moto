@@ -12,7 +12,8 @@ struct SetRequest: APIRequestBody {
     private let country: String?
     private let state: String?
     private let language: String?
-    private let topicsIds: [Int]?
+    private let selectedCoursesIds: [Int]?
+    private let selectedCourseId: Int?
     private let level: Int?
     private let assetsPreferences: [Int]?
     private let testMode: Int?
@@ -26,7 +27,8 @@ struct SetRequest: APIRequestBody {
          country: String? = nil,
          state: String? = nil,
          language: String? = nil,
-         topicsIds: [Int]? = nil,
+         selectedCoursesIds: [Int]? = nil,
+         selectedCourseId: Int? = nil,
          level: Int? = nil,
          assetsPreferences: [Int]? = nil,
          testMode: Int? = nil,
@@ -39,7 +41,8 @@ struct SetRequest: APIRequestBody {
         self.country = country
         self.state = state
         self.language = language
-        self.topicsIds = topicsIds
+        self.selectedCoursesIds = selectedCoursesIds
+        self.selectedCourseId = selectedCourseId
         self.level = level
         self.assetsPreferences = assetsPreferences
         self.testMode = testMode
@@ -76,8 +79,12 @@ struct SetRequest: APIRequestBody {
             params["language"] = language
         }
         
-        if let topicsIds = self.topicsIds {
-            params["course_ids"] = topicsIds
+        if let selectedCoursesIds = self.selectedCoursesIds {
+            params["course_ids"] = selectedCoursesIds
+        }
+        
+        if let selectedCourseId = self.selectedCourseId {
+            params["current_application_course_id"] = selectedCourseId
         }
         
         if let level = self.level {

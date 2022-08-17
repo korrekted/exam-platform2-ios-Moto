@@ -13,7 +13,8 @@ final class StudyViewModel {
     
     lazy var activity = RxActivityIndicator()
     
-    private lazy var courseManager = CoursesManagerCore()
+    private lazy var profileManager = ProfileManager()
+    private lazy var courseManager = CoursesManager()
     private lazy var sessionManager = SessionManagerCore()
     private lazy var questionManager = QuestionManager()
     private lazy var statsManager = StatsManagerCore()
@@ -35,19 +36,58 @@ final class StudyViewModel {
 // MARK: Private
 private extension StudyViewModel {
     func makeCurrentCourse() -> Observable<Course> {
-        let saved = selectedCourse
-            .compactMap { $0 }
+        func set(course: Course) -> Observable<Course> {
+            func source() -> Single<Void> {
+                profileManager
+                    .set(selectedCourse: course)
+            }
+            
+            func trigger(error: Error) -> Observable<Void> {
+                guard let tryAgain = self.tryAgain?(error) else {
+                    return .empty()
+                }
+                
+                return tryAgain
+            }
+            
+            return observableRetrySingle
+                .retry(source: { source() },
+                       trigger: { trigger(error: $0) })
+                .map { course }
+        }
         
-        let defaultCourse = makeCourses()
+        let initial = profileManager
+            .obtainSelectedCourse(forceUpdate: false)
             .asObservable()
-            .compactMap { $0.first}
-            .take(1)
+            .flatMap { [weak self] selectedCourse -> Observable<Course> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                if let selectedCourse = selectedCourse {
+                    return .just(selectedCourse)
+                }
+                
+                return self.makeCourses()
+                    .map { $0.first }
+                    .flatMapLatest { course -> Observable<Course> in
+                        guard let course = course else {
+                            return .never()
+                        }
+                        
+                        return set(course: course)
+                    }
+            }
+            .compactMap { $0 }
+            .asObservable()
         
-        return defaultCourse
-            .concat(saved)
-            .do(onNext: { [weak self] in
-                self?.courseManager.select(course: $0)
-            })
+        let updated = selectedCourse
+            .compactMap { $0 }
+            .flatMapLatest { course -> Observable<Course> in
+                set(course: course)
+            }
+        
+        return Observable.merge(initial, updated)
     }
     
     func makeCourseName() -> Driver<Course> {
@@ -88,7 +128,8 @@ private extension StudyViewModel {
             .merge(
                 QuestionMediator.shared.testPassed,
                 TestCloseMediator.shared.testClosed.map { _ in Void() },
-                ProfileMediator.shared.rxUpdatedProfileLocale.map { _ in () }
+                SITestCloseMediator.shared.testClosed,
+                ProfileMediator.shared.changedProfileLocale.map { _ in () }
             )
             .asObservable()
             .startWith(())
@@ -111,7 +152,7 @@ private extension StudyViewModel {
     func makeCourses() -> Observable<[Course]> {
         func source() -> Single<[Course]> {
             courseManager
-                .retrieveCourses()
+                .obtainCourses()
         }
         
         func trigger(error: Error) -> Observable<Void> {

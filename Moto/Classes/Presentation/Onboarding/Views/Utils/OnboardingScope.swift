@@ -13,9 +13,6 @@ final class OnboardingScope {
     var testNumber: Int?
     var testWhen: [Int]?
     var notificationKey: String?
-    var topicsIds: [Int]?
-    var country: String?
-    var state: String?
-    var language: String?
-    var testMode: Int?
+    var selectedCourses: [Course]?
+    var testMode: TestMode?
 }

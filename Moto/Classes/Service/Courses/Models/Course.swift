@@ -5,7 +5,7 @@
 //  Created by Andrey Chernyshev on 17.01.2021.
 //
 
-struct Course {
+struct Course: Codable, Hashable {
     let id: Int
     let name: String
     let subTitle: String
@@ -15,6 +15,3 @@ struct Course {
     let testCount: Int
     let selected: Bool
 }
-
-// MARK: Codable
-extension Course: Codable {}

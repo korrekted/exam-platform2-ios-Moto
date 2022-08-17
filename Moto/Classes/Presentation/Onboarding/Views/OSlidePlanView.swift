@@ -30,7 +30,7 @@ final class OSlidePlanView: OSlideView {
                               image: "Onboarding.SlidePlan.Cell4")
     lazy var button = makeButton()
     
-    private lazy var profileManager = ProfileManagerCore()
+    private lazy var profileManager = ProfileManager()
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
     
@@ -65,17 +65,16 @@ private extension OSlidePlanView {
                 
                 func source() -> Single<Void> {
                     self.profileManager
-                        .globalSet(level: self.scope.level,
-                                   assetsPreferences: self.scope.assetsPreferences,
-                                   examDate: self.scope.examDate,
-                                   testMinutes: self.scope.testMinutes,
-                                   testNumber: self.scope.testNumber,
-                                   testWhen: self.scope.testWhen,
-                                   notificationKey: self.scope.notificationKey,
-                                   country: self.scope.country,
-                                   state: self.scope.state,
-                                   language: self.scope.language,
-                                   testMode: self.scope.testMode)
+                        .set(level: self.scope.level,
+                             assetsPreferences: self.scope.assetsPreferences,
+                             examDate: self.scope.examDate,
+                             testMinutes: self.scope.testMinutes,
+                             testNumber: self.scope.testNumber,
+                             testWhen: self.scope.testWhen,
+                             notificationKey: self.scope.notificationKey,
+                             testMode: self.scope.testMode,
+                             selectedCoursesIds: self.scope.selectedCourses?.map { $0.id },
+                             selectedCourse: self.scope.selectedCourses?.first)
                 }
                 
                 return self.observableRetrySingle

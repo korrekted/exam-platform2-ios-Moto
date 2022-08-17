@@ -1,17 +1,17 @@
 //
-//  GetLocaleRequest.swift
+//  LoginRequest.swift
 //  CDL
 //
-//  Created by Andrey Chernyshev on 26.05.2021.
+//  Created by Андрей Чернышев on 28.07.2022.
 //
 
 import Alamofire
 
-struct GetLocaleRequest: APIRequestBody {
+struct LoginRequest: APIRequestBody {
     let userToken: String
-    
+
     var url: String {
-        GlobalDefinitions.domainUrl + "/api/users/show"
+        GlobalDefinitions.domainUrl + "/api/users/login"
     }
     
     var method: HTTPMethod {
@@ -21,7 +21,7 @@ struct GetLocaleRequest: APIRequestBody {
     var parameters: Parameters? {
         [
             "_api_key": GlobalDefinitions.apiKey,
-            "_user_token": userToken
+            "user_token": userToken
         ]
     }
 }

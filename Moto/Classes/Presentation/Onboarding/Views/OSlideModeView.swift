@@ -40,7 +40,7 @@ private extension OSlideModeView {
                 guard let selected = self.modesView.elements.first(where: { $0.isSelected }) else {
                     return
                 }
-                        
+                
                 self.scope.testMode = selected.code
                 
                 self.onNext()
@@ -51,19 +51,19 @@ private extension OSlideModeView {
             .init(title: "Onboarding.Mode.Cell2.Title".localized,
                   subtitle: "Onboarding.Mode.Cell2.Subtitle".localized,
                   image: "Onboarding.Mode.FullComplect",
-                  code: 0,
+                  code: TestMode.fullComplect,
                   isSelected: true),
             
             .init(title: "Onboarding.Mode.Cell1.Title".localized,
                   subtitle: "Onboarding.Mode.Cell1.Subtitle".localized,
                   image: "Onboarding.Mode.NoExplanations",
-                  code: 2,
+                  code: TestMode.noExplanations,
                   isSelected: false),
             
             .init(title: "Onboarding.Mode.Cell3.Title".localized,
                   subtitle: "Onboarding.Mode.Cell3.Subtitle".localized,
                   image: "Onboarding.Mode.OnAnExam",
-                  code: 1,
+                  code: TestMode.onAnExam,
                   isSelected: false)
         ], isNeedScroll: false)
     }

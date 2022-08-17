@@ -26,6 +26,7 @@ final class OnboardingView: UIView {
     lazy var previousButton = makePreviousButton()
     lazy var headerLabel = makeHeaderLabel()
     
+    lazy var localeView = OSlideLocaleView(step: .locale, scope: scope)
     lazy var planView = OSlidePlanView(step: .plan, scope: scope)
     
     private lazy var scope = OnboardingScope()
@@ -33,7 +34,7 @@ final class OnboardingView: UIView {
     private lazy var contentViews: [OSlideView] = {
         [
             OSlideWelcomeView(step: .welcome, scope: scope),
-            OSlideLocaleView(step: .locale, scope: scope),
+            localeView,
             OSlideExperienceView(step: .experience, scope: scope),
             OSlideGoalsView(step: .goals, scope: scope),
             OSlideModeView(step: .mode, scope: scope),

@@ -38,6 +38,7 @@ final class OnboardingViewController: UIViewController {
         
         addPreviousAction()
         
+        mainView.localeView.vc = self
         mainView.planView.vc = self
     }
 }
