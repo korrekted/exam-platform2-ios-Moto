@@ -26,11 +26,11 @@ final class LocaleTableViewCell: UITableViewCell {
 // MARK: Public
 extension LocaleTableViewCell {
     func setup(element: LocaleTableViewElement) {
-        container.backgroundColor = element.isSelected ? UIColor(integralRed: 73, green: 132, blue: 241) : UIColor(integralRed: 241, green: 246, blue: 254)
+        container.backgroundColor = element.isSelected ? Onboarding.pickerText : UIColor(integralRed: 253, green: 246, blue: 241)
         
         let attrs = TextAttributes()
             .font(Fonts.SFProRounded.semiBold(size: 20.scale))
-            .textColor(element.isSelected ? UIColor.white : UIColor(integralRed: 73, green: 132, blue: 241))
+            .textColor(element.isSelected ? UIColor.white : Onboarding.pickerText)
             .lineHeight(28.scale)
         label.attributedText = element.name.attributed(with: attrs)
     }

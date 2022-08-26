@@ -45,7 +45,6 @@
 		966FE0F22695D21D00B8FC20 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966FE0C82695D21D00B8FC20 /* OnboardingView.swift */; };
 		966FE0F32695D21D00B8FC20 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966FE0C92695D21D00B8FC20 /* OnboardingViewModel.swift */; };
 		966FE0F42695D21D00B8FC20 /* OnboardingAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966FE0CB2695D21D00B8FC20 /* OnboardingAnalytics.swift */; };
-		966FE0FD269729B700B8FC20 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = 966FE0FC269729B700B8FC20 /* Onboarding.Chart.json */; };
 		966FE10026972BD000B8FC20 /* ODrivingExperienceProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966FE0FF26972BD000B8FC20 /* ODrivingExperienceProgressView.swift */; };
 		966FE10226972BDC00B8FC20 /* ODrivingExperienceCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966FE10126972BDC00B8FC20 /* ODrivingExperienceCursor.swift */; };
 		966FE10426972C2800B8FC20 /* OSlideDrivingExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966FE10326972C2800B8FC20 /* OSlideDrivingExperienceView.swift */; };
@@ -318,6 +317,7 @@
 		DEADEB3628375FA90057AA44 /* SplashActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3528375FA80057AA44 /* SplashActivity.swift */; };
 		DEADEB3828375FB80057AA44 /* SplashSDKInitialize.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB3728375FB80057AA44 /* SplashSDKInitialize.swift */; };
 		DEADEB3A283760510057AA44 /* ContentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEADEB39283760510057AA44 /* ContentError.swift */; };
+		DEBE97E328B91F280065C5E1 /* Onboarding.Chart.json in Resources */ = {isa = PBXBuildFile; fileRef = DEBE97E228B91F280065C5E1 /* Onboarding.Chart.json */; };
 		DED1CF2D2866D4CD00E70292 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1CF2C2866D4CD00E70292 /* Question.swift */; };
 		DED1CF2F2866D4DC00E70292 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1CF2E2866D4DC00E70292 /* Answer.swift */; };
 		DED1CF342866D55A00E70292 /* QuestionMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED1CF332866D55A00E70292 /* QuestionMapper.swift */; };
@@ -429,7 +429,6 @@
 		966FE0C82695D21D00B8FC20 /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		966FE0C92695D21D00B8FC20 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		966FE0CB2695D21D00B8FC20 /* OnboardingAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingAnalytics.swift; sourceTree = "<group>"; };
-		966FE0FC269729B700B8FC20 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		966FE0FF26972BD000B8FC20 /* ODrivingExperienceProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODrivingExperienceProgressView.swift; sourceTree = "<group>"; };
 		966FE10126972BDC00B8FC20 /* ODrivingExperienceCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ODrivingExperienceCursor.swift; sourceTree = "<group>"; };
 		966FE10326972C2800B8FC20 /* OSlideDrivingExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSlideDrivingExperienceView.swift; sourceTree = "<group>"; };
@@ -703,6 +702,7 @@
 		DEADEB3528375FA80057AA44 /* SplashActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashActivity.swift; sourceTree = "<group>"; };
 		DEADEB3728375FB80057AA44 /* SplashSDKInitialize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashSDKInitialize.swift; sourceTree = "<group>"; };
 		DEADEB39283760510057AA44 /* ContentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentError.swift; sourceTree = "<group>"; };
+		DEBE97E228B91F280065C5E1 /* Onboarding.Chart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Onboarding.Chart.json; sourceTree = "<group>"; };
 		DED1CF2C2866D4CD00E70292 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		DED1CF2E2866D4DC00E70292 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		DED1CF332866D55A00E70292 /* QuestionMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMapper.swift; sourceTree = "<group>"; };
@@ -876,7 +876,7 @@
 		966FE0AE2695D21D00B8FC20 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				966FE0FC269729B700B8FC20 /* Onboarding.Chart.json */,
+				DEBE97E228B91F280065C5E1 /* Onboarding.Chart.json */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -2338,7 +2338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				966FE0FD269729B700B8FC20 /* Onboarding.Chart.json in Resources */,
+				DEBE97E328B91F280065C5E1 /* Onboarding.Chart.json in Resources */,
 				9673823A267B8CDC00230FB6 /* SF-Pro-Rounded-Medium.otf in Resources */,
 				967D9E9D266A500F002251D7 /* LaunchScreen.storyboard in Resources */,
 				967D9E90266A5002002251D7 /* lato-regular.otf in Resources */,
@@ -2799,7 +2799,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsWidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = StatsWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2808,7 +2808,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.11.0;
+				MARKETING_VERSION = 1.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto.stats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto StatsWidgets AppStore Profile";
@@ -2826,7 +2826,7 @@
 				CODE_SIGN_ENTITLEMENTS = StatsWidgetsExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = StatsWidgets/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2835,7 +2835,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.11.0;
+				MARKETING_VERSION = 1.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto.stats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto StatsWidgets AppStore Profile";
@@ -2971,7 +2971,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moto/Moto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = "$(SRCROOT)/Moto/Resource/Info.plist";
@@ -2980,7 +2980,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.11.0;
+				MARKETING_VERSION = 1.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto AppStore Profile";
@@ -3000,7 +3000,7 @@
 				CODE_SIGN_ENTITLEMENTS = Moto/Moto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = GL587QW8T3;
 				INFOPLIST_FILE = "$(SRCROOT)/Moto/Resource/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
@@ -3008,7 +3008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.11.0;
+				MARKETING_VERSION = 1.12.0;
 				PRODUCT_BUNDLE_IDENTIFIER = prep.moto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "Moto AppStore Profile";
