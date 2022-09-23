@@ -69,8 +69,8 @@ private extension PaygateOptionView {
         subCaptionLabel.textColor = isSelected ? PaygatePalette.Option.selectedText : PaygatePalette.Option.deselectText
         bottomLabel.textColor = isSelected ? PaygatePalette.Option.selectedText : PaygatePalette.Option.deselectText
         
-        saveLabel.textColor = isSelected ? PaygatePalette.Option.saveSelectedText : PaygatePalette.Option.saveDeselectedText
-        saveLabel.backgroundColor = isSelected ? PaygatePalette.Option.saveSelectedBackground : PaygatePalette.Option.saveDeselectedBackground
+        saveLabel.textColor = PaygatePalette.Option.saveSelectedText
+        saveLabel.backgroundColor = PaygatePalette.Option.saveSelectedBackground
     }
 }
 

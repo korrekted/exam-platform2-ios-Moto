@@ -63,8 +63,7 @@ private extension OSlideGoalsView {
         
         changeEnabled()
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Goals Tap", parameters: [:])
     }
     

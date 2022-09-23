@@ -15,14 +15,14 @@ final class StudyViewModel {
     
     private lazy var profileManager = ProfileManager()
     private lazy var courseManager = CoursesManager()
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     private lazy var questionManager = QuestionManager()
     private lazy var statsManager = StatsManagerCore()
     private lazy var flashcardsManager = FlashcardsManagerCore()
     
     lazy var sections = makeSections()
     lazy var activeSubscription = makeActiveSubscription()
-    lazy var course = makeCourseName()
+    lazy var course = makeCourse()
     lazy var brief = makeBrief()
     
     let selectedCourse = BehaviorRelay<Course?>(value: nil)
@@ -90,8 +90,8 @@ private extension StudyViewModel {
         return Observable.merge(initial, updated)
     }
     
-    func makeCourseName() -> Driver<Course> {
-        return currentCourse
+    func makeCourse() -> Driver<Course> {
+        currentCourse
             .asDriver(onErrorDriveWith: .empty())
     }
     
@@ -288,25 +288,11 @@ private extension StudyViewModel {
     }
     
     func makeActiveSubscription() -> Driver<Bool> {
-        let updated = SDKStorage.shared
-            .purchaseMediator
-            .rxPurchaseMediatorDidValidateReceipt
-            .compactMap { $0?.activeSubscription }
+        PurchaseValidationObserver.shared
+            .didValidatedWithActiveSubscription
+            .map { SessionManager().hasActiveSubscriptions() }
             .asDriver(onErrorJustReturn: false)
-        
-        let initial = Driver<Bool>
-            .deferred { [weak self] in
-                guard let this = self else {
-                    return .never()
-                }
-                
-                let activeSubscription = this.sessionManager.getSession()?.activeSubscription ?? false
-                
-                return .just(activeSubscription)
-            }
-        
-        return Driver
-            .merge(initial, updated)
+            .startWith(SessionManager().hasActiveSubscriptions())
     }
     
     func makeConfig() -> Observable<CourseConfig> {

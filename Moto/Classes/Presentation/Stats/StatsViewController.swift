@@ -43,8 +43,7 @@ final class StatsViewController: UIViewController {
         viewModel
             .courseName
             .drive(onNext: { name in
-                SDKStorage.shared
-                    .amplitudeManager
+                AmplitudeManager.shared
                     .logEvent(name: "Stats Screen", parameters: ["course": ""])
             })
             .disposed(by: disposeBag)
@@ -66,7 +65,7 @@ final class StatsViewController: UIViewController {
             .didTapLearnMore
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { _ in
-                UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+                UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
             })
             .disposed(by: disposeBag)
     }

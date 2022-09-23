@@ -1,8 +1,8 @@
 //
 //  SCFlashcardsCell.swift
-//  Moto
+//  CDL
 //
-//  Created by Andrey Chernyshev on 15.06.2021.
+//  Created by Andrey Chernyshev on 09.06.2021.
 //
 
 import UIKit
@@ -126,7 +126,7 @@ private extension SCFlashcardsCell {
     func makeContainer() -> UIView {
         let view = UIView()
         view.layer.cornerRadius = 30.scale
-        view.backgroundColor = UIColor(integralRed: 255, green: 101, blue: 1)
+        view.backgroundColor = UIColor(integralRed: 73, green: 132, blue: 241)
         view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(view)
         return view
@@ -144,7 +144,7 @@ private extension SCFlashcardsCell {
         let view = UIProgressView()
         view.layer.cornerRadius = 6.scale
         view.layer.masksToBounds = true
-        view.trackTintColor = UIColor(integralRed: 255, green: 147, blue: 76)
+        view.trackTintColor = UIColor(integralRed: 122, green: 165, blue: 245)
         view.progressTintColor = UIColor.white
         view.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(view)

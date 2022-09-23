@@ -27,7 +27,7 @@ final class FlashcardsTopicsView: UIView {
 // MARK: Private
 private extension FlashcardsTopicsView {
     func initialize() {
-        backgroundColor = UIColor(integralRed: 237, green: 237, blue: 237)
+        backgroundColor = UIColor(integralRed: 241, green: 246, blue: 254)
     }
 }
 

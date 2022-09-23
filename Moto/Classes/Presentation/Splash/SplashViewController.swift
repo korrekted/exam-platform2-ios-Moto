@@ -16,19 +16,7 @@ final class SplashViewController: UIViewController {
     
     private lazy var viewModel = SplashViewModel()
     
-    private lazy var sdkInitialize = SplashSDKInitialize(vc: self, rushSDKSignal: generateStep)
-    
-    private let generateStep: Signal<Bool>
-    
-    private init(generateStep: Signal<Bool>) {
-        self.generateStep = generateStep
-        
-        super.init(nibName: nil, bundle: .main)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    private lazy var sdkInitialize = SplashSDKInitialize()
     
     override func loadView() {
         view = mainView
@@ -79,8 +67,8 @@ final class SplashViewController: UIViewController {
 
 // MARK: Make
 extension SplashViewController {
-    static func make(generateStep: Signal<Bool>) -> SplashViewController {
-        SplashViewController(generateStep: generateStep)
+    static func make() -> SplashViewController {
+        SplashViewController()
     }
 }
 

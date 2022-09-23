@@ -279,8 +279,7 @@ private extension TestViewController {
     func logAnalytics(courseName: String) {
         let name = TestAnalytics.name(mode: testType)
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Question Screen",
                       parameters: ["course": courseName,
                                    "mode": name])
@@ -289,8 +288,7 @@ private extension TestViewController {
     func logTapAnalytics(courseName: String, what: String) {
         let name = TestAnalytics.name(mode: testType)
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: "Question Tap",
                       parameters: ["course": courseName,
                                    "mode": name,

@@ -24,6 +24,7 @@ final class TestStatsViewModel {
     
     private lazy var testStatsManager = TestStatsManagerCore()
     private lazy var profileManager = ProfileManager()
+    
     private lazy var tryAgainIsHiddenRelay = BehaviorRelay<Bool>(value: true)
     
     private lazy var stats = makeStats()

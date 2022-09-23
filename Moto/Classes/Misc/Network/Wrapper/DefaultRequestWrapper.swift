@@ -1,12 +1,11 @@
 //
 //  DefaultRequestWrapper.swift
-//  Moto
+//  ITExams
 //
-//  Created by Андрей Чернышев on 20.05.2022.
+//  Created by Андрей Чернышев on 22.03.2022.
 //
 
 import RxSwift
-import RushSDK
 import Alamofire
 
 final class DefaultRequestWrapper {
@@ -22,16 +21,16 @@ private extension DefaultRequestWrapper {
             return .deferred { .error(NSError(domain: "Request wrapper attempt limited", code: 404)) }
         }
         
-        return SDKStorage.shared.restApiTransport
+        return RestAPITransport()
             .callServerApi(requestBody: request)
             .catchAndReturn(["_code": 500])
             .flatMap { [weak self] response -> Single<Any> in
                 guard let self = self else {
                     return .never()
                 }
-
+                
                 let success = self.success(response: response)
-
+                
                 return success ? .just(response) : self.execute(request: request, attempt: attempt + 1)
             }
     }

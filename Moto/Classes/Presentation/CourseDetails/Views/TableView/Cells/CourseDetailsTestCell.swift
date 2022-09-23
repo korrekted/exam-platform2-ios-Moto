@@ -81,7 +81,7 @@ private extension CourseDetailsTestCell {
     func makeContainer() -> UIView {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.layer.cornerRadius = 20.scale
+        view.layer.cornerRadius = 30.scale
         view.backgroundColor = CourseDetailsPalette.itemBackground
         contentView.addSubview(view)
         return view

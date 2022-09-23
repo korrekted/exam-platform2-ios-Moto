@@ -13,7 +13,7 @@ final class TestStatsManagerCore: TestStatsManager {
 
 extension TestStatsManagerCore {
     func retrieve(userTestId: Int) -> Single<TestStats?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         

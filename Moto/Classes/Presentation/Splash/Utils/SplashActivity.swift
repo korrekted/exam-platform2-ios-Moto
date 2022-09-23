@@ -1,8 +1,8 @@
 //
 //  SplashActivity.swift
-//  Moto
+//  DMV
 //
-//  Created by Андрей Чернышев on 20.05.2022.
+//  Created by Андрей Чернышев on 19.05.2022.
 //
 
 enum SplashActivity {

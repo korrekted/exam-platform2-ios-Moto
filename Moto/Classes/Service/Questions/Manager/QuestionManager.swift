@@ -24,7 +24,7 @@ protocol QuestionManagerProtocol: AnyObject {
 }
 
 final class QuestionManager: QuestionManagerProtocol {
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     
     private let defaultRequestWrapper = DefaultRequestWrapper()
     private let xorRequestWrapper = XORRequestWrapper()
@@ -106,7 +106,7 @@ extension QuestionManager {
     }
     
     func obtainSaved(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
@@ -120,7 +120,7 @@ extension QuestionManager {
     }
     
     func obtainIncorrect(courseId: Int, activeSubscription: Bool) -> Single<Test?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
@@ -208,7 +208,7 @@ extension QuestionManager {
     }
     
     func obtainConfig(courseId: Int) -> Single<CourseConfig?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         

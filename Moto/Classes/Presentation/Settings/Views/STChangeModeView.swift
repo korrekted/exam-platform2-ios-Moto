@@ -1,6 +1,6 @@
 //
 //  STChangeModeView.swift
-//  Moto
+//  DMV
 //
 //  Created by Андрей Чернышев on 21.12.2021.
 //

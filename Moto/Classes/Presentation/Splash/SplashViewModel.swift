@@ -7,6 +7,7 @@
 
 import RxSwift
 import RxCocoa
+import OtterScaleiOS
 
 final class SplashViewModel {
     enum Step {
@@ -19,13 +20,13 @@ final class SplashViewModel {
     
     private lazy var monetizationManager = MonetizationManagerCore()
     private lazy var profileManager = ProfileManager()
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     private lazy var paygateManager = PaygateManager()
     
     private lazy var observableRetrySingle = ObservableRetrySingle()
     
     func step() -> Driver<Step> {
-        return validationComplete
+        handleValidationComplete()
             .flatMapLatest { [weak self] void -> Observable<Void> in
                 guard let self = self else {
                     return .never()
@@ -46,6 +47,39 @@ final class SplashViewModel {
 
 // MARK: Private
 private extension SplashViewModel {
+    func handleValidationComplete() -> Observable<Void> {
+        validationComplete.flatMapLatest { [weak self] _ -> Single<Void> in
+            guard let self = self else {
+                return .never()
+            }
+            
+            let otterScaleID = OtterScale.shared.getInternalID()
+            
+            let complete: Single<Void>
+            
+            if let cachedToken = self.sessionManager.getSession()?.userToken {
+                if cachedToken != otterScaleID {
+                    complete = self.profileManager.syncTokens(oldToken: cachedToken, newToken: otterScaleID)
+                } else {
+                    complete = .deferred { .just(Void()) }
+                }
+            } else {
+                complete = self.profileManager.login(userToken: otterScaleID)
+            }
+            
+            return complete.flatMap { [weak self] _ -> Single<Void> in
+                guard let self = self else {
+                    return .never()
+                }
+                
+                let session = Session(userToken: otterScaleID)
+                self.sessionManager.store(session: session)
+                
+                return .deferred { .just(Void()) }
+            }
+        }
+    }
+    
     func library() -> Observable<Void> {
         func source() -> Single<Void> {
             let monetization = monetizationManager
@@ -99,7 +133,7 @@ private extension SplashViewModel {
     }
     
     func needPayment() -> Bool {
-        let activeSubscription = sessionManager.getSession()?.activeSubscription ?? false
+        let activeSubscription = sessionManager.hasActiveSubscriptions()
         return !activeSubscription
     }
 }

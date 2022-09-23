@@ -19,7 +19,7 @@ final class SettingsOpener {
         let view = makeView(for: screen)
         let vc = makeVC(with: view)
 
-        view.didNextTapped = {
+        view.didNextTapped = { 
             vc.dismiss(animated: true)
         }
 

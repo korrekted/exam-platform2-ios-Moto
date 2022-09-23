@@ -20,9 +20,9 @@ final class FlashcardsViewModel {
     
     lazy var activity = RxActivityIndicator()
     
-    private lazy var flashcardsManager = FlashcardsManagerCore()
-    
     private lazy var observableRetrySingle = ObservableRetrySingle()
+    
+    private lazy var flashcardsManager = FlashcardsManagerCore()
 }
 
 // MARK: Private

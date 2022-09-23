@@ -1,28 +1,27 @@
 //
 //  XORRequestWrapper.swift
-//  Moto
+//  ITExams
 //
-//  Created by Андрей Чернышев on 20.05.2022.
+//  Created by Андрей Чернышев on 22.03.2022.
 //
 
 import RxSwift
-import RushSDK
 import Alamofire
 
 final class XORRequestWrapper {
-    func callServerStringApi(requestBody: APIRequestBody) -> Single<Any> {
-        execute(request: requestBody)
+    func callServerStringApi(requestBody: APIRequestBody, key: String = GlobalDefinitions.apiKey) -> Single<Any> {
+        execute(request: requestBody, key: key)
     }
 }
 
 // MARK: Private
 private extension XORRequestWrapper {
-    func execute(request: APIRequestBody, attempt: Int = 1, maxCount: Int = 3) -> Single<Any> {
+    func execute(request: APIRequestBody, key: String, attempt: Int = 1, maxCount: Int = 3) -> Single<Any> {
         guard attempt <= maxCount else {
             return .deferred { .error(NSError(domain: "Request wrapper attempt limited", code: 404)) }
         }
         
-        return SDKStorage.shared.restApiTransport
+        return RestAPITransport()
             .callServerStringApi(requestBody: request)
             .catchAndReturn("")
             .flatMap { [weak self] response -> Single<Any> in
@@ -30,16 +29,16 @@ private extension XORRequestWrapper {
                     return .never()
                 }
                 
-                let success = self.success(response: response)
+                let success = self.success(response: response, key: key)
                 
-                return success ? .just(response) : self.execute(request: request, attempt: attempt + 1)
+                return success ? .just(response) : self.execute(request: request, key: key, attempt: attempt + 1)
             }
     }
     
-    func success(response: Any) -> Bool {
+    func success(response: Any, key: String) -> Bool {
         guard
             let string = response as? String,
-            let json = XOREncryption.toJSON(string, key: GlobalDefinitions.apiKey),
+            let json = XOREncryption.toJSON(string, key: key),
             let code = json["_code"] as? Int
         else {
             return false

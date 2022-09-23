@@ -26,7 +26,7 @@ final class STLinkView: UIView {
 private extension STLinkView {
     func initialize() {
         backgroundColor = SettingsPalette.itemBackground
-        layer.cornerRadius = 20.scale
+        layer.cornerRadius = 12.scale
     }
 }
 

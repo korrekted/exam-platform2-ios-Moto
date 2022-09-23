@@ -15,7 +15,7 @@ final class CourseDetailsViewModel {
     let course = BehaviorRelay<Course?>(value: nil)
     
     private lazy var questionManager = QuestionManager()
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     
     lazy var passRate = course.asDriver().compactMap { $0?.progress }
     lazy var courseId = course.asDriver().compactMap { $0?.id }
@@ -92,25 +92,10 @@ extension CourseDetailsViewModel {
     }
     
     func makeActiveSubscription() -> Observable<Bool> {
-        let updated = SDKStorage.shared
-            .purchaseMediator
-            .rxPurchaseMediatorDidValidateReceipt
-            .compactMap { $0?.activeSubscription }
+        PurchaseValidationObserver.shared
+            .didValidatedWithActiveSubscription
+            .map { SessionManager().hasActiveSubscriptions() }
+            .startWith(SessionManager().hasActiveSubscriptions())
             .asObservable()
-            .catchAndReturn(false)
-        
-        let initial = Observable<Bool>
-            .deferred { [weak self] in
-                guard let this = self else {
-                    return .never()
-                }
-                
-                let activeSubscription = this.sessionManager.getSession()?.activeSubscription ?? false
-                
-                return .just(activeSubscription)
-            }
-        
-        return Observable
-            .merge(initial, updated)
     }
 }

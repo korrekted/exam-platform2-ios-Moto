@@ -54,7 +54,7 @@ final class FlashcardsViewController: UIViewController {
         let leftAction = mainView.navigationView.leftAction.rx.tap
             .asObservable()
             .do(onNext: {
-                SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Tap", parameters: ["what": "back"])
+                AmplitudeManager.shared.logEvent(name: "Flashcards Tap", parameters: ["what": "back"])
             })
         
         Observable

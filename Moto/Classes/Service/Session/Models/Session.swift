@@ -6,18 +6,5 @@
 //
 
 struct Session: Codable {
-    let userId: Int?
     let userToken: String?
-    let activeSubscription: Bool
-    let usedProducts: [String]
-}
-
-// MARK: Make
-extension Session {
-    init(response: ReceiptValidateResponse) {
-        self.userId = response.userId
-        self.userToken = response.userToken
-        self.activeSubscription = response.activeSubscription
-        self.usedProducts = response.usedProducts
-    }
 }

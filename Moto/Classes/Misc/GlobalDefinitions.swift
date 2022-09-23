@@ -6,11 +6,14 @@
 //
 
 final class GlobalDefinitions {
-    static let domainUrl = "https://exams.mapo.la"
+    static let domainUrl = "https://exams.mapola.org"
     static let apiKey = "prKt7q9LtwZUBq5a"
     
-    static let sdkDomainUrl = "https://analytics.mapo.la"
+    static let sdkDomainUrl = "https://analytics.mapola.org"
     static let sdkApiKey = "3qvzBXcVsDxRKeKC"
+    
+    static let otterScaleHost = "https://analytics2.mapola.org"
+    static let otterScaleApiKey = "wJMSnzh8enWsVKZp"
     
     static let applicationTag = "PREP_MOTO"
     
@@ -19,7 +22,7 @@ final class GlobalDefinitions {
     
     static let appStoreId = "1570263397"
     
-    static let termsOfServiceUrl = "https://mapo.la/prep/terms.html"
-    static let privacyPolicyUrl = "https://mapo.la/prep/policy.html"
-    static let contactUsUrl = "https://mapo.la/prep/contact.html"
+    static let termsOfServiceUrl = "https://driving.mapola.org/terms"
+    static let privacyPolicyUrl = "https://driving.mapola.org/policy"
+    static let contactUsUrl = "https://driving.mapola.org/contact"
 }

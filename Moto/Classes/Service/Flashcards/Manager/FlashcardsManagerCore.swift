@@ -14,7 +14,7 @@ final class FlashcardsManagerCore: FlashcardsManager {
 // MARK: Public
 extension FlashcardsManagerCore {
     func obtainTopics(courseId: Int) -> Single<[FlashcardTopic]> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
@@ -27,17 +27,13 @@ extension FlashcardsManagerCore {
     }
     
     func obtainFlashcards(flashcardTopicId: Int) -> Single<[Flashcard]> {
-        guard let session = SessionManagerCore().getSession() else {
-            return .error(SignError.tokenNotFound)
-        }
-        
-        guard let userToken = session.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         
         let request = GetFlashcardsRequest(userToken: userToken,
                                            flashcardTopicId: flashcardTopicId,
-                                           activeSubscription: session.activeSubscription)
+                                           activeSubscription: SessionManager().hasActiveSubscriptions())
         
         return defaultRequestWrapper
             .callServerApi(requestBody: request)
@@ -45,7 +41,7 @@ extension FlashcardsManagerCore {
     }
     
     func mark(flashcardId: Int, know: Bool) -> Single<Void> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .error(SignError.tokenNotFound)
         }
         

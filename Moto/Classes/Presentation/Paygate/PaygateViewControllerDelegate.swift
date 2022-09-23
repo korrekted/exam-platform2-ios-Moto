@@ -10,7 +10,7 @@ enum PaygateViewControllerResult {
     case bied, restored, cancelled
 }
 
-protocol PaygateViewControllerDelegate: class {
+protocol PaygateViewControllerDelegate: AnyObject {
     func paygateDidClosed(with result: PaygateViewControllerResult)
 }
 

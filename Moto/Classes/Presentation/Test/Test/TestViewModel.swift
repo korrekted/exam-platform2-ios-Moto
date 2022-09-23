@@ -51,7 +51,7 @@ final class TestViewModel {
     
     private lazy var questionManager = QuestionManager()
     private lazy var profileManager = ProfileManager()
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     
     private let answeredQuestionId = PublishRelay<Int>()
     private let savedQuestionRelay = PublishRelay<(Int, Bool)>()
@@ -315,7 +315,7 @@ private extension TestViewModel {
                 
                 let test: Single<Test?>
                 
-                let activeSubscription = self.sessionManager.getSession()?.activeSubscription ?? false
+                let activeSubscription = self.sessionManager.hasActiveSubscriptions()
                 
                 switch type {
                 case let .get(testId):
@@ -395,7 +395,7 @@ private extension TestViewModel {
                     return false
                 }
                 
-                let activeSubscription = self.sessionManager.getSession()?.activeSubscription ?? false
+                let activeSubscription = self.sessionManager.hasActiveSubscriptions()
                 return activeSubscription ? false : element.paid ? true : false
             }
             .asSignal(onErrorSignalWith: .empty())
@@ -719,8 +719,7 @@ private extension TestViewModel {
         let name = isCorrect ? "Question Answered Correctly" : "Question Answered Incorrectly"
         let mode = TestAnalytics.name(mode: testType.value)
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: name, parameters: ["course" : courseName, "mode": mode])
     }
 }

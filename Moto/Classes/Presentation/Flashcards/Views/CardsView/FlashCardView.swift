@@ -233,7 +233,7 @@ private extension FlashCardView {
         let view = UIButton()
         view.titleLabel?.font = Fonts.SFProRounded.regular(size: 18.scale)
         view.setTitleColor(FlashcardPalette.Card.buttonTintDeselected, for: .normal)
-        view.layer.cornerRadius = 20.scale
+        view.layer.cornerRadius = 30.scale
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
         return view

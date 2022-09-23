@@ -42,7 +42,7 @@ final class SITestViewModel {
     
     private lazy var questionManager = QuestionManager()
     private lazy var profileManager = ProfileManager()
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
     
     private let answeredQuestionId = PublishRelay<Int>()
     
@@ -171,7 +171,7 @@ private extension SITestViewModel {
                     return .empty()
                 }
                 
-                let activeSubscription = self.sessionManager.getSession()?.activeSubscription ?? false
+                let activeSubscription = self.sessionManager.hasActiveSubscriptions()
                 
                 func source() -> Single<Test> {
                     let test: Single<Test?>

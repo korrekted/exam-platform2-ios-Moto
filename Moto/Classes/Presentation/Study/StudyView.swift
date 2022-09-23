@@ -78,6 +78,7 @@ private extension StudyView {
         ])
         
         navigationHeight = navigationView.heightAnchor.constraint(equalToConstant: ScreenSize.isIphoneXFamily ? 351.scale : 335.scale)
+        
         navigationHeight?.isActive = true
         
         NSLayoutConstraint.activate([

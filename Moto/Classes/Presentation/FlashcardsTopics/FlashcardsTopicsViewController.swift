@@ -21,7 +21,8 @@ final class FlashcardsTopicsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Sets Screen", parameters: [:])
+        
+        AmplitudeManager.shared.logEvent(name: "Flashcards Sets Screen", parameters: [:])
         
         viewModel.tryAgain = { [weak self] error -> Observable<Void> in
             guard let self = self else {
@@ -40,7 +41,7 @@ final class FlashcardsTopicsViewController: UIViewController {
                 self.activity(activity)
             })
             .disposed(by: disposeBag)
-        
+    
         viewModel.flashcardsTopics
             .drive(onNext: { [weak self] flashcardsTopics in
                 self?.mainView.tableView.setup(flashcards: flashcardsTopics)
@@ -53,11 +54,11 @@ final class FlashcardsTopicsViewController: UIViewController {
                 let (topic, activeSubscription) = stub
                 
                 if topic.paid && !activeSubscription {
-                    UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
                 } else {
                     let vc = FlashcardsViewController.make(topic: topic)
                     self?.parent?.navigationController?.pushViewController(vc, animated: true)
-                    SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Sets Tap", parameters: ["what": "flashcard set"])
+                    AmplitudeManager.shared.logEvent(name: "Flashcards Sets Tap", parameters: ["what": "flashcard set"])
                 }
             })
             .disposed(by: disposeBag)
@@ -104,7 +105,7 @@ private extension FlashcardsTopicsViewController {
     
     @objc
     func popAction() {
-        SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcards Set Tap", parameters: ["what": "back"])
+        AmplitudeManager.shared.logEvent(name: "Flashcards Set Tap", parameters: ["what": "back"])
         navigationController?.popViewController(animated: true)
     }
 }

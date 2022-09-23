@@ -41,7 +41,7 @@ final class ProfileManager: ProfileManagerProtocol {
     
     private lazy var defaultRequestWrapper = DefaultRequestWrapper()
     
-    private lazy var sessionManager = SessionManagerCore()
+    private lazy var sessionManager = SessionManager()
 }
 
 // MARK: Public

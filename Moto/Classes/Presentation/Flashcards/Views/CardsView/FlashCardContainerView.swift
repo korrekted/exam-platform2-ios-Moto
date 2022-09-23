@@ -8,7 +8,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import RushSDK
 
 class FlashCardContainerView: UIView {
     
@@ -60,7 +59,7 @@ class FlashCardContainerView: UIView {
     func showCards(for elements: [FlashCardModel]) {
         guard !elements.isEmpty else { return }
         
-        SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcard Screen", parameters: [:])
+        AmplitudeManager.shared.logEvent(name: "Flashcard Screen", parameters: [:])
         allCards.append(contentsOf: elements)
         
         elements.enumerated().forEach { index, element in
@@ -127,7 +126,7 @@ extension FlashCardContainerView: FlashCardDelegate {
     
     func moved() {
         removeAndAddNewCard()
-        SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcard Screen", parameters: [:])
+        AmplitudeManager.shared.logEvent(name: "Flashcard Screen", parameters: [:])
     }
     
     func cardReturned() {
@@ -136,7 +135,7 @@ extension FlashCardContainerView: FlashCardDelegate {
     
     func tapAction(id: Int, isKnew: Bool) {
         let paramValue = isKnew ? "knew" : "didn't knew"
-        SDKStorage.shared.amplitudeManager.logEvent(name: "Flashcard Tap", parameters: ["what": paramValue])
+        AmplitudeManager.shared.logEvent(name: "Flashcard Tap", parameters: ["what": paramValue])
         didSelectAnswer.accept((id, isKnew))
     }
 }

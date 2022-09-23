@@ -25,7 +25,7 @@ final class PaygateViewModel {
     let retrieveCompleted = BehaviorRelay<Bool>(value: false)
     
     private lazy var paygateManager = PaygateManager()
-    private lazy var purchaseInteractor = SDKStorage.shared.purchaseInteractor
+    private lazy var purchaseInteractor = PaygateInteractor()
     private lazy var monetizatiionManager = MonetizationManagerCore()
 }
 
@@ -78,11 +78,11 @@ private extension PaygateViewModel {
         let purchase = buy
             .flatMapLatest { [purchaseInteractor, buyProcessing] productId -> Observable<Bool> in
                 purchaseInteractor
-                    .makeActiveSubscriptionByBuy(productId: productId)
+                    .makeActiveSubscription(by: .buy(productId))
                     .map { result -> Bool in
                         switch result {
                         case .completed(let response):
-                            return response != nil
+                            return response
                         case .cancelled:
                             return false
                         }
@@ -99,11 +99,11 @@ private extension PaygateViewModel {
         let purchase = restore
             .flatMapLatest { [purchaseInteractor, restoreProcessing] productId -> Observable<Bool> in
                 purchaseInteractor
-                    .makeActiveSubscriptionByRestore()
+                    .makeActiveSubscription(by: .restore)
                     .map { result -> Bool in
                         switch result {
                         case .completed(let response):
-                            return response != nil
+                            return response
                         case .cancelled:
                             return false
                         }

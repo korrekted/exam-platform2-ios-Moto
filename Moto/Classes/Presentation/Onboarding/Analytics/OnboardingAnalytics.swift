@@ -38,8 +38,7 @@ final class OnboardingAnalytics {
             name = "Push Screen"
         }
         
-        SDKStorage.shared
-            .amplitudeManager
+        AmplitudeManager.shared
             .logEvent(name: name, parameters: [:])
     }
 }

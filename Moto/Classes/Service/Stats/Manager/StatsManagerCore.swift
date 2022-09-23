@@ -14,7 +14,7 @@ final class StatsManagerCore: StatsManager {
 // MARK: API(Rx)
 extension StatsManagerCore {
     func retrieveStats(courseId: Int) -> Single<Stats?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         
@@ -33,7 +33,7 @@ extension StatsManagerCore {
     }
     
     func retrieveBrief(courseId: Int) -> Single<Brief?> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just(nil) }
         }
         

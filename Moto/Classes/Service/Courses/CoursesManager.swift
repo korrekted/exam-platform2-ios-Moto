@@ -18,7 +18,7 @@ final class CoursesManager: CoursesManagerProtocol {
 // MARK: Public
 extension CoursesManager {
     func obtainCourses() -> Single<[Course]> {
-        guard let userToken = SessionManagerCore().getSession()?.userToken else {
+        guard let userToken = SessionManager().getSession()?.userToken else {
             return .deferred { .just([]) }
         }
         

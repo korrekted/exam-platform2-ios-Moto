@@ -1,8 +1,8 @@
 //
 //  TryAgainView.swift
-//  Moto
+//  DMV
 //
-//  Created by Андрей Чернышев on 20.05.2022.
+//  Created by Андрей Чернышев on 19.05.2022.
 //
 
 import UIKit
@@ -114,7 +114,7 @@ private extension TryAgainView {
     
     func makeButton() -> UIButton {
         let attrs = TextAttributes()
-            .textColor(UIColor.white)
+            .textColor(TryAgainPalette.background)
             .font(Fonts.SFProRounded.semiBold(size: 20.scale))
         
         let view = UIButton()
@@ -128,7 +128,7 @@ private extension TryAgainView {
     
     func makeContactButton() -> TapAreaButton {
         let attrs = TextAttributes()
-            .textColor(TryAgainPalette.title)
+            .textColor(TryAgainPalette.tryAgainButtonBackground)
             .font(Fonts.SFProRounded.semiBold(size: 20.scale))
         
         let view = TapAreaButton()

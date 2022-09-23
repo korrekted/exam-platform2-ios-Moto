@@ -136,8 +136,8 @@ private extension FlashcardsTopicsTableCell {
         let view = UIProgressView()
         view.layer.cornerRadius = 3.scale
         view.layer.masksToBounds = true
-        view.progressTintColor = UIColor(integralRed: 255, green: 101, blue: 1)
-        view.trackTintColor = UIColor(integralRed: 237, green: 237, blue: 237)
+        view.progressTintColor = UIColor(integralRed: 73, green: 132, blue: 241)
+        view.trackTintColor = UIColor(integralRed: 241, green: 246, blue: 254)
         view.translatesAutoresizingMaskIntoConstraints = false
         container.addSubview(view)
         return view

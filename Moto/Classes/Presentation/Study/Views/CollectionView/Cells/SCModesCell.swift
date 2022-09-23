@@ -71,14 +71,14 @@ private extension SCModesCell {
         NSLayoutConstraint.activate([
             todayView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16.scale),
             todayView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
-            todayView.widthAnchor.constraint(equalTo: randomView.widthAnchor)
+            todayView.widthAnchor.constraint(equalTo: randomView.widthAnchor),
         ])
         
         NSLayoutConstraint.activate([
             randomView.topAnchor.constraint(equalTo: todayView.bottomAnchor, constant: 16.scale),
             randomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16.scale),
             randomView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor),
-            randomView.trailingAnchor.constraint(equalTo: todayView.trailingAnchor)
+            randomView.trailingAnchor.constraint(equalTo: todayView.trailingAnchor),
         ])
         
         NSLayoutConstraint.activate([

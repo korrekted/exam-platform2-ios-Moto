@@ -97,7 +97,7 @@ class CourseDetailsViewController: UIViewController {
                     let vc = SITestViewController.make(course: course, testType: testType)
                     base.present(vc, animated: true)
                 } else {
-                    UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+                    UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
                 }
             })
             .disposed(by: disposeBag)
@@ -106,7 +106,7 @@ class CourseDetailsViewController: UIViewController {
             .didTapLearnMore
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { _ in
-                UIApplication.shared.keyWindow?.rootViewController?.present(PaygateViewController.make(), animated: true)
+                UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.rootViewController?.present(PaygateViewController.make(), animated: true)
             })
             .disposed(by: disposeBag)
         
